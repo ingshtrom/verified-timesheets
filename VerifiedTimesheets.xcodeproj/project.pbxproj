@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		FADCCB121A5867EB00838054 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCCB111A5867EB00838054 /* AppDelegate.swift */; };
 		FADCCB151A5867EB00838054 /* VerifiedTimesheets.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FADCCB131A5867EB00838054 /* VerifiedTimesheets.xcdatamodeld */; };
-		FADCCB171A5867EB00838054 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCCB161A5867EB00838054 /* ViewController.swift */; };
+		FADCCB171A5867EB00838054 /* TimesheetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCCB161A5867EB00838054 /* TimesheetsViewController.swift */; };
 		FADCCB1A1A5867EB00838054 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FADCCB181A5867EB00838054 /* Main.storyboard */; };
 		FADCCB1C1A5867EB00838054 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADCCB1B1A5867EB00838054 /* Images.xcassets */; };
 		FADCCB1F1A5867EB00838054 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FADCCB1D1A5867EB00838054 /* LaunchScreen.xib */; };
 		FADCCB2B1A5867EC00838054 /* VerifiedTimesheetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCCB2A1A5867EC00838054 /* VerifiedTimesheetsTests.swift */; };
+		FADCCB351A5869F700838054 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCCB341A5869F700838054 /* DataManager.swift */; };
+		FADCCB391A5872BF00838054 /* NewRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCCB381A5872BF00838054 /* NewRecordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +33,15 @@
 		FADCCB101A5867EB00838054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FADCCB111A5867EB00838054 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FADCCB141A5867EB00838054 /* VerifiedTimesheets.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VerifiedTimesheets.xcdatamodel; sourceTree = "<group>"; };
-		FADCCB161A5867EB00838054 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FADCCB161A5867EB00838054 /* TimesheetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetsViewController.swift; sourceTree = "<group>"; };
 		FADCCB191A5867EB00838054 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FADCCB1B1A5867EB00838054 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FADCCB1E1A5867EB00838054 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		FADCCB241A5867EC00838054 /* VerifiedTimesheetsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VerifiedTimesheetsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADCCB291A5867EC00838054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FADCCB2A1A5867EC00838054 /* VerifiedTimesheetsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiedTimesheetsTests.swift; sourceTree = "<group>"; };
+		FADCCB341A5869F700838054 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		FADCCB381A5872BF00838054 /* NewRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRecordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,12 +84,14 @@
 			isa = PBXGroup;
 			children = (
 				FADCCB111A5867EB00838054 /* AppDelegate.swift */,
-				FADCCB161A5867EB00838054 /* ViewController.swift */,
+				FADCCB161A5867EB00838054 /* TimesheetsViewController.swift */,
 				FADCCB181A5867EB00838054 /* Main.storyboard */,
 				FADCCB1B1A5867EB00838054 /* Images.xcassets */,
 				FADCCB1D1A5867EB00838054 /* LaunchScreen.xib */,
 				FADCCB131A5867EB00838054 /* VerifiedTimesheets.xcdatamodeld */,
 				FADCCB0F1A5867EB00838054 /* Supporting Files */,
+				FADCCB341A5869F700838054 /* DataManager.swift */,
+				FADCCB381A5872BF00838054 /* NewRecordViewController.swift */,
 			);
 			path = VerifiedTimesheets;
 			sourceTree = "<group>";
@@ -215,7 +221,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FADCCB171A5867EB00838054 /* ViewController.swift in Sources */,
+				FADCCB171A5867EB00838054 /* TimesheetsViewController.swift in Sources */,
+				FADCCB391A5872BF00838054 /* NewRecordViewController.swift in Sources */,
+				FADCCB351A5869F700838054 /* DataManager.swift in Sources */,
 				FADCCB151A5867EB00838054 /* VerifiedTimesheets.xcdatamodeld in Sources */,
 				FADCCB121A5867EB00838054 /* AppDelegate.swift in Sources */,
 			);
@@ -411,6 +419,7 @@
 				FADCCB301A5867EC00838054 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FADCCB311A5867EC00838054 /* Build configuration list for PBXNativeTarget "VerifiedTimesheetsTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +428,7 @@
 				FADCCB331A5867EC00838054 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
