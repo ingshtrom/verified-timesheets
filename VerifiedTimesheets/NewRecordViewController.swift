@@ -11,10 +11,22 @@ import UIKit;
 class NewRecordViewController : UIViewController {
   
   override init() {
-    super.init(nibName: "NewRecordView", bundle: nil);
+    super.init()
   }
 
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+  }
+  
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder);
+  }
+  
+  @IBAction func cancelToTimesheetsViewController(segue: UIStoryboardSegue) {
+    
+  }
+  
+  @IBAction func saveNewTimesheet(seque: UIStoryboardSegue) {
+    
   }
 }

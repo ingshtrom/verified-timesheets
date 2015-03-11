@@ -11,49 +11,35 @@ import UIKit
 class TimesheetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate {
   
   @IBOutlet
-  var tableView: UITableView!;
+  var tableView: UITableView!
+  let data: DataManager = DataManager.sharedInstance
   
   override func viewDidLoad() {
-    super.viewDidLoad();
-    
-    self.title = "Timesheets";
-    
-    self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell");
+    super.viewDidLoad()
+    self.title = "Timesheets"
+    self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
   }
 
   override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning();
+    super.didReceiveMemoryWarning()
   }
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell;
-    cell.textLabel!.text = "foobar";
-    return cell;
+    var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
+    cell.textLabel!.text = data.getItem(indexPath.item)
+    return cell
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if (section == 0) {
-      return 5;
-    }
-    return 0;
+    return data.getCount()
   }
   
-  @IBAction func addButtonClicked(sender: AnyObject?) {
-    println("addButtonClicked()");
-    self.displayNewRecordPopover();
+  @IBAction func cancelToTimesheetsViewController(segue: UIStoryboardSegue) {
+    
   }
   
-  private func displayNewRecordPopover() {
-    let popoverController = NewRecordViewController();
+  @IBAction func saveNewTimesheet(seque: UIStoryboardSegue) {
     
-//    let nav = UINavigationController(rootViewController: popoverController);
-//    nav.modalPresentationStyle = UIModalPresentationStyle.Popover;
-//    
-//    let popover = nav.popoverPresentationController;
-//    popover!.delegate = self;
-//    popover!.sourceRect = self.view.bounds;
-    
-    self.presentViewController(popoverController, animated: true, completion: nil)
   }
 }
 
