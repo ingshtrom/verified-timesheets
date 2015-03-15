@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA6DA42C1AB62465002B8A63 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DA42B1AB62465002B8A63 /* Utils.swift */; };
+		FAB0675C1AB4EEA1008DA772 /* PopDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB0675B1AB4EEA1008DA772 /* PopDateView.xib */; };
+		FAB0675E1AB4EEC1008DA772 /* PopDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0675D1AB4EEC1008DA772 /* PopDateViewController.swift */; };
+		FACAB24A1AB6017B00E7A7BF /* PopDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACAB2491AB6017B00E7A7BF /* PopDatePicker.swift */; };
 		FADCCB121A5867EB00838054 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCCB111A5867EB00838054 /* AppDelegate.swift */; };
 		FADCCB151A5867EB00838054 /* VerifiedTimesheets.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FADCCB131A5867EB00838054 /* VerifiedTimesheets.xcdatamodeld */; };
 		FADCCB171A5867EB00838054 /* TimesheetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCCB161A5867EB00838054 /* TimesheetsViewController.swift */; };
@@ -33,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA6DA42B1AB62465002B8A63 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		FAB0675B1AB4EEA1008DA772 /* PopDateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopDateView.xib; sourceTree = "<group>"; };
+		FAB0675D1AB4EEC1008DA772 /* PopDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopDateViewController.swift; sourceTree = "<group>"; };
+		FACAB2491AB6017B00E7A7BF /* PopDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopDatePicker.swift; sourceTree = "<group>"; };
 		FADCCB0C1A5867EB00838054 /* VerifiedTimesheets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VerifiedTimesheets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADCCB101A5867EB00838054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FADCCB111A5867EB00838054 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +109,10 @@
 				FADCCB0F1A5867EB00838054 /* Supporting Files */,
 				FADCCB341A5869F700838054 /* DataManager.swift */,
 				FADCCB381A5872BF00838054 /* NewRecordViewController.swift */,
+				FAB0675B1AB4EEA1008DA772 /* PopDateView.xib */,
+				FAB0675D1AB4EEC1008DA772 /* PopDateViewController.swift */,
+				FACAB2491AB6017B00E7A7BF /* PopDatePicker.swift */,
+				FA6DA42B1AB62465002B8A63 /* Utils.swift */,
 			);
 			path = VerifiedTimesheets;
 			sourceTree = "<group>";
@@ -228,6 +240,7 @@
 				FAF85A131AAFA3A700887E48 /* move13.png in Resources */,
 				FAF85A151AAFA3A700887E48 /* settings20.png in Resources */,
 				FAF85A141AAFA3A700887E48 /* round27.png in Resources */,
+				FAB0675C1AB4EEA1008DA772 /* PopDateView.xib in Resources */,
 				FADCCB1C1A5867EB00838054 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,9 +261,12 @@
 			files = (
 				FADCCB171A5867EB00838054 /* TimesheetsViewController.swift in Sources */,
 				FADCCB391A5872BF00838054 /* NewRecordViewController.swift in Sources */,
+				FAB0675E1AB4EEC1008DA772 /* PopDateViewController.swift in Sources */,
 				FADCCB351A5869F700838054 /* DataManager.swift in Sources */,
 				FADCCB151A5867EB00838054 /* VerifiedTimesheets.xcdatamodeld in Sources */,
 				FADCCB121A5867EB00838054 /* AppDelegate.swift in Sources */,
+				FACAB24A1AB6017B00E7A7BF /* PopDatePicker.swift in Sources */,
+				FA6DA42C1AB62465002B8A63 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

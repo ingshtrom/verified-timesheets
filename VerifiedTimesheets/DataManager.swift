@@ -28,29 +28,44 @@ class DataManager {
   var store: [NSManagedObject] = [NSManagedObject]()
     
   private init() {
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let managedContext = appDelegate.managedObjectContext!
+    let fetchRequest = NSFetchRequest(entityName:"TimeEntry")
+    var error: NSError?
     
+    let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]?
+    
+    if let results = fetchedResults {
+      store = results
+    } else {
+      println("Could not fetch \(error), \(error!.userInfo)")
+    }
   }
 
-  func addItem(item: String) {
+  func addItem(startTimeDate: NSDate, endTimeDate: NSDate, notes: String) {
     let entity =  NSEntityDescription.entityForName("TimeEntry", inManagedObjectContext: managedObjectContext!)
     let timeEntry = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedObjectContext)
     
     timeEntry.setValue(NSDate(), forKey: "created_on")
+    timeEntry.setValue(startTimeDate, forKey: "start_time")
+    timeEntry.setValue(endTimeDate, forKey: "end_time")
     
     var error: NSError?
     if managedObjectContext?.save(&error) != nil {
       println("Could not save \(error), \(error?.userInfo)")
+    } else {
+      println("saved item successfully")
     }
 
     return store.append(timeEntry)
   }
   
-  func getItem(index: Int) -> String {
-    return "foo";
+  func getItem(index: Int) -> NSManagedObject {
+    return store[index]
   }
   
-  func removeItem(index: Int) -> String {
-    return "foobar";
+  func removeItem(index: Int) -> NSManagedObject {
+    return store.removeAtIndex(index)
   }
   
   func getCount() -> Int {
