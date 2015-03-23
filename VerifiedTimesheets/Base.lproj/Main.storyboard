@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Iys-Hu-nGg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Iys-Hu-nGg">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -39,7 +39,6 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JBS-UJ-6d3" userLabel="Add">
                             <connections>
                                 <action selector="addButtonClicked:" destination="BYZ-38-t0r" id="cmo-Db-OZr"/>
-                                <segue destination="cR0-cI-AzB" kind="presentation" id="HqL-sB-Eh5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -47,6 +46,7 @@
                     <connections>
                         <outlet property="tableView" destination="usZ-le-mmt" id="hrI-u3-WvP"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="INL-d0-2cF"/>
+                        <segue destination="QqX-sx-45J" kind="presentation" identifier="tableViewToDetailsView" id="zgC-uQ-is0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -168,7 +168,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="gzE-6Q-1n6"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -264,4 +263,7 @@
         <image name="round27.png" width="32" height="32"/>
         <image name="settings20.png" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="zgC-uQ-is0"/>
+    </inferredMetricsTieBreakers>
 </document>

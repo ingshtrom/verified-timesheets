@@ -43,15 +43,22 @@ class DataManager {
   }
 
   func addItem(startTimeDate: NSDate, endTimeDate: NSDate, notes: String) {
+//    println("addItem:")
+//    println("  startTime: \(getFormatter().stringFromDate(startTimeDate))")
+//    println("  endTime: \(getFormatter().stringFromDate(endTimeDate))")
+//    println("  notes: \(notes)")
+  
     let entity =  NSEntityDescription.entityForName("TimeEntry", inManagedObjectContext: managedObjectContext!)
     let timeEntry = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedObjectContext)
     
     timeEntry.setValue(NSDate(), forKey: "created_on")
     timeEntry.setValue(startTimeDate, forKey: "start_time")
     timeEntry.setValue(endTimeDate, forKey: "end_time")
+    timeEntry.setValue(notes, forKey: "notes")
     
     var error: NSError?
-    if managedObjectContext?.save(&error) != nil {
+    managedObjectContext?.save(&error)
+    if error != nil {
       println("Could not save \(error), \(error?.userInfo)")
     } else {
       println("saved item successfully")

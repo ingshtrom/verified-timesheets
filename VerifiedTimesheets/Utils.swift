@@ -15,3 +15,12 @@ func getTotalTime(startTime: NSDate, endTime: NSDate) -> Double {
   let timeDiff: NSTimeInterval = endTime.timeIntervalSinceDate(startTime)
   return round(timeDiff / 60 / 60 * 10) / 10
 }
+
+// get a formatter that we will use to convert from
+// string -> date  and date -> string
+func getFormatter() -> NSDateFormatter {
+  let formatter = NSDateFormatter()
+  formatter.dateStyle = .ShortStyle
+  formatter.timeStyle = .ShortStyle
+  return formatter
+}

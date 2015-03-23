@@ -14,6 +14,7 @@ class NewRecordViewController : UIViewController, UITextFieldDelegate {
   var popDatePickerForStart : PopDatePicker?
   var popDatePickerForEnd : PopDatePicker?
   var data : DataManager? = DataManager.sharedInstance
+  var passedInTimeEntry : TimeEntry?
   
   @IBOutlet weak var startTimeTextField: UITextField!
   @IBOutlet weak var endTimeTextField: UITextField!
@@ -27,9 +28,24 @@ class NewRecordViewController : UIViewController, UITextFieldDelegate {
     let formatter = NSDateFormatter()
     formatter.dateStyle = .ShortStyle
     formatter.timeStyle = .ShortStyle
-    let initDate = formatter.stringFromDate(NSDate())
-    startTimeTextField.text = initDate
-    endTimeTextField.text = initDate
+    
+    if (passedInTimeEntry != nil) {
+      if let startTime = passedInTimeEntry!.start_time as NSDate? {
+        startTimeTextField.text = getFormatter().stringFromDate(startTime)
+      }
+      if let endTime = passedInTimeEntry!.end_time as NSDate? {
+        endTimeTextField.text = getFormatter().stringFromDate(endTime)
+      }
+      if let notes = passedInTimeEntry!.notes as String? {
+        notesTextView.text = notes
+      }
+      updateTotalTime()
+    } else {
+      println("passedInTimeEntry was nil")
+      let initDate = formatter.stringFromDate(NSDate())
+      startTimeTextField.text = initDate
+      endTimeTextField.text = initDate
+    }
     
     popDatePickerForStart = PopDatePicker(forTextField: startTimeTextField)
     startTimeTextField.delegate = self

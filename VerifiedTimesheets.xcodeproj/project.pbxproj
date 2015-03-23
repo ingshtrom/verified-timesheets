@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		51F9BB9B583D029C5E9E2DA1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD8CFDFAE8015BA078CAA72 /* libPods.a */; };
 		FA6DA42C1AB62465002B8A63 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DA42B1AB62465002B8A63 /* Utils.swift */; };
 		FAB0675C1AB4EEA1008DA772 /* PopDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB0675B1AB4EEA1008DA772 /* PopDateView.xib */; };
 		FAB0675E1AB4EEC1008DA772 /* PopDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0675D1AB4EEC1008DA772 /* PopDateViewController.swift */; };
+		FABBCC861AB8DCEF007BBC07 /* TimeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABBCC851AB8DCEF007BBC07 /* TimeEntry.swift */; };
 		FACAB24A1AB6017B00E7A7BF /* PopDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACAB2491AB6017B00E7A7BF /* PopDatePicker.swift */; };
 		FADCCB121A5867EB00838054 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCCB111A5867EB00838054 /* AppDelegate.swift */; };
 		FADCCB151A5867EB00838054 /* VerifiedTimesheets.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FADCCB131A5867EB00838054 /* VerifiedTimesheets.xcdatamodeld */; };
@@ -37,9 +39,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2BFB5C26D68FAAD955D37475 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		2CD8CFDFAE8015BA078CAA72 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		30DB16091B5EDA0B21FE550F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FA6DA42B1AB62465002B8A63 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		FAB0675B1AB4EEA1008DA772 /* PopDateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopDateView.xib; sourceTree = "<group>"; };
 		FAB0675D1AB4EEC1008DA772 /* PopDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopDateViewController.swift; sourceTree = "<group>"; };
+		FABBCC851AB8DCEF007BBC07 /* TimeEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeEntry.swift; sourceTree = "<group>"; };
 		FACAB2491AB6017B00E7A7BF /* PopDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopDatePicker.swift; sourceTree = "<group>"; };
 		FADCCB0C1A5867EB00838054 /* VerifiedTimesheets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VerifiedTimesheets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADCCB101A5867EB00838054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51F9BB9B583D029C5E9E2DA1 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,12 +85,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A6B96B829693E628F3E0E1B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2BFB5C26D68FAAD955D37475 /* Pods.debug.xcconfig */,
+				30DB16091B5EDA0B21FE550F /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		694432C3343E998D83034BAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2CD8CFDFAE8015BA078CAA72 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FA9444311ABF42FC00C4492F /* New Record */ = {
+			isa = PBXGroup;
+			children = (
+				FADCCB381A5872BF00838054 /* NewRecordViewController.swift */,
+				FAB0675B1AB4EEA1008DA772 /* PopDateView.xib */,
+				FAB0675D1AB4EEC1008DA772 /* PopDateViewController.swift */,
+				FACAB2491AB6017B00E7A7BF /* PopDatePicker.swift */,
+			);
+			name = "New Record";
+			sourceTree = "<group>";
+		};
+		FABBCC841AB8DCD8007BBC07 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				FABBCC851AB8DCEF007BBC07 /* TimeEntry.swift */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
 		FADCCB031A5867EB00838054 = {
 			isa = PBXGroup;
 			children = (
 				FADCCB0E1A5867EB00838054 /* VerifiedTimesheets */,
 				FADCCB271A5867EC00838054 /* VerifiedTimesheetsTests */,
 				FADCCB0D1A5867EB00838054 /* Products */,
+				5A6B96B829693E628F3E0E1B /* Pods */,
+				694432C3343E998D83034BAE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,20 +144,18 @@
 		FADCCB0E1A5867EB00838054 /* VerifiedTimesheets */ = {
 			isa = PBXGroup;
 			children = (
-				FAF85A0D1AAFA3A700887E48 /* images */,
-				FADCCB111A5867EB00838054 /* AppDelegate.swift */,
-				FADCCB161A5867EB00838054 /* TimesheetsViewController.swift */,
-				FADCCB181A5867EB00838054 /* Main.storyboard */,
-				FADCCB1B1A5867EB00838054 /* Images.xcassets */,
-				FADCCB1D1A5867EB00838054 /* LaunchScreen.xib */,
-				FADCCB131A5867EB00838054 /* VerifiedTimesheets.xcdatamodeld */,
 				FADCCB0F1A5867EB00838054 /* Supporting Files */,
+				FA9444311ABF42FC00C4492F /* New Record */,
+				FABBCC841AB8DCD8007BBC07 /* models */,
+				FAF85A0D1AAFA3A700887E48 /* images */,
+				FADCCB181A5867EB00838054 /* Main.storyboard */,
+				FADCCB161A5867EB00838054 /* TimesheetsViewController.swift */,
 				FADCCB341A5869F700838054 /* DataManager.swift */,
-				FADCCB381A5872BF00838054 /* NewRecordViewController.swift */,
-				FAB0675B1AB4EEA1008DA772 /* PopDateView.xib */,
-				FAB0675D1AB4EEC1008DA772 /* PopDateViewController.swift */,
-				FACAB2491AB6017B00E7A7BF /* PopDatePicker.swift */,
 				FA6DA42B1AB62465002B8A63 /* Utils.swift */,
+				FADCCB111A5867EB00838054 /* AppDelegate.swift */,
+				FADCCB1D1A5867EB00838054 /* LaunchScreen.xib */,
+				FADCCB1B1A5867EB00838054 /* Images.xcassets */,
+				FADCCB131A5867EB00838054 /* VerifiedTimesheets.xcdatamodeld */,
 			);
 			path = VerifiedTimesheets;
 			sourceTree = "<group>";
@@ -161,9 +204,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FADCCB2E1A5867EC00838054 /* Build configuration list for PBXNativeTarget "VerifiedTimesheets" */;
 			buildPhases = (
+				0A52A95D3390C87074467F2F /* Check Pods Manifest.lock */,
 				FADCCB081A5867EB00838054 /* Sources */,
 				FADCCB091A5867EB00838054 /* Frameworks */,
 				FADCCB0A1A5867EB00838054 /* Resources */,
+				69CB2E64702FAB5DCBEBBC64 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,6 +299,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0A52A95D3390C87074467F2F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		69CB2E64702FAB5DCBEBBC64 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FADCCB081A5867EB00838054 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -264,6 +342,7 @@
 				FAB0675E1AB4EEC1008DA772 /* PopDateViewController.swift in Sources */,
 				FADCCB351A5869F700838054 /* DataManager.swift in Sources */,
 				FADCCB151A5867EB00838054 /* VerifiedTimesheets.xcdatamodeld in Sources */,
+				FABBCC861AB8DCEF007BBC07 /* TimeEntry.swift in Sources */,
 				FADCCB121A5867EB00838054 /* AppDelegate.swift in Sources */,
 				FACAB24A1AB6017B00E7A7BF /* PopDatePicker.swift in Sources */,
 				FA6DA42C1AB62465002B8A63 /* Utils.swift in Sources */,
@@ -389,6 +468,7 @@
 		};
 		FADCCB2F1A5867EC00838054 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BFB5C26D68FAAD955D37475 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = VerifiedTimesheets/Info.plist;
@@ -399,6 +479,7 @@
 		};
 		FADCCB301A5867EC00838054 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30DB16091B5EDA0B21FE550F /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = VerifiedTimesheets/Info.plist;
