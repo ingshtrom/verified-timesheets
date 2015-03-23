@@ -47,7 +47,7 @@ class TimesheetsViewController: UIViewController, UITableViewDataSource, UITable
       segue.identifier == "tableViewToDetailsView"
     ) {
       let selectedEntry: TimeEntry = extractRowToTimeEntry(tableView.indexPathForSelectedRow()!)
-      let destinationVC = segue.destinationViewController as NewRecordViewController
+      let destinationVC = (segue.destinationViewController as UINavigationController).viewControllers[0] as NewRecordViewController
       destinationVC.passedInTimeEntry = selectedEntry
     }
   }

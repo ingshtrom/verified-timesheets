@@ -39,6 +39,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JBS-UJ-6d3" userLabel="Add">
                             <connections>
                                 <action selector="addButtonClicked:" destination="BYZ-38-t0r" id="cmo-Db-OZr"/>
+                                <segue destination="cR0-cI-AzB" kind="presentation" id="p4D-bo-q9q"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -46,7 +47,7 @@
                     <connections>
                         <outlet property="tableView" destination="usZ-le-mmt" id="hrI-u3-WvP"/>
                         <outlet property="view" destination="8bC-Xf-vdC" id="INL-d0-2cF"/>
-                        <segue destination="QqX-sx-45J" kind="presentation" identifier="tableViewToDetailsView" id="zgC-uQ-is0"/>
+                        <segue destination="cR0-cI-AzB" kind="presentation" identifier="tableViewToDetailsView" id="Kno-CW-0Z2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -114,7 +115,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTY-uw-iHM" userLabel="End Date Label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="End Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTY-uw-iHM" userLabel="End Date Label">
                                 <rect key="frame" x="16" y="119" width="77.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -126,7 +127,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0Q-gW-aXY" userLabel="Total Time Label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Total Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0Q-gW-aXY" userLabel="Total Time Label">
                                 <rect key="frame" x="16" y="156.5" width="83.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -156,13 +157,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXd-7b-BVC" userLabel="Notes Label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Notes:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXd-7b-BVC" userLabel="Notes Label">
                                 <rect key="frame" x="16" y="194" width="50.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wy7-1z-XNN" userLabel="Notes Text View">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wy7-1z-XNN" userLabel="Notes Text View">
                                 <rect key="frame" x="16" y="219" width="568" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -264,6 +265,6 @@
         <image name="settings20.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zgC-uQ-is0"/>
+        <segue reference="Kno-CW-0Z2"/>
     </inferredMetricsTieBreakers>
 </document>
