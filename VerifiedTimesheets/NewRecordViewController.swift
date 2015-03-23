@@ -31,17 +31,20 @@ class NewRecordViewController : UIViewController, UITextFieldDelegate {
     
     if (passedInTimeEntry != nil) {
       if let startTime = passedInTimeEntry!.start_time as NSDate? {
+//        println("found preset startTime: \(startTime)")
         startTimeTextField.text = getFormatter().stringFromDate(startTime)
       }
       if let endTime = passedInTimeEntry!.end_time as NSDate? {
+//        println("found preset endTime: \(endTime)")
         endTimeTextField.text = getFormatter().stringFromDate(endTime)
       }
       if let notes = passedInTimeEntry!.notes as String? {
+//        println("found preset notes: \(notes)")
         notesTextView.text = notes
       }
       updateTotalTime()
     } else {
-      println("passedInTimeEntry was nil")
+//      println("passedInTimeEntry was nil")
       let initDate = formatter.stringFromDate(NSDate())
       startTimeTextField.text = initDate
       endTimeTextField.text = initDate

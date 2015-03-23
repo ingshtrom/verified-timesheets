@@ -31,7 +31,8 @@ class TimesheetsViewController: UIViewController, UITableViewDataSource, UITable
     let totalTime = getTotalTime(entry.start_time, entry.end_time)
     
     var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
-    cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+    cell.selectionStyle = .Default
+    cell.accessoryType = .DisclosureIndicator
     cell.textLabel?.text = "\(createdOn) : \(totalTime) hrs"
     return cell
   }
@@ -41,7 +42,7 @@ class TimesheetsViewController: UIViewController, UITableViewDataSource, UITable
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    println("prepareForSegue: \(segue.identifier)")
+//    println("prepareForSegue: \(segue.identifier)")
     if (
       segue.identifier != nil &&
       segue.identifier == "tableViewToDetailsView"
@@ -65,16 +66,27 @@ class TimesheetsViewController: UIViewController, UITableViewDataSource, UITable
     if (segue.identifier == "saveNewTimesheet") {
       let newRecordCtrl : NewRecordViewController? = segue.sourceViewController as? NewRecordViewController
       
+      let formatter: NSDateFormatter = getFormatter()
+      let startTime: NSDate? = formatter.dateFromString(newRecordCtrl!.startTimeTextField.text)
+      let endTime: NSDate? = formatter.dateFromString(newRecordCtrl!.endTimeTextField.text)
+      let notes: String = newRecordCtrl!.notesTextView.text
+      
+//      println("saveNewTimesheet: ")
+//      println("startTime: \(startTime)");
+//      println("endTime: \(endTime)");
+//      println("notes: \(notes)");
+      
       if (newRecordCtrl?.passedInTimeEntry != nil) {
-        newRecordCtrl?.passedInTimeEntry?.entityRef.setValue(newRecordCtrl!.notesTextView.text, forKey: "notes")
+//        println("updating time entry")
+        newRecordCtrl?.passedInTimeEntry?.entityRef.setValue(endTime!, forKey: "end_time")
+        newRecordCtrl?.passedInTimeEntry?.entityRef.setValue(startTime!, forKey: "start_time")
+        newRecordCtrl?.passedInTimeEntry?.entityRef.setValue(notes, forKey: "notes")
+        data!.updateContext()
       } else {
-        let formatter: NSDateFormatter = getFormatter()
-        let startTime: NSDate? = formatter.dateFromString(newRecordCtrl!.startTimeTextField.text)
-        let endTime: NSDate? = formatter.dateFromString(newRecordCtrl!.endTimeTextField.text)
-        let notes: String = newRecordCtrl!.notesTextView.text
+//        println("creating a new time entry")
         data!.addItem(startTime!, endTimeDate: endTime!, notes: notes)
-        self.tableView.reloadData()
       }
+      self.tableView.reloadData()
     }
   }
   
@@ -85,7 +97,7 @@ class TimesheetsViewController: UIViewController, UITableViewDataSource, UITable
       createdOn: entry?.valueForKey("created_on") as NSDate,
       startTime: entry?.valueForKey("start_time") as NSDate,
       endTime: entry?.valueForKey("end_time") as NSDate,
-      notes: "", //entry?.valueForKey("notes") as String,
+      notes: entry?.valueForKey("notes") as String,
       entityRef: entry!
     )
   }

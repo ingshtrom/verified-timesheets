@@ -43,11 +43,6 @@ class DataManager {
   }
 
   func addItem(startTimeDate: NSDate, endTimeDate: NSDate, notes: String) {
-//    println("addItem:")
-//    println("  startTime: \(getFormatter().stringFromDate(startTimeDate))")
-//    println("  endTime: \(getFormatter().stringFromDate(endTimeDate))")
-//    println("  notes: \(notes)")
-  
     let entity =  NSEntityDescription.entityForName("TimeEntry", inManagedObjectContext: managedObjectContext!)
     let timeEntry = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedObjectContext)
     
@@ -56,23 +51,28 @@ class DataManager {
     timeEntry.setValue(endTimeDate, forKey: "end_time")
     timeEntry.setValue(notes, forKey: "notes")
     
-    var error: NSError?
-    managedObjectContext?.save(&error)
-    if error != nil {
-      println("Could not save \(error), \(error?.userInfo)")
-    } else {
-      println("saved item successfully")
-    }
-
-    return store.append(timeEntry)
+    self.updateContext()
+    store.append(timeEntry)
   }
   
   func getItem(index: Int) -> NSManagedObject {
     return store[index]
   }
   
+  func updateContext() {
+    var error: NSError?
+    managedObjectContext?.save(&error)
+    if error != nil {
+      println("Could not update context: \(error), \(error?.userInfo)")
+    } else {
+      println("Context updated successfully")
+    }
+  }
+  
   func removeItem(index: Int) -> NSManagedObject {
-    return store.removeAtIndex(index)
+    let item = store.removeAtIndex(index)
+    self.updateContext()
+    return item
   }
   
   func getCount() -> Int {
