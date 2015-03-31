@@ -48,7 +48,7 @@ class TimesheetsViewController: UIViewController, UITableViewDataSource, UITable
       segue.identifier == "tableViewToDetailsView"
     ) {
       let selectedEntry: TimeEntry = extractRowToTimeEntry(tableView.indexPathForSelectedRow()!)
-      let destinationVC = (segue.destinationViewController as UINavigationController).viewControllers[0] as NewRecordViewController
+      let destinationVC = (segue.destinationViewController as UINavigationController).viewControllers[0] as DetailsViewController
       destinationVC.passedInTimeEntry = selectedEntry
     }
   }
@@ -64,27 +64,24 @@ class TimesheetsViewController: UIViewController, UITableViewDataSource, UITable
   
   @IBAction func saveNewTimesheet(segue: UIStoryboardSegue) {
     if (segue.identifier == "saveNewTimesheet") {
-      let newRecordCtrl : NewRecordViewController? = segue.sourceViewController as? NewRecordViewController
+      let detailsViewCtrl : DetailsViewController? = segue.sourceViewController as? DetailsViewController
       
       let formatter: NSDateFormatter = getFormatter()
-      let startTime: NSDate? = formatter.dateFromString(newRecordCtrl!.startTimeTextField.text)
-      let endTime: NSDate? = formatter.dateFromString(newRecordCtrl!.endTimeTextField.text)
-      let notes: String = newRecordCtrl!.notesTextView.text
+      let startTime: NSDate? = formatter.dateFromString(detailsViewCtrl!.startTimeTextField.text)
+      let endTime: NSDate? = formatter.dateFromString(detailsViewCtrl!.endTimeTextField.text)
+      let notes: String = detailsViewCtrl!.notesTextView.text
+      let signature: NSData? = detailsViewCtrl!.signatureImageData
       
-//      println("saveNewTimesheet: ")
-//      println("startTime: \(startTime)");
-//      println("endTime: \(endTime)");
-//      println("notes: \(notes)");
-      
-      if (newRecordCtrl?.passedInTimeEntry != nil) {
+      if (detailsViewCtrl?.passedInTimeEntry != nil) {
 //        println("updating time entry")
-        newRecordCtrl?.passedInTimeEntry?.entityRef.setValue(endTime!, forKey: "end_time")
-        newRecordCtrl?.passedInTimeEntry?.entityRef.setValue(startTime!, forKey: "start_time")
-        newRecordCtrl?.passedInTimeEntry?.entityRef.setValue(notes, forKey: "notes")
+        detailsViewCtrl?.passedInTimeEntry?.entityRef.setValue(endTime!, forKey: "end_time")
+        detailsViewCtrl?.passedInTimeEntry?.entityRef.setValue(startTime!, forKey: "start_time")
+        detailsViewCtrl?.passedInTimeEntry?.entityRef.setValue(notes, forKey: "notes")
+        detailsViewCtrl?.passedInTimeEntry?.entityRef.setValue(signature, forKey: "manager_initials")
         data!.updateContext()
       } else {
 //        println("creating a new time entry")
-        data!.addItem(startTime!, endTimeDate: endTime!, notes: notes)
+        data!.addItem(startTime!, endTimeDate: endTime!, notes: notes, signature: signature!)
       }
       self.tableView.reloadData()
     }

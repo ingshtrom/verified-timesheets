@@ -2,30 +2,26 @@
 //  SignatureViewController.swift
 //  VerifiedTimesheets
 //
-//  Created by Alex Hokanson on 3/23/15.
+//  Created by Alex.Hokanson on 3/31/15.
 //  Copyright (c) 2015 Alex Hokanson. All rights reserved.
 //
 
 import Foundation
-import UIKit
 
-class SignatureViewController : UIViewController {
+class SignatureViewController: UIViewController {
+    
+  @IBOutlet weak var clearBtn: UIButton!
   @IBOutlet weak var signView: PPSSignatureView!
   
   override func viewDidLoad() {
-//    canvasView = PPSSignatureView(frame: CGRect(x: 22, y: 20, width: 497, height: 436))
+    super.viewDidLoad()
   }
   
-  override init() {
-    super.init()
+  @IBAction func clearSignatureView() {
+    self.signView.erase();
   }
   
-  required init(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-  }
-  
-  func saveToImage() -> UIImage{
-    
-    return signView.signatureImage
+  func getBinaryImage() -> NSData {
+    return UIImageJPEGRepresentation(signView.signatureImage, 0.5)
   }
 }

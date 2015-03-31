@@ -42,7 +42,7 @@ class DataManager {
     }
   }
 
-  func addItem(startTimeDate: NSDate, endTimeDate: NSDate, notes: String) {
+  func addItem(startTimeDate: NSDate, endTimeDate: NSDate, notes: String, signature: NSData) {
     let entity =  NSEntityDescription.entityForName("TimeEntry", inManagedObjectContext: managedObjectContext!)
     let timeEntry = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedObjectContext)
     
@@ -50,6 +50,7 @@ class DataManager {
     timeEntry.setValue(startTimeDate, forKey: "start_time")
     timeEntry.setValue(endTimeDate, forKey: "end_time")
     timeEntry.setValue(notes, forKey: "notes")
+    timeEntry.setValue(signature, forKey: "manager_initials")
     
     self.updateContext()
     store.append(timeEntry)

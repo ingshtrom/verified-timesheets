@@ -1,5 +1,5 @@
 //
-//  NewRecordPopoverController.swift
+//  DetailsViewController.swift
 //  VerifiedTimesheets
 //
 //  Created by Alex.Hokanson on 1/3/15.
@@ -9,12 +9,13 @@
 import UIKit;
 import CoreData;
 
-class NewRecordViewController : UIViewController, UITextFieldDelegate {
+class DetailsViewController : UIViewController, UITextFieldDelegate {
   
   var popDatePickerForStart : PopDatePicker?
   var popDatePickerForEnd : PopDatePicker?
   var data : DataManager? = DataManager.sharedInstance
   var passedInTimeEntry : TimeEntry?
+  var signatureImageData: NSData?
   
   @IBOutlet weak var startTimeTextField: UITextField!
   @IBOutlet weak var endTimeTextField: UITextField!
@@ -31,15 +32,12 @@ class NewRecordViewController : UIViewController, UITextFieldDelegate {
     
     if (passedInTimeEntry != nil) {
       if let startTime = passedInTimeEntry!.start_time as NSDate? {
-//        println("found preset startTime: \(startTime)")
         startTimeTextField.text = getFormatter().stringFromDate(startTime)
       }
       if let endTime = passedInTimeEntry!.end_time as NSDate? {
-//        println("found preset endTime: \(endTime)")
         endTimeTextField.text = getFormatter().stringFromDate(endTime)
       }
       if let notes = passedInTimeEntry!.notes as String? {
-//        println("found preset notes: \(notes)")
         notesTextView.text = notes
       }
       updateTotalTime()
@@ -108,5 +106,17 @@ class NewRecordViewController : UIViewController, UITextFieldDelegate {
     formatter.dateStyle = .ShortStyle
     formatter.timeStyle = .ShortStyle
     return formatter
+  }
+  
+  @IBAction func cancelSignature(segue: UIStoryboardSegue) {
+
+  }
+  
+  @IBAction func saveSignature(segue: UIStoryboardSegue) {
+    if (segue.identifier == "saveSignature") {
+      let signatureViewCtrl : SignatureViewController? = segue.sourceViewController as? SignatureViewController
+      self.signatureImageData = signatureViewCtrl!.getBinaryImage()
+      println("savedSignature")
+    }
   }
 }

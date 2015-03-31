@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		51F9BB9B583D029C5E9E2DA1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD8CFDFAE8015BA078CAA72 /* libPods.a */; };
 		FA6DA42C1AB62465002B8A63 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DA42B1AB62465002B8A63 /* Utils.swift */; };
+		FA81C3081ACB4DF500968283 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA81C3041ACB4DF500968283 /* SignatureViewController.swift */; };
 		FAB0675C1AB4EEA1008DA772 /* PopDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB0675B1AB4EEA1008DA772 /* PopDateView.xib */; };
 		FAB0675E1AB4EEC1008DA772 /* PopDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0675D1AB4EEC1008DA772 /* PopDateViewController.swift */; };
 		FABBCC861AB8DCEF007BBC07 /* TimeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABBCC851AB8DCEF007BBC07 /* TimeEntry.swift */; };
@@ -21,13 +22,11 @@
 		FADCCB1F1A5867EB00838054 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FADCCB1D1A5867EB00838054 /* LaunchScreen.xib */; };
 		FADCCB2B1A5867EC00838054 /* VerifiedTimesheetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCCB2A1A5867EC00838054 /* VerifiedTimesheetsTests.swift */; };
 		FADCCB351A5869F700838054 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCCB341A5869F700838054 /* DataManager.swift */; };
-		FADCCB391A5872BF00838054 /* NewRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCCB381A5872BF00838054 /* NewRecordViewController.swift */; };
+		FADCCB391A5872BF00838054 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCCB381A5872BF00838054 /* DetailsViewController.swift */; };
 		FAF85A121AAFA3A700887E48 /* arrow395.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF85A0E1AAFA3A700887E48 /* arrow395.png */; };
 		FAF85A131AAFA3A700887E48 /* move13.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF85A0F1AAFA3A700887E48 /* move13.png */; };
 		FAF85A141AAFA3A700887E48 /* round27.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF85A101AAFA3A700887E48 /* round27.png */; };
 		FAF85A151AAFA3A700887E48 /* settings20.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF85A111AAFA3A700887E48 /* settings20.png */; };
-		FAFEF7D41AC0C8B50093D658 /* SignatureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFEF7D31AC0C8B50093D658 /* SignatureView.xib */; };
-		FAFEF7D71AC0C91B0093D658 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFEF7D61AC0C91B0093D658 /* SignatureViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +45,7 @@
 		30DB16091B5EDA0B21FE550F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FA3AF5501AC0CB53000EB4EF /* C-To-Swift-Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "C-To-Swift-Bridge.h"; sourceTree = "<group>"; };
 		FA6DA42B1AB62465002B8A63 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		FA81C3041ACB4DF500968283 /* SignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		FAB0675B1AB4EEA1008DA772 /* PopDateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopDateView.xib; sourceTree = "<group>"; };
 		FAB0675D1AB4EEC1008DA772 /* PopDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopDateViewController.swift; sourceTree = "<group>"; };
 		FABBCC851AB8DCEF007BBC07 /* TimeEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeEntry.swift; sourceTree = "<group>"; };
@@ -62,13 +62,11 @@
 		FADCCB291A5867EC00838054 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FADCCB2A1A5867EC00838054 /* VerifiedTimesheetsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifiedTimesheetsTests.swift; sourceTree = "<group>"; };
 		FADCCB341A5869F700838054 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		FADCCB381A5872BF00838054 /* NewRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRecordViewController.swift; sourceTree = "<group>"; };
+		FADCCB381A5872BF00838054 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		FAF85A0E1AAFA3A700887E48 /* arrow395.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow395.png; sourceTree = "<group>"; };
 		FAF85A0F1AAFA3A700887E48 /* move13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = move13.png; sourceTree = "<group>"; };
 		FAF85A101AAFA3A700887E48 /* round27.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = round27.png; sourceTree = "<group>"; };
 		FAF85A111AAFA3A700887E48 /* settings20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings20.png; sourceTree = "<group>"; };
-		FAFEF7D31AC0C8B50093D658 /* SignatureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignatureView.xib; sourceTree = "<group>"; };
-		FAFEF7D61AC0C91B0093D658 /* SignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,16 +105,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FA9444311ABF42FC00C4492F /* New Record */ = {
+		FA9444311ABF42FC00C4492F /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				FAFEF7D51AC0C9030093D658 /* Signature */,
-				FADCCB381A5872BF00838054 /* NewRecordViewController.swift */,
+				FA81C3041ACB4DF500968283 /* SignatureViewController.swift */,
+				FADCCB381A5872BF00838054 /* DetailsViewController.swift */,
 				FAB0675B1AB4EEA1008DA772 /* PopDateView.xib */,
 				FAB0675D1AB4EEC1008DA772 /* PopDateViewController.swift */,
 				FACAB2491AB6017B00E7A7BF /* PopDatePicker.swift */,
 			);
-			name = "New Record";
+			name = Details;
 			sourceTree = "<group>";
 		};
 		FABBCC841AB8DCD8007BBC07 /* models */ = {
@@ -151,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				FADCCB0F1A5867EB00838054 /* Supporting Files */,
-				FA9444311ABF42FC00C4492F /* New Record */,
+				FA9444311ABF42FC00C4492F /* Details */,
 				FABBCC841AB8DCD8007BBC07 /* models */,
 				FAF85A0D1AAFA3A700887E48 /* images */,
 				FADCCB181A5867EB00838054 /* Main.storyboard */,
@@ -202,15 +200,6 @@
 			);
 			name = images;
 			path = png;
-			sourceTree = "<group>";
-		};
-		FAFEF7D51AC0C9030093D658 /* Signature */ = {
-			isa = PBXGroup;
-			children = (
-				FAFEF7D31AC0C8B50093D658 /* SignatureView.xib */,
-				FAFEF7D61AC0C91B0093D658 /* SignatureViewController.swift */,
-			);
-			name = Signature;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,7 +291,6 @@
 				FAF85A151AAFA3A700887E48 /* settings20.png in Resources */,
 				FAF85A141AAFA3A700887E48 /* round27.png in Resources */,
 				FAB0675C1AB4EEA1008DA772 /* PopDateView.xib in Resources */,
-				FAFEF7D41AC0C8B50093D658 /* SignatureView.xib in Resources */,
 				FADCCB1C1A5867EB00838054 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,14 +343,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FADCCB171A5867EB00838054 /* TimesheetsViewController.swift in Sources */,
-				FAFEF7D71AC0C91B0093D658 /* SignatureViewController.swift in Sources */,
-				FADCCB391A5872BF00838054 /* NewRecordViewController.swift in Sources */,
+				FADCCB391A5872BF00838054 /* DetailsViewController.swift in Sources */,
 				FAB0675E1AB4EEC1008DA772 /* PopDateViewController.swift in Sources */,
 				FADCCB351A5869F700838054 /* DataManager.swift in Sources */,
 				FADCCB151A5867EB00838054 /* VerifiedTimesheets.xcdatamodeld in Sources */,
 				FABBCC861AB8DCEF007BBC07 /* TimeEntry.swift in Sources */,
 				FADCCB121A5867EB00838054 /* AppDelegate.swift in Sources */,
 				FACAB24A1AB6017B00E7A7BF /* PopDatePicker.swift in Sources */,
+				FA81C3081ACB4DF500968283 /* SignatureViewController.swift in Sources */,
 				FA6DA42C1AB62465002B8A63 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
