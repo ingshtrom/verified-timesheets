@@ -8,13 +8,19 @@
 
 import Foundation
 
-class SignatureViewController: UIViewController {
+class AddSignatureViewController: UIViewController {
     
   @IBOutlet weak var clearBtn: UIButton!
   @IBOutlet weak var signView: PPSSignatureView!
+  var inboundSignView : NSData?
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    if inboundSignView != nil {
+      println("got an inboundSignView. Setting the image!")
+      self.signView.signatureImage = UIImage(data: inboundSignView!)
+      self.signView.hasSignature = true
+    }
   }
   
   @IBAction func clearSignatureView() {
@@ -22,6 +28,10 @@ class SignatureViewController: UIViewController {
   }
   
   func getBinaryImage() -> NSData {
-    return UIImageJPEGRepresentation(signView.signatureImage, 0.5)
+    var tmp: NSData? = UIImageJPEGRepresentation(signView.signatureImage, 0.5)
+    if tmp == nil {
+      tmp = NSData()
+    }
+    return tmp!
   }
 }

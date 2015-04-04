@@ -16,13 +16,14 @@ class TimeEntry {
   var end_time: NSDate
   var notes : String
   var entityRef : NSManagedObject
-//  var signature : ??
+  var signature : NSData
   
-  init (createdOn: NSDate, startTime: NSDate, endTime: NSDate, notes: String, entityRef: NSManagedObject) {
+  init (createdOn: NSDate, startTime: NSDate, endTime: NSDate, notes: String, signature: NSData, entityRef: NSManagedObject) {
     self.created_on = createdOn
     self.start_time = startTime
     self.end_time = endTime
     self.notes = notes
+    self.signature = signature
     self.entityRef = entityRef
   }
 }

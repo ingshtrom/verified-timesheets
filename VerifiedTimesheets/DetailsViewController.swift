@@ -40,9 +40,11 @@ class DetailsViewController : UIViewController, UITextFieldDelegate {
       if let notes = passedInTimeEntry!.notes as String? {
         notesTextView.text = notes
       }
+      if let signature = passedInTimeEntry!.signature as NSData? {
+        signatureImageData = signature
+      }
       updateTotalTime()
     } else {
-//      println("passedInTimeEntry was nil")
       let initDate = formatter.stringFromDate(NSDate())
       startTimeTextField.text = initDate
       endTimeTextField.text = initDate
@@ -113,10 +115,30 @@ class DetailsViewController : UIViewController, UITextFieldDelegate {
   }
   
   @IBAction func saveSignature(segue: UIStoryboardSegue) {
-    if (segue.identifier == "saveSignature") {
-      let signatureViewCtrl : SignatureViewController? = segue.sourceViewController as? SignatureViewController
+    if (segue.identifier! == "saveSignature") {
+      let signatureViewCtrl : AddSignatureViewController? = segue.sourceViewController as? AddSignatureViewController
+      if passedInTimeEntry != nil {
+        self.passedInTimeEntry!.signature = signatureViewCtrl!.getBinaryImage()
+      }
       self.signatureImageData = signatureViewCtrl!.getBinaryImage()
-      println("savedSignature")
+    }
+  }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if (
+      segue.identifier != nil &&
+      segue.identifier == "viewManagerInitialsSegue"
+    ) {
+      println("prepareForSegue -> viewManagerInitialsSegue")
+      let destinationVC = (segue.destinationViewController as UINavigationController).viewControllers[0] as ViewSignatureViewController
+      if passedInTimeEntry != nil {
+        destinationVC.inboundImageData = passedInTimeEntry!.signature
+      } else if (signatureImageData != nil) {
+        destinationVC.inboundImageData = signatureImageData
+      } else {
+        destinationVC.inboundImageData = NSData()
+      }
+      println(passedInTimeEntry!.signature)
     }
   }
 }

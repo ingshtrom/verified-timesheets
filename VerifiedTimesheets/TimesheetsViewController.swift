@@ -70,17 +70,21 @@ class TimesheetsViewController: UIViewController, UITableViewDataSource, UITable
       let startTime: NSDate? = formatter.dateFromString(detailsViewCtrl!.startTimeTextField.text)
       let endTime: NSDate? = formatter.dateFromString(detailsViewCtrl!.endTimeTextField.text)
       let notes: String = detailsViewCtrl!.notesTextView.text
-      let signature: NSData? = detailsViewCtrl!.signatureImageData
+      var signature: NSData? = detailsViewCtrl!.signatureImageData
+      
+      println("signature: \(signature?)")
+      if signature == nil {
+        println("signature is nil")
+        signature = NSData()
+      }
       
       if (detailsViewCtrl?.passedInTimeEntry != nil) {
-//        println("updating time entry")
         detailsViewCtrl?.passedInTimeEntry?.entityRef.setValue(endTime!, forKey: "end_time")
         detailsViewCtrl?.passedInTimeEntry?.entityRef.setValue(startTime!, forKey: "start_time")
         detailsViewCtrl?.passedInTimeEntry?.entityRef.setValue(notes, forKey: "notes")
         detailsViewCtrl?.passedInTimeEntry?.entityRef.setValue(signature, forKey: "manager_initials")
         data!.updateContext()
       } else {
-//        println("creating a new time entry")
         data!.addItem(startTime!, endTimeDate: endTime!, notes: notes, signature: signature!)
       }
       self.tableView.reloadData()
@@ -89,12 +93,22 @@ class TimesheetsViewController: UIViewController, UITableViewDataSource, UITable
   
   func extractRowToTimeEntry(index: NSIndexPath) -> TimeEntry {
     let entry: NSManagedObject? = data!.getItem(index.item)
+    var tmp: AnyObject? = entry?.valueForKey("manager_initials")
+    var signature: NSData?
+    
+    if tmp != nil {
+      signature = tmp as? NSData
+    } else {
+      signature = NSData()
+    }
+    
     
     return TimeEntry(
       createdOn: entry?.valueForKey("created_on") as NSDate,
       startTime: entry?.valueForKey("start_time") as NSDate,
       endTime: entry?.valueForKey("end_time") as NSDate,
       notes: entry?.valueForKey("notes") as String,
+      signature:  signature!,
       entityRef: entry!
     )
   }

@@ -121,9 +121,9 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXb-5U-JkA" userLabel="Add Signature Button">
-                                <rect key="frame" x="155" y="550" width="291" height="30"/>
-                                <state key="normal" title="Add Approval Signature">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXb-5U-JkA" userLabel="Add Approval Initials Button">
+                                <rect key="frame" x="155" y="547" width="291" height="30"/>
+                                <state key="normal" title="Add Approval Initials">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -177,6 +177,15 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rD-JZ-wfu" userLabel="View Approval Initials Button">
+                                <rect key="frame" x="155" y="509" width="291" height="30"/>
+                                <state key="normal" title="View Approval Initials">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="h7e-uy-3px" kind="presentation" identifier="viewManagerInitialsSegue" id="bhC-tl-Axx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -185,11 +194,13 @@
                             <constraint firstItem="HMW-oc-JbL" firstAttribute="top" secondItem="NgR-Sn-MHE" secondAttribute="bottom" constant="17" id="3aQ-ya-0fB"/>
                             <constraint firstItem="GI7-Dq-psV" firstAttribute="trailing" secondItem="fR3-Nb-U9d" secondAttribute="trailingMargin" id="7aB-TK-cfJ"/>
                             <constraint firstItem="GI7-Dq-psV" firstAttribute="top" secondItem="TdC-yg-Jli" secondAttribute="bottom" constant="8" id="E1d-Ep-BJC"/>
+                            <constraint firstAttribute="centerX" secondItem="4rD-JZ-wfu" secondAttribute="centerX" constant="-0.5" id="EOJ-Kh-wsS"/>
                             <constraint firstAttribute="centerX" secondItem="IXb-5U-JkA" secondAttribute="centerX" constant="-0.5" id="F9E-SV-4As"/>
                             <constraint firstItem="TTY-uw-iHM" firstAttribute="leading" secondItem="fR3-Nb-U9d" secondAttribute="leadingMargin" id="GFH-4o-JAt"/>
                             <constraint firstItem="HMW-oc-JbL" firstAttribute="leading" secondItem="fR3-Nb-U9d" secondAttribute="leadingMargin" id="KsS-wp-8A4"/>
+                            <constraint firstItem="IXb-5U-JkA" firstAttribute="top" secondItem="4rD-JZ-wfu" secondAttribute="bottom" constant="8" id="Lv6-vv-4ks"/>
+                            <constraint firstItem="YxZ-8w-1JJ" firstAttribute="top" secondItem="IXb-5U-JkA" secondAttribute="bottom" constant="23" id="MDd-Ud-t70"/>
                             <constraint firstItem="NSB-Jz-h8a" firstAttribute="top" secondItem="GI7-Dq-psV" secondAttribute="bottom" constant="8" id="MNm-he-K7v"/>
-                            <constraint firstItem="YxZ-8w-1JJ" firstAttribute="top" secondItem="IXb-5U-JkA" secondAttribute="bottom" constant="20" id="NAm-a3-pOf"/>
                             <constraint firstItem="J0Q-gW-aXY" firstAttribute="top" secondItem="TTY-uw-iHM" secondAttribute="bottom" constant="17" id="S5i-zN-nS3"/>
                             <constraint firstItem="TTY-uw-iHM" firstAttribute="top" secondItem="HMW-oc-JbL" secondAttribute="bottom" constant="17" id="SZT-fQ-pp2"/>
                             <constraint firstItem="aXd-7b-BVC" firstAttribute="leading" secondItem="fR3-Nb-U9d" secondAttribute="leadingMargin" id="SaQ-Ft-axk"/>
@@ -227,10 +238,10 @@
             </objects>
             <point key="canvasLocation" x="3007" y="113"/>
         </scene>
-        <!--Signature View Controller-->
+        <!--Add Signature View Controller-->
         <scene sceneID="Nhv-nc-jzd">
             <objects>
-                <viewController id="LJG-rE-MCy" userLabel="Signature View Controller" customClass="SignatureViewController" customModule="VerifiedTimesheets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="LJG-rE-MCy" userLabel="Add Signature View Controller" customClass="AddSignatureViewController" customModule="VerifiedTimesheets" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ixz-lL-FQ4"/>
                         <viewControllerLayoutGuide type="bottom" id="Tjr-ar-UEI"/>
@@ -273,7 +284,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Done" id="wiw-Gm-g2x" userLabel="Done Button">
                             <connections>
-                                <segue destination="XAC-I9-2Vm" kind="unwind" unwindAction="saveSignature:" id="3pS-fq-C6H"/>
+                                <segue destination="XAC-I9-2Vm" kind="unwind" identifier="saveSignature" unwindAction="saveSignature:" id="3pS-fq-C6H"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -343,6 +354,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MEJ-Mq-Lfh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3794" y="113"/>
+        </scene>
+        <!--View Signature View Controller-->
+        <scene sceneID="pLb-qI-L9Z">
+            <objects>
+                <viewController id="KSq-vT-3r5" userLabel="View Signature View Controller" customClass="ViewSignatureViewController" customModule="VerifiedTimesheets" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nr2-rP-txh"/>
+                        <viewControllerLayoutGuide type="bottom" id="wEB-9V-t4t"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OH3-GP-Par">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gbf-rV-yX6" userLabel="Signature Image View">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Gbf-rV-yX6" firstAttribute="top" secondItem="nr2-rP-txh" secondAttribute="bottom" id="2zr-O4-8u3"/>
+                            <constraint firstItem="wEB-9V-t4t" firstAttribute="top" secondItem="Gbf-rV-yX6" secondAttribute="bottom" id="HPn-XC-aOu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Gbf-rV-yX6" secondAttribute="trailing" constant="-16" id="dyY-ST-puk"/>
+                            <constraint firstItem="Gbf-rV-yX6" firstAttribute="leading" secondItem="OH3-GP-Par" secondAttribute="leadingMargin" constant="-16" id="pf9-9C-D15"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="HAv-yS-GsD">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="0Oe-N9-Ed3">
+                            <connections>
+                                <segue destination="CmO-Lg-Uxf" kind="unwind" unwindAction="cancelSignature:" id="cDr-Rr-HOq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="signView" destination="Gbf-rV-yX6" id="v9s-aJ-mLz"/>
+                        <outlet property="view" destination="OH3-GP-Par" id="eLv-UJ-2Vw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hWJ-8Q-2Ti" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="CmO-Lg-Uxf" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4603" y="812"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fIu-zG-1lA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="h7e-uy-3px" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gip-yf-xk3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="KSq-vT-3r5" kind="relationship" relationship="rootViewController" id="DrV-gD-FuQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qrm-7m-S9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3791" y="812"/>
         </scene>
     </scenes>
     <resources>
