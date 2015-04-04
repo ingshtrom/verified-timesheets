@@ -80,4 +80,8 @@ class DataManager {
     return store.count
   }
   
+  func getAllItems() -> [NSManagedObject] {
+    return store;
+  }
+  
 }

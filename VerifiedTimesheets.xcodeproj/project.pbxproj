@@ -11,6 +11,8 @@
 		FA5955FB1ACF8BCC0091A307 /* ViewSignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5955FA1ACF8BCC0091A307 /* ViewSignatureViewController.swift */; };
 		FA6DA42C1AB62465002B8A63 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DA42B1AB62465002B8A63 /* Utils.swift */; };
 		FA81C3081ACB4DF500968283 /* AddSignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA81C3041ACB4DF500968283 /* AddSignatureViewController.swift */; };
+		FA9BA4071AD026FC00B65B03 /* HTMLToPDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9BA4061AD026FC00B65B03 /* HTMLToPDFGenerator.swift */; };
+		FA9BA4091AD0283300B65B03 /* HTMLGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9BA4081AD0283300B65B03 /* HTMLGenerator.swift */; };
 		FAB0675C1AB4EEA1008DA772 /* PopDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB0675B1AB4EEA1008DA772 /* PopDateView.xib */; };
 		FAB0675E1AB4EEC1008DA772 /* PopDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0675D1AB4EEC1008DA772 /* PopDateViewController.swift */; };
 		FABBCC861AB8DCEF007BBC07 /* TimeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABBCC851AB8DCEF007BBC07 /* TimeEntry.swift */; };
@@ -48,6 +50,8 @@
 		FA5955FA1ACF8BCC0091A307 /* ViewSignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewSignatureViewController.swift; sourceTree = "<group>"; };
 		FA6DA42B1AB62465002B8A63 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		FA81C3041ACB4DF500968283 /* AddSignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSignatureViewController.swift; sourceTree = "<group>"; };
+		FA9BA4061AD026FC00B65B03 /* HTMLToPDFGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLToPDFGenerator.swift; sourceTree = "<group>"; };
+		FA9BA4081AD0283300B65B03 /* HTMLGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLGenerator.swift; sourceTree = "<group>"; };
 		FAB0675B1AB4EEA1008DA772 /* PopDateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopDateView.xib; sourceTree = "<group>"; };
 		FAB0675D1AB4EEC1008DA772 /* PopDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopDateViewController.swift; sourceTree = "<group>"; };
 		FABBCC851AB8DCEF007BBC07 /* TimeEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeEntry.swift; sourceTree = "<group>"; };
@@ -120,6 +124,15 @@
 			name = Details;
 			sourceTree = "<group>";
 		};
+		FA9BA4051AD026CA00B65B03 /* PDFGeneration */ = {
+			isa = PBXGroup;
+			children = (
+				FA9BA4061AD026FC00B65B03 /* HTMLToPDFGenerator.swift */,
+				FA9BA4081AD0283300B65B03 /* HTMLGenerator.swift */,
+			);
+			name = PDFGeneration;
+			sourceTree = "<group>";
+		};
 		FABBCC841AB8DCD8007BBC07 /* models */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +164,7 @@
 		FADCCB0E1A5867EB00838054 /* VerifiedTimesheets */ = {
 			isa = PBXGroup;
 			children = (
+				FA9BA4051AD026CA00B65B03 /* PDFGeneration */,
 				FADCCB0F1A5867EB00838054 /* Supporting Files */,
 				FA9444311ABF42FC00C4492F /* Details */,
 				FABBCC841AB8DCD8007BBC07 /* models */,
@@ -347,8 +361,10 @@
 			files = (
 				FADCCB171A5867EB00838054 /* TimesheetsViewController.swift in Sources */,
 				FADCCB391A5872BF00838054 /* DetailsViewController.swift in Sources */,
+				FA9BA4091AD0283300B65B03 /* HTMLGenerator.swift in Sources */,
 				FAB0675E1AB4EEC1008DA772 /* PopDateViewController.swift in Sources */,
 				FADCCB351A5869F700838054 /* DataManager.swift in Sources */,
+				FA9BA4071AD026FC00B65B03 /* HTMLToPDFGenerator.swift in Sources */,
 				FADCCB151A5867EB00838054 /* VerifiedTimesheets.xcdatamodeld in Sources */,
 				FABBCC861AB8DCEF007BBC07 /* TimeEntry.swift in Sources */,
 				FADCCB121A5867EB00838054 /* AppDelegate.swift in Sources */,

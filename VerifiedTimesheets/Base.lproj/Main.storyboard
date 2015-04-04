@@ -36,6 +36,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="yR1-Ti-Uc0">
+                        <barButtonItem key="leftBarButtonItem" title="Generate HTML Report" id="aYT-zB-t8B">
+                            <connections>
+                                <action selector="generatePDF" destination="BYZ-38-t0r" id="UeP-CF-tqu"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JBS-UJ-6d3" userLabel="Add">
                             <connections>
                                 <action selector="addButtonClicked:" destination="BYZ-38-t0r" id="cmo-Db-OZr"/>

@@ -91,6 +91,10 @@ class TimesheetsViewController: UIViewController, UITableViewDataSource, UITable
     }
   }
   
+  @IBAction func generatePDF() {
+    let html: NSString = HTMLGenerator.fromCoreData()
+  }
+  
   func extractRowToTimeEntry(index: NSIndexPath) -> TimeEntry {
     let entry: NSManagedObject? = data!.getItem(index.item)
     var tmp: AnyObject? = entry?.valueForKey("manager_initials")

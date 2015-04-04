@@ -28,7 +28,7 @@ class AddSignatureViewController: UIViewController {
   }
   
   func getBinaryImage() -> NSData {
-    var tmp: NSData? = UIImageJPEGRepresentation(signView.signatureImage, 0.5)
+    var tmp: NSData? = UIImageJPEGRepresentation(signView.signatureImage, 1.0)
     if tmp == nil {
       tmp = NSData()
     }
