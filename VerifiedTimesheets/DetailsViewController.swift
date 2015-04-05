@@ -56,8 +56,8 @@ class DetailsViewController : UIViewController, UITextFieldDelegate {
         // LOCKED MODE
         startTimeTextField.enabled = false
         endTimeTextField.enabled = false
-        addSignatureButton.titleLabel!.text = "Clear Manager Initials"
-        addSignatureButton.tintColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        addSignatureButton.setTitle("Clear Manager Initials", forState: UIControlState.Normal)
+        addSignatureButton.setTitleColor(UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), forState: UIControlState.Normal)
       }
     } else {
       // add a new entry
@@ -140,10 +140,17 @@ class DetailsViewController : UIViewController, UITextFieldDelegate {
       }
       self.signatureImageData = signatureViewCtrl!.getBinaryImage()
       if signatureImageData != nil && signatureImageData!.length > 0 {
-        addSignatureButton.titleLabel!.text = "Clear Manager Initials"
-        addSignatureButton.tintColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        addSignatureButton.setTitle("Clear Manager Initials", forState: .Normal)
+        addSignatureButton.setTitleColor(UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), forState: .Normal)
       }
     }
+  }
+  
+  override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+    if identifier == "openSignatureViewSegue" {
+      return checkLocked(identifier)
+    }
+    return true
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -151,7 +158,6 @@ class DetailsViewController : UIViewController, UITextFieldDelegate {
       segue.identifier != nil &&
       segue.identifier == "viewManagerInitialsSegue"
     ) {
-      println("prepareForSegue -> viewManagerInitialsSegue")
       let destinationVC = (segue.destinationViewController as UINavigationController).viewControllers[0] as ViewSignatureViewController
       if passedInTimeEntry != nil {
         destinationVC.inboundImageData = passedInTimeEntry!.signature
@@ -160,7 +166,33 @@ class DetailsViewController : UIViewController, UITextFieldDelegate {
       } else {
         destinationVC.inboundImageData = NSData()
       }
-      println(passedInTimeEntry!.signature)
+    } else if (
+      segue.identifier != nil &&
+      segue.identifier == "openSignatureViewSegue"
+    ) {
+      checkLocked(segue.identifier)
     }
+  }
+  
+  func checkLocked (identifier: String!) -> Bool {
+    var locked : Bool = false
+    if isLocked {
+      signatureImageData = NSData()
+      isLocked = false
+      locked = true
+    }
+    if (passedInTimeEntry != nil && passedInTimeEntry!.is_locked) {
+      passedInTimeEntry!.signature = NSData()
+      passedInTimeEntry!.is_locked = false
+      data!.updateContext()
+      locked = true
+    }
+    if locked {
+      viewSignatureButton.hidden = true
+      addSignatureButton.setTitle("Add Manager Initials", forState: .Normal)
+      addSignatureButton.setTitleColor(viewSignatureButton.titleColorForState(.Normal), forState: .Normal)
+      return false
+    }
+    return true
   }
 }
