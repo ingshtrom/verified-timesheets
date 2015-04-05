@@ -3,11 +3,12 @@
     <entity name="TimeEntry" syncable="YES">
         <attribute name="created_on" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="end_time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="is_locked" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="manager_initials" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start_time" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TimeEntry" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="TimeEntry" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

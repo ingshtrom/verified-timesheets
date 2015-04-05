@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreData
+import MessageUI
 
-class TimesheetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate {
+class TimesheetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate, MFMailComposeViewControllerDelegate {
   
   @IBOutlet
   var tableView: UITableView!
@@ -42,7 +43,6 @@ class TimesheetsViewController: UIViewController, UITableViewDataSource, UITable
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//    println("prepareForSegue: \(segue.identifier)")
     if (
       segue.identifier != nil &&
       segue.identifier == "tableViewToDetailsView"
@@ -71,11 +71,14 @@ class TimesheetsViewController: UIViewController, UITableViewDataSource, UITable
       let endTime: NSDate? = formatter.dateFromString(detailsViewCtrl!.endTimeTextField.text)
       let notes: String = detailsViewCtrl!.notesTextView.text
       var signature: NSData? = detailsViewCtrl!.signatureImageData
+      var isLocked: Bool = false
       
-      println("signature: \(signature?)")
       if signature == nil {
-        println("signature is nil")
         signature = NSData()
+      } else {
+        // at this point, the user had their manager put 
+        // in a signature, so we need to lock it down!
+        isLocked = true
       }
       
       if (detailsViewCtrl?.passedInTimeEntry != nil) {
@@ -83,18 +86,54 @@ class TimesheetsViewController: UIViewController, UITableViewDataSource, UITable
         detailsViewCtrl?.passedInTimeEntry?.entityRef.setValue(startTime!, forKey: "start_time")
         detailsViewCtrl?.passedInTimeEntry?.entityRef.setValue(notes, forKey: "notes")
         detailsViewCtrl?.passedInTimeEntry?.entityRef.setValue(signature, forKey: "manager_initials")
+        detailsViewCtrl?.passedInTimeEntry?.entityRef.setValue(isLocked, forKey: "is_locked")
         data!.updateContext()
       } else {
-        data!.addItem(startTime!, endTimeDate: endTime!, notes: notes, signature: signature!)
+        data!.addItem(startTime!, endTimeDate: endTime!, notes: notes, signature: signature!, isLocked: isLocked)
       }
       self.tableView.reloadData()
     }
   }
   
-  @IBAction func generatePDF() {
-    let html: NSString = HTMLGenerator.fromCoreData()
+  @IBAction func triggerExport() {
+    println("not doing anything yet")
+//    let email: NSString = HTMLGenerator.fromCoreData()
+//    let url: NSURL = NSURL(string: "mailto:\(email)")!
+//    UIApplication.sharedApplication().openURL(url)
+//    launchEmail()
   }
   
+//  func launchEmail() {
+//    // apparently doesn't work on ios simulators
+//    var emailTitle = "Feedback"
+//    var messageBody = "Feature request or bug report?"
+//    var toRecipents = ["avidgamer123@gmail.com"]
+//    var mc: MFMailComposeViewController = MFMailComposeViewController()
+//    mc.mailComposeDelegate = self
+//    mc.setSubject(emailTitle)
+//    mc.setMessageBody(messageBody, isHTML: false)
+//    mc.setToRecipients(toRecipents)
+//    
+//    self.presentViewController(mc, animated: false, completion: nil)
+//  }
+//  
+//  func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError) {
+//    println("hello")
+//    switch result.value {
+//      case MFMailComposeResultCancelled.value:
+//        println("Mail cancelled")
+//      case MFMailComposeResultSaved.value:
+//        println("Mail saved")
+//      case MFMailComposeResultSent.value:
+//        println("Mail sent")
+//      case MFMailComposeResultFailed.value:
+//        println("Mail sent failure: %@", [error.localizedDescription])
+//      default:
+//        break
+//    }
+//    self.dismissViewControllerAnimated(true, completion: nil)
+//  }
+
   func extractRowToTimeEntry(index: NSIndexPath) -> TimeEntry {
     let entry: NSManagedObject? = data!.getItem(index.item)
     var tmp: AnyObject? = entry?.valueForKey("manager_initials")
@@ -106,13 +145,13 @@ class TimesheetsViewController: UIViewController, UITableViewDataSource, UITable
       signature = NSData()
     }
     
-    
     return TimeEntry(
       createdOn: entry?.valueForKey("created_on") as NSDate,
       startTime: entry?.valueForKey("start_time") as NSDate,
       endTime: entry?.valueForKey("end_time") as NSDate,
       notes: entry?.valueForKey("notes") as String,
       signature:  signature!,
+      isLocked: entry?.valueForKey("is_locked") as Bool,
       entityRef: entry!
     )
   }

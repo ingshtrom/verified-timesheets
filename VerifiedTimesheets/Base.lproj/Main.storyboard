@@ -36,9 +36,9 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="yR1-Ti-Uc0">
-                        <barButtonItem key="leftBarButtonItem" title="Generate HTML Report" id="aYT-zB-t8B">
+                        <barButtonItem key="leftBarButtonItem" title="Email" id="aYT-zB-t8B">
                             <connections>
-                                <action selector="generatePDF" destination="BYZ-38-t0r" id="UeP-CF-tqu"/>
+                                <action selector="triggerExport" destination="BYZ-38-t0r" id="yT2-C7-VcY"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JBS-UJ-6d3" userLabel="Add">
@@ -128,7 +128,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXb-5U-JkA" userLabel="Add Approval Initials Button">
                                 <rect key="frame" x="155" y="547" width="291" height="30"/>
-                                <state key="normal" title="Add Approval Initials">
+                                <state key="normal" title="Add Manager Initials">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -184,7 +184,7 @@
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rD-JZ-wfu" userLabel="View Approval Initials Button">
                                 <rect key="frame" x="155" y="509" width="291" height="30"/>
-                                <state key="normal" title="View Approval Initials">
+                                <state key="normal" title="View Manager Initials">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -236,6 +236,7 @@
                         <outlet property="startTimeTextField" destination="TdC-yg-Jli" id="wSe-UW-gNJ"/>
                         <outlet property="totalTimeTextField" destination="NSB-Jz-h8a" id="dXf-uv-sjq"/>
                         <outlet property="view" destination="fR3-Nb-U9d" id="070-rJ-XRd"/>
+                        <outlet property="viewSignatureButton" destination="4rD-JZ-wfu" id="Uah-nk-RF8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZ9-dQ-WAd" userLabel="First Responder" sceneMemberID="firstResponder"/>

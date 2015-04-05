@@ -16,12 +16,14 @@ class DetailsViewController : UIViewController, UITextFieldDelegate {
   var data : DataManager? = DataManager.sharedInstance
   var passedInTimeEntry : TimeEntry?
   var signatureImageData: NSData?
+  var isLocked : Bool = false
   
   @IBOutlet weak var startTimeTextField: UITextField!
   @IBOutlet weak var endTimeTextField: UITextField!
   @IBOutlet weak var totalTimeTextField: UITextField!
   @IBOutlet weak var notesTextView: UITextView!
   @IBOutlet weak var addSignatureButton: UIButton!
+  @IBOutlet weak var viewSignatureButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -31,6 +33,7 @@ class DetailsViewController : UIViewController, UITextFieldDelegate {
     formatter.timeStyle = .ShortStyle
     
     if (passedInTimeEntry != nil) {
+      // edit an entry
       if let startTime = passedInTimeEntry!.start_time as NSDate? {
         startTimeTextField.text = getFormatter().stringFromDate(startTime)
       }
@@ -42,12 +45,26 @@ class DetailsViewController : UIViewController, UITextFieldDelegate {
       }
       if let signature = passedInTimeEntry!.signature as NSData? {
         signatureImageData = signature
+        if signature.length == 0 {
+          viewSignatureButton.hidden = true
+        }
       }
       updateTotalTime()
+      
+      isLocked = passedInTimeEntry!.is_locked
+      if isLocked {
+        // LOCKED MODE
+        startTimeTextField.enabled = false
+        endTimeTextField.enabled = false
+        addSignatureButton.titleLabel!.text = "Clear Manager Initials"
+        addSignatureButton.tintColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+      }
     } else {
+      // add a new entry
       let initDate = formatter.stringFromDate(NSDate())
       startTimeTextField.text = initDate
       endTimeTextField.text = initDate
+      viewSignatureButton.hidden = true
     }
     
     popDatePickerForStart = PopDatePicker(forTextField: startTimeTextField)
@@ -62,6 +79,9 @@ class DetailsViewController : UIViewController, UITextFieldDelegate {
   }
   
   func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    if isLocked {
+      return false
+    }
     let isStartField = textField === startTimeTextField
     let isEndField = textField === endTimeTextField
     
@@ -110,9 +130,7 @@ class DetailsViewController : UIViewController, UITextFieldDelegate {
     return formatter
   }
   
-  @IBAction func cancelSignature(segue: UIStoryboardSegue) {
-
-  }
+  @IBAction func cancelSignature(segue: UIStoryboardSegue) {}
   
   @IBAction func saveSignature(segue: UIStoryboardSegue) {
     if (segue.identifier! == "saveSignature") {
@@ -121,6 +139,10 @@ class DetailsViewController : UIViewController, UITextFieldDelegate {
         self.passedInTimeEntry!.signature = signatureViewCtrl!.getBinaryImage()
       }
       self.signatureImageData = signatureViewCtrl!.getBinaryImage()
+      if signatureImageData != nil && signatureImageData!.length > 0 {
+        addSignatureButton.titleLabel!.text = "Clear Manager Initials"
+        addSignatureButton.tintColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+      }
     }
   }
   
