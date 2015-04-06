@@ -17,15 +17,19 @@ class TimeEntry {
   var notes : String
   var entityRef : NSManagedObject
   var signature : NSData
-  var is_locked : Bool
   
-  init (createdOn: NSDate, startTime: NSDate, endTime: NSDate, notes: String, signature: NSData, isLocked: Bool, entityRef: NSManagedObject) {
+  init (createdOn: NSDate, startTime: NSDate, endTime: NSDate, notes: String, signature: NSData, entityRef: NSManagedObject) {
     self.created_on = createdOn
     self.start_time = startTime
     self.end_time = endTime
     self.notes = notes
     self.signature = signature
-    self.is_locked = isLocked
     self.entityRef = entityRef
+  }
+  
+  func isLocked() -> Bool {
+    println(signature)
+    println(signature.length)
+    return signature.length > 0
   }
 }

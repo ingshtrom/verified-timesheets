@@ -151,7 +151,6 @@ class TimesheetsViewController: UIViewController, UITableViewDataSource, UITable
       endTime: entry?.valueForKey("end_time") as NSDate,
       notes: entry?.valueForKey("notes") as String,
       signature:  signature!,
-      isLocked: entry?.valueForKey("is_locked") as Bool,
       entityRef: entry!
     )
   }

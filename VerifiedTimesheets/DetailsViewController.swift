@@ -51,13 +51,14 @@ class DetailsViewController : UIViewController, UITextFieldDelegate {
       }
       updateTotalTime()
       
-      isLocked = passedInTimeEntry!.is_locked
+      isLocked = passedInTimeEntry!.isLocked()
       if isLocked {
+        println("LOCKED MODE")
         // LOCKED MODE
         startTimeTextField.enabled = false
         endTimeTextField.enabled = false
-        addSignatureButton.setTitle("Clear Manager Initials", forState: UIControlState.Normal)
-        addSignatureButton.setTitleColor(UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), forState: UIControlState.Normal)
+        addSignatureButton.setTitle("Clear Manager Initials", forState: .Normal)
+        addSignatureButton.setTitleColor(UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), forState: .Normal)
       }
     } else {
       // add a new entry
@@ -140,15 +141,18 @@ class DetailsViewController : UIViewController, UITextFieldDelegate {
       }
       self.signatureImageData = signatureViewCtrl!.getBinaryImage()
       if signatureImageData != nil && signatureImageData!.length > 0 {
+        viewSignatureButton.hidden = false
         addSignatureButton.setTitle("Clear Manager Initials", forState: .Normal)
         addSignatureButton.setTitleColor(UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), forState: .Normal)
+        startTimeTextField.enabled = false;
+        endTimeTextField.enabled = false;
       }
     }
   }
   
   override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
     if identifier == "openSignatureViewSegue" {
-      return checkLocked(identifier)
+      return handleAddSignatureButtonClick()
     }
     return true
   }
@@ -170,27 +174,34 @@ class DetailsViewController : UIViewController, UITextFieldDelegate {
       segue.identifier != nil &&
       segue.identifier == "openSignatureViewSegue"
     ) {
-      checkLocked(segue.identifier)
+      handleAddSignatureButtonClick()
     }
   }
   
-  func checkLocked (identifier: String!) -> Bool {
+  // this is called when click
+  func handleAddSignatureButtonClick () -> Bool {
     var locked : Bool = false
+    // check if we are in the locked mode for new time entries
     if isLocked {
       signatureImageData = NSData()
       isLocked = false
       locked = true
     }
-    if (passedInTimeEntry != nil && passedInTimeEntry!.is_locked) {
+    // check if we are in the locked mode for already created time entries
+    if (passedInTimeEntry != nil && passedInTimeEntry!.isLocked()) {
       passedInTimeEntry!.signature = NSData()
-      passedInTimeEntry!.is_locked = false
-      data!.updateContext()
       locked = true
     }
+    // if we are in the locked mode, ensure the following:
+    // - view signature button is hidden
+    // - add signature button should say "Clear Manager Initials"
+    // - add signature button should be colored red
     if locked {
       viewSignatureButton.hidden = true
       addSignatureButton.setTitle("Add Manager Initials", forState: .Normal)
       addSignatureButton.setTitleColor(viewSignatureButton.titleColorForState(.Normal), forState: .Normal)
+      startTimeTextField.enabled = true;
+      endTimeTextField.enabled = true;
       return false
     }
     return true
