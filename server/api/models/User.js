@@ -3,9 +3,10 @@ var User = {
   schema: true,
 
   attributes: {
-    username  : { type: 'string', unique: true },
-    email     : { type: 'email',  unique: true },
-    passports : { collection: 'Passport', via: 'user' }
+    username  : { type: 'string', unique: true, required: true },
+    email     : { type: 'email',  unique: true, required: true },
+    passports : { collection: 'Passport', via: 'user' },
+    isOfficer : { type: 'boolean', unique: false, required: true }
   }
 };
 

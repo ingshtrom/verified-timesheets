@@ -13,11 +13,14 @@ module.exports.bootstrap = function(cb) {
   'use strict';
 
   var express = require("express"),
-         app = express();
+      app = express(),
+      sails = require('sails');
 
     app.get('*', function(req, res) {
-        res.redirect('https://' + req.headers.host + req.url);
+      res.redirect('https://' + req.headers.host + req.url);
     });
+
+  sails.services.passport.loadStrategies();
 
   // It's very important to trigger this callback method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
