@@ -79,7 +79,7 @@
         <!--Settings-->
         <scene sceneID="13r-nx-wxK">
             <objects>
-                <viewController title="Settings" id="cwC-GS-htk" userLabel="Settings" sceneMemberID="viewController">
+                <viewController title="Settings" id="cwC-GS-htk" userLabel="Settings" customClass="SettingsViewController" customModule="VerifiedTimesheets" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5VM-Zl-1pQ"/>
                         <viewControllerLayoutGuide type="bottom" id="dPy-NR-vKe"/>
@@ -88,19 +88,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Attribute icons to http://www.flaticon.com/packs/ios7-set-lined-1" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jbw-vR-QDV">
-                                <rect key="frame" x="43" y="345" width="520" height="30"/>
+                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Attribute icons to http://www.flaticon.com/packs/ios7-set-lined-1" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c04-bM-Htd">
+                                <rect key="frame" x="16" y="493" width="568" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="2Xn-J7-Zv1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report Email Address:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2I-ed-hk0" userLabel="Report Email Address Label">
+                                <rect key="frame" x="16" y="28" width="171.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jbw-vR-QDV" userLabel="Report Email Address Text Field">
+                                <rect key="frame" x="16" y="56.5" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jbw-vR-QDV" firstAttribute="leading" secondItem="6kP-0c-u1T" secondAttribute="leadingMargin" id="4F0-l1-Acj"/>
+                            <constraint firstAttribute="centerX" secondItem="c04-bM-Htd" secondAttribute="centerX" id="6tU-cb-Eqx"/>
+                            <constraint firstItem="z2I-ed-hk0" firstAttribute="leading" secondItem="6kP-0c-u1T" secondAttribute="leadingMargin" id="HcA-Xm-xbV"/>
+                            <constraint firstItem="jbw-vR-QDV" firstAttribute="trailing" secondItem="6kP-0c-u1T" secondAttribute="trailingMargin" id="PeT-uw-KQg"/>
+                            <constraint firstItem="c04-bM-Htd" firstAttribute="leading" secondItem="6kP-0c-u1T" secondAttribute="leadingMargin" id="V3b-Vh-c6f"/>
+                            <constraint firstItem="z2I-ed-hk0" firstAttribute="top" secondItem="5VM-Zl-1pQ" secondAttribute="bottom" constant="8" id="Y8F-qW-6E8"/>
+                            <constraint firstItem="jbw-vR-QDV" firstAttribute="top" secondItem="z2I-ed-hk0" secondAttribute="bottom" constant="8" id="erc-iF-QU2"/>
+                            <constraint firstItem="c04-bM-Htd" firstAttribute="trailing" secondItem="6kP-0c-u1T" secondAttribute="trailingMargin" id="sg3-Zu-JIS"/>
+                            <constraint firstItem="dPy-NR-vKe" firstAttribute="top" secondItem="c04-bM-Htd" secondAttribute="bottom" constant="8" id="uin-HN-QxQ"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="settings20.png" id="HOs-QR-ham"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dTE-PK-3iq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="782" y="787"/>
+            <point key="canvasLocation" x="782" y="812"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="LSd-jD-Tur">

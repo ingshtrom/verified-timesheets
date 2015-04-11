@@ -11,6 +11,7 @@
 		FA5955FB1ACF8BCC0091A307 /* ViewSignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5955FA1ACF8BCC0091A307 /* ViewSignatureViewController.swift */; };
 		FA6DA42C1AB62465002B8A63 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DA42B1AB62465002B8A63 /* Utils.swift */; };
 		FA81C3081ACB4DF500968283 /* AddSignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA81C3041ACB4DF500968283 /* AddSignatureViewController.swift */; };
+		FA8C7C5D1AD34B0800C0863E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8C7C5C1AD34B0800C0863E /* SettingsViewController.swift */; };
 		FA9BA4071AD026FC00B65B03 /* HTMLToPDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9BA4061AD026FC00B65B03 /* HTMLToPDFGenerator.swift */; };
 		FA9BA4091AD0283300B65B03 /* HTMLGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9BA4081AD0283300B65B03 /* HTMLGenerator.swift */; };
 		FAB0675C1AB4EEA1008DA772 /* PopDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB0675B1AB4EEA1008DA772 /* PopDateView.xib */; };
@@ -50,6 +51,7 @@
 		FA5955FA1ACF8BCC0091A307 /* ViewSignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewSignatureViewController.swift; sourceTree = "<group>"; };
 		FA6DA42B1AB62465002B8A63 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		FA81C3041ACB4DF500968283 /* AddSignatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSignatureViewController.swift; sourceTree = "<group>"; };
+		FA8C7C5C1AD34B0800C0863E /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FA9BA4061AD026FC00B65B03 /* HTMLToPDFGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLToPDFGenerator.swift; sourceTree = "<group>"; };
 		FA9BA4081AD0283300B65B03 /* HTMLGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLGenerator.swift; sourceTree = "<group>"; };
 		FAB0675B1AB4EEA1008DA772 /* PopDateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopDateView.xib; sourceTree = "<group>"; };
@@ -111,6 +113,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FA8C7C5B1AD34AFB00C0863E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FA8C7C5C1AD34B0800C0863E /* SettingsViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		FA9444311ABF42FC00C4492F /* Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +174,7 @@
 		FADCCB0E1A5867EB00838054 /* VerifiedTimesheets */ = {
 			isa = PBXGroup;
 			children = (
+				FA8C7C5B1AD34AFB00C0863E /* Settings */,
 				FA9BA4051AD026CA00B65B03 /* PDFGeneration */,
 				FADCCB0F1A5867EB00838054 /* Supporting Files */,
 				FA9444311ABF42FC00C4492F /* Details */,
@@ -368,6 +379,7 @@
 				FADCCB151A5867EB00838054 /* VerifiedTimesheets.xcdatamodeld in Sources */,
 				FABBCC861AB8DCEF007BBC07 /* TimeEntry.swift in Sources */,
 				FADCCB121A5867EB00838054 /* AppDelegate.swift in Sources */,
+				FA8C7C5D1AD34B0800C0863E /* SettingsViewController.swift in Sources */,
 				FACAB24A1AB6017B00E7A7BF /* PopDatePicker.swift in Sources */,
 				FA81C3081ACB4DF500968283 /* AddSignatureViewController.swift in Sources */,
 				FA6DA42C1AB62465002B8A63 /* Utils.swift in Sources */,
