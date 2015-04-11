@@ -22,6 +22,7 @@
  * @param {Function} next
  */
 module.exports = function (req, res, next) {
+  'use strict';
   // Initialize Passport
   passport.initialize()(req, res, function () {
     // Use the built-in sessions

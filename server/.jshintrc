@@ -92,6 +92,7 @@
         "module": true,
         "require": true,
         "__dirname": true,
-        "process": true
+        "process": true,
+        "sails": true
     }
 }
