@@ -49,9 +49,12 @@ module.exports.policies = {
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
 
-  '*': ['passport', 'sessionAuth'],
+  // anyone can attemp to login
+  // every other endpoint is locked
+  // behind a session
+  '*': ['sessionAuth'],
 
-  'auth': {
-    '*': ['passport']
+  UserController: {
+    login: true
   }
 };
