@@ -73,7 +73,12 @@ module.exports = {
         return res.status(500).json(jsonResponse);
       }
 
+      if (entry.user === req.session.user.id) {
+        return res.status(403).json({ error: 'You cannot approve your own time entry.' });
+      }
+
       entry.isApproved = true;
+      entry.approvedBy = req.session.user.id;
       entry.save();
 
       return res.status(200).json(entry);

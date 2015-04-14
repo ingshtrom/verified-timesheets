@@ -13,7 +13,6 @@ module.exports = {
       required: true,
       before: function() {
         'use strict';
-        sails.log.debug('before: ' + this.endDateTime);
         return this.endDateTime;
       }
     },
@@ -22,7 +21,6 @@ module.exports = {
       required: true,
       after: function () {
         'use strict';
-        sails.log.debug('after: ' + this.startDateTime);
         return this.startDateTime;
       }
      },
@@ -37,6 +35,9 @@ module.exports = {
     user: {
       model: 'user',
       required: true
+    },
+    approvedBy: {
+      model: 'user'
     }
   }
 };
