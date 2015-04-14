@@ -55,6 +55,11 @@ module.exports.policies = {
   '*': ['sessionAuth'],
 
   UserController: {
-    login: true
+    login: true,
+    create: true
+  },
+
+  TimeEntryController: {
+    approve: 'officerAuth'
   }
 };

@@ -1,6 +1,6 @@
 'use strict';
 var bcrypt = require('bcrypt'),
-    Promise = require('bluebird');
+    Promise = require('bluebird');  // jshint ignore:line
 
 /**
 * User.js
@@ -15,20 +15,26 @@ module.exports = {
     name: { type: 'string', required: true },
     email: { type: 'email', required: true, unique: true },
     password: { type: 'string', required: true },
-    isOfficer: { type: 'boolean', required: true, default: false },
+    isOfficer: { type: 'boolean', required: true, defaultsTo: false },
+    timeEntries: {
+      collection: 'timeentry',
+      via: 'user'
+    },
 
     /* INSTANCE METHODS */
     authenticate: function authenticate (password) {
       var self = this;
+      sails.log.debug('User.authenticate', {
+        user: self.toJSON()
+      });
       return new Promise(function (resolve, reject) {
         bcrypt.compare(password, self.password, function (err, result) {
-          sails.log.debug('User.authenticate', {
-            err: err + '',
-            result: result
-          });
-          if (err) { reject(err); }
+          if (err) {
+            sails.log.debug('User.authenticate :: failed to authenticate due to bad password.');
+            reject(err);
+          }
           else {
-            sails.log.debug('User.authenticate :: bcrypt.compare', { result: result });
+            sails.log.debug('User.authenticate :: authenticated!');
             resolve(result);
           }
         });

@@ -13,10 +13,12 @@ module.exports = {
         password = req.body.password;
     User.findOne({ email: email })
     .exec(function (err, user) {
+      sails.log.debug('UserController.login\n', {
+        user: user
+      });
       if (err || !user) {
         sails.log.debug('problem finding the user during login', {
           err: err + '',
-          user: user,
           email: email
         });
         return res.status(401).json({ errorMessage: 'Invalid email.'});
