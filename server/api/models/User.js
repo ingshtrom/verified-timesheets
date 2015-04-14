@@ -12,10 +12,27 @@ var bcrypt = require('bcrypt'),
 module.exports = {
 
   attributes: {
-    name: { type: 'string', required: true },
-    email: { type: 'email', required: true, unique: true },
-    password: { type: 'string', required: true },
-    isOfficer: { type: 'boolean', required: true, defaultsTo: false },
+    name: {
+      type: 'string',
+      required: true
+    },
+    email: {
+      type: 'email',
+      required: true,
+      unique: true
+    },
+    password: {
+      type: 'string',
+      required: true
+    },
+    isOfficer: {
+      type: 'boolean',
+      required: true,
+      defaultsTo: false
+    },
+    signature: {
+      type: 'binary'
+    },
     timeEntries: {
       collection: 'timeentry',
       via: 'user'

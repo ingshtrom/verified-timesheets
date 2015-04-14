@@ -32,6 +32,14 @@ module.exports = {
       type: 'boolean',
       defaultsTo: false
     },
+    userCoveredFor: {
+      model: 'user',
+      required: true
+    },
+    reason: {
+      model: 'reason',
+      required: true
+    },
     user: {
       model: 'user',
       required: true
