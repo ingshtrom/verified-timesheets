@@ -34,13 +34,14 @@ module.exports = {
         if (!isAuthenticated) {
           return res.status(401).json({ errorMessage: 'Invalid password' });
         }
+
         userJSON = user.toJSON();
         req.session.user = userJSON;
         req.session.authenticated = true;
         res.status(200).json(userJSON);
       })
       .catch(function (err) {
-        return res.status(500).json({ errorMessage: 'Generic error while logging in: ' + err});
+        return res.status(500).json({ errorMessage: err.message });
       });
     });
   },

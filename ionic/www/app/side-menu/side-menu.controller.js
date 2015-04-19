@@ -18,7 +18,7 @@
     function logout () {
       LoginService.logout();
       $ionicHistory.nextViewOptions({ disableBack: true });
-      $state.go('app.login');
+      $state.go('login');
     }
 
     function isLoggedIn () {

@@ -17,7 +17,7 @@
           return currentUser;
         })
         .catch(function (err) {
-          throw new Error('Error while logging in: ' + err);
+          throw err;
         });
       },
       /**
@@ -45,7 +45,7 @@
         return currentUser || {};
       },
       isLoggedIn: function isLoggedIn () {
-        console.log('is logged in?');
+        console.log('is logged in?', currentUser !== null);
         return currentUser !== null;
       }
     };

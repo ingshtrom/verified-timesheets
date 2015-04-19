@@ -48,7 +48,7 @@ module.exports = {
         bcrypt.compare(password, self.password, function (err, result) {
           if (err) {
             sails.log.debug('User.authenticate :: failed to authenticate due to bad password.');
-            reject(err);
+            reject(new Error('Incorrect password.'));
           }
           else {
             sails.log.debug('User.authenticate :: authenticated!');
@@ -76,5 +76,5 @@ module.exports = {
           cb();
       });
     });
-  },
+  }
 };

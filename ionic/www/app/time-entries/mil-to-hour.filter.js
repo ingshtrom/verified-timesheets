@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('vt.time-entry')
+    .module('vt.time-entries')
     .filter('milToHourFilter', MilToHourFilter);
 
   function MilToHourFilter () {

@@ -7,7 +7,7 @@
       return {
         handleResponseError: function handleResponseError (data, status) {
           if (status === 403 && data && data.status === 'error' && data.reason === 'failed-login') {
-            $state.go('app.login');
+            $state.go('login');
           }
         }
       };

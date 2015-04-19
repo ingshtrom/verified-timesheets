@@ -2,10 +2,10 @@
   'use strict';
 
   angular
-    .module('vt.time-entry')
-    .controller('TimeEntryController', TimeEntryController);
+    .module('vt.time-entries')
+    .controller('TimeEntriesController', TimeEntriesController);
 
-  function TimeEntryController ($scope, $state, TimeEntryApiService, LoginService) {
+  function TimeEntriesController ($scope, TimeEntryApiService, LoginService) {
     // API
     $scope.entries = [];
 
