@@ -14,5 +14,8 @@ module.exports = function(req, res, next) {
     return next();
   }
 
-  return res.forbidden('You must be an officer to perform this action.');
+  return res.status(403).json({
+    status: 'error',
+    message: 'You must be an officer to perform this action.'
+  });
 };

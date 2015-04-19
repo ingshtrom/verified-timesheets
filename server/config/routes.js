@@ -21,5 +21,6 @@
  */
 
 module.exports.routes = {
-  'POST /login': 'UserController.login'
+  'POST /login': 'UserController.login',
+  'DELETE /logout': 'UserController.logout'
 };

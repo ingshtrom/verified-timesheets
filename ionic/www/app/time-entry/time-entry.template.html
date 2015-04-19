@@ -1,0 +1,10 @@
+<ion-view view-title="My Overtime">
+  <ion-content>
+    <div class="list">
+      <a ng-repeat="entry in entries" class="item time-entry-list-item item-icon-right" href="#">
+        {{entry.startDateTime | date : 'short'}} - {{(entry.endDateTime - entry.startDateTime) | milToHourFilter | number: 1 }} hrs
+        <i ng-if="entry.isApproved" class="balanced icon ion-checkmark-round"></i>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>

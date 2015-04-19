@@ -18,5 +18,9 @@ module.exports = function(req, res, next) {
 
   // User is not allowed
   // (default res.forbidden() behavior can be overridden in `config/403.js`)
-  return res.forbidden('You are not permitted to perform this action.');
+  return res.status(403).json({
+    status: 'error',
+    reason: 'failed-login', // this is so the client knows that this isn't some other 403
+    message: 'You are not permitted to perform this action.'
+  });
 };

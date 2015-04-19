@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- vt -->
+    <script src="app/app.js"></script>
+
+    <!-- vt.shared -->
+    <script src="app/shared/shared.module.js"></script>
+    <script src="app/api/misc.service.js"></script>
+
+    <!-- vt.side-menu -->
+    <script src="app/side-menu/side-menu.module.js"></script>
+    <script src="app/side-menu/side-menu.controller.js"></script>
+
+    <!-- vt.api -->
+    <script src="app/api/api.module.js"></script>
+    <script src="app/api/time-entry-api.service.js"></script>
+    <script src="app/api/user-api.service.js"></script>
+
+    <!-- vt.login -->
+    <script src="app/login/login.module.js"></script>
+    <script src="app/login/login.controller.js"></script>
+    <script src="app/login/login.service.js"></script>
+
+    <!-- vt.user -->
+
+    <!-- vt.time-entry -->
+    <script src="app/time-entry/time-entry.module.js"></script>
+    <script src="app/time-entry/mil-to-hour.filter.js"></script>
+    <script src="app/time-entry/time-entry.controller.js"></script>
+
+  </head>
+  <body ng-app="vt">
+    <ion-nav-view></ion-nav-view>
+  </body>
+</html>

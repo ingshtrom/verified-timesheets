@@ -86,10 +86,54 @@ module.exports = {
   },
   update: function update (req, res) {
     'use strict';
-    // strip any changes to isApproved.
-    // That should only be done through
-    // the approve action.
-    return res.status(403).json({});
+    var id = req.params.id;
+    TimeEntry.findOne(id)
+    .exec(function (err, entry) {
+      var jsonResponse;
+
+      sails.log.debug('TimeEntryController.update', {
+        entry: entry
+      });
+
+      if (err) {
+        if (err.toJSON) { jsonResponse = err.toJSON(); }
+        else { jsonResponse.error = err.name + ' => ' + err.message; }
+
+        sails.log.error('TimeEntryController.update', {
+          status: 'error',
+          errorResponse: jsonResponse,
+        });
+
+        return res.status(500).json(jsonResponse);
+      }
+
+      if (entry.user !== req.session.user.id) {
+        return res.status(403).json({
+          status: 'error',
+          message: 'You cannot edit another user\'s time entry.'
+        });
+      }
+
+      // strip any changes to isApproved.
+      // That should only be done through
+      // the approve action.
+      delete req.body.isApproved;
+      entry = _.extend(entry, req.body);
+      entry.save(function (err, savedEntry) {
+        if (err) {
+          if (err.toJSON) { jsonResponse = err.toJSON(); }
+          else { jsonResponse.error = err.name + ' => ' + err.message; }
+
+          sails.log.error('TimeEntryController.update', {
+            status: 'error',
+            errorResponse: jsonResponse,
+          });
+
+          return res.status(500).json(jsonResponse);
+        }
+        return res.status(201).json(savedEntry);
+      });
+    });
   }
 };
 

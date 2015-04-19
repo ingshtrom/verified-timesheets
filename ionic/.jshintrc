@@ -114,66 +114,12 @@
 
   // Environments
   "browser": true,
-  // Web Browser (window, document, etc)
-  "browserify": false,
-  // Browserify (node.js code in the browser)
-  "couch": false,
-  // CouchDB
-  "devel": true,
-  // Development/debugging (alert, confirm, etc)
-  "dojo": false,
-  // Dojo Toolkit
-  "jasmine": false,
-  // Jasmine
-  "jquery": false,
-  // jQuery
-  "mocha": true,
-  // Mocha
-  "mootools": false,
-  // MooTools
-  "node": false,
-  // Node.js
-  "nonstandard": false,
-  // Widely adopted globals (escape, unescape, etc)
-  "prototypejs": false,
-  // Prototype and Scriptaculous
-  "qunit": false,
-  // QUnit
-  "rhino": false,
-  // Rhino
-  "shelljs": false,
-  // ShellJS
-  "worker": false,
-  // Web Workers
-  "wsh": false,
-  // Windows Scripting Host
-  "yui": false,
-  // Yahoo User Interface
 
   // Custom Globals
   // additional predefined global variables
   "globals": {
-    "_": false, // lodash
     "angular": false,
-    "By": false,
-    "kendo": false,
-    "$": false,
-    "Raven": false,
-    "xdescribe": false,
-    "describe": false,
-    "ddescribe": false,
-    "xit": false,
-    "it": false,
-    "iit": false,
-    "module": false,
-    "inject": false,
-    "browser": false,
-    "expect": false,
-    "jasmine": false,
-    "require": false,
-    "ngen": true,
-    "spyOn": false,
-    "moment": false,
-    "sails": true
+    "cordova": false,
+    "console": false
   }
 }

@@ -26,6 +26,7 @@ module.exports = {
 
       user.authenticate(password)
       .then(function (isAuthenticated) {
+        var userJSON;
         sails.log.debug('UserController.login', {
           isAuthenticated: isAuthenticated
         });
@@ -33,15 +34,24 @@ module.exports = {
         if (!isAuthenticated) {
           return res.status(401).json({ errorMessage: 'Invalid password' });
         }
-        req.session.user = user.toJSON();
+        userJSON = user.toJSON();
+        req.session.user = userJSON;
         req.session.authenticated = true;
-        res.status(200).json({
-          message: 'Logged in successfully.',
-        });
+        res.status(200).json(userJSON);
       })
       .catch(function (err) {
         return res.status(500).json({ errorMessage: 'Generic error while logging in: ' + err});
       });
+    });
+  },
+  logout: function logout (req, res) {
+    'use strict';
+    sails.log.debug('UserController.logout');
+    delete req.session.user;
+    delete req.session.authenticated;
+    res.status(200).json({
+      status: 'success',
+      message: 'Logged out successfully.'
     });
   }
 };
