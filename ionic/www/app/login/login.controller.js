@@ -13,6 +13,16 @@
 
         $scope.login = login;
 
+        init()
+
+        function init () {
+            if (LoginService.isLoggedIn()) {
+                console.log('already logged in, auto-forwarding to app.time-entries');
+                $ionicHistory.nextViewOptions({historyRoot: true});
+                $state.go('app.time-entries');
+            }
+        }
+
         function login () {
             LoginService.login($scope.creds.email, $scope.creds.password)
                 .then(function () {

@@ -1,9 +1,9 @@
 /**
-* TimeEntry.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * TimeEntry.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
 
@@ -11,7 +11,7 @@ module.exports = {
     startDateTime: {
       type: 'datetime',
       required: true,
-      before: function() {
+      before: function () {
         'use strict';
         return this.endDateTime;
       }
@@ -23,7 +23,7 @@ module.exports = {
         'use strict';
         return this.startDateTime;
       }
-     },
+    },
     notes: {
       type: 'string',
       defaultsTo: ''
@@ -38,6 +38,10 @@ module.exports = {
     },
     reason: {
       model: 'reason',
+      required: true
+    },
+    apparatus: {
+      model: 'apparatus',
       required: true
     },
     user: {

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
@@ -16,10 +16,16 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
 
+    <!-- third-party libs -->
+    <script src="lib/lodash/lodash.min.js"></script>
+
     <!-- vt -->
-    <script src="app/app.js"></script>
+    <script src="app/vt.module.js"></script>
+    <script src="app/vt.config.js"></script>
+    <script src="app/vt.run.js"></script>
 
     <!-- vt.alerting -->
     <script src="app/shared/alerting/alerting.module.js"></script>
@@ -46,9 +52,10 @@
     <script src="app/time-entries/time-entries.module.js"></script>
     <script src="app/time-entries/mil-to-hour.filter.js"></script>
     <script src="app/time-entries/time-entries.controller.js"></script>
+    <script src="app/time-entries/time-entry.controller.js"></script>
 
-  </head>
-  <body ng-app="vt">
-    <ion-nav-view></ion-nav-view>
-  </body>
+</head>
+<body ng-app="vt">
+<ion-nav-view></ion-nav-view>
+</body>
 </html>
