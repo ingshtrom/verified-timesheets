@@ -1,3 +1,4 @@
-.popup-body {
+.popup-body,
+.row .col.centered-text {
   text-align: center;
 }

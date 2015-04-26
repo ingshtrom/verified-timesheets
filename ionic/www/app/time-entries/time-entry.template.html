@@ -1,13 +1,59 @@
 <ion-view view-title="Time Entry">
     <ion-content>
         <div class="list">
-            <!--<label class="item item-input item-floating-label">-->
-                <!--<span class="input-label">Email</span>-->
-                <!--<input type="text" placeholder="Email" ng-model="creds.email">-->
+            <span ng-if="timeEntry.isApproved">
+                <div class="item item-text-wrap assertive-bg">
+                    <div class="row">
+                        <div class="col centered-text">
+                            <h1>APPROVED</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        Changing data in this time entry will require it to be re-approved by an officer. The exception is the notes field, which will not affect the approved status.
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col centered-text">
+                            Approved by: {{timeEntry.approvedBy.name}}
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-divider">Attributes</div>
+            </span>
+
+            <!--<label class="item item-input">-->
+                <!--<span class="input-label">Covered For</span>-->
+                <!--<div>-->
+                    <!--{{timeEntry.startDateTime | date:'longDate' }}-->
+                <!--</div>-->
             <!--</label>-->
-            <label class="item item-input item-floating-label">
+
+            <label class="item item-input">
+                <span class="input-label">Start Date</span>
+                <div>
+                    {{timeEntry.startDateTime | date:'longDate' }}
+                </div>
+            </label>
+            <label class="item item-input">
                 <span class="input-label">Start Time</span>
-                <input type="password" placeholder="{{Date().now().toLocaleString()}}" ng-model="creds.password">
+
+                <div>
+                    {{timeEntry.startDateTime | date:'shortTime' }}
+                </div>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">End Date</span>
+
+                <div>
+                    {{timeEntry.endDateTime | date:'longDate' }}
+                </div>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">End Time</span>
+
+                <div>
+                    {{timeEntry.endDateTime | date:'shortTime' }}
+                </div>
             </label>
         </div>
         <button class="button button-full button-large button-positive" ng-click="save()">
