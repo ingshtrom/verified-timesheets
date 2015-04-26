@@ -120,6 +120,8 @@
   "globals": {
     "angular": false,
     "cordova": false,
-    "console": false
+    "console": false,
+    "StatusBar": false,
+    "_": false
   }
 }

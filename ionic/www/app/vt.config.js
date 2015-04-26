@@ -36,6 +36,33 @@
                         controller: 'TimeEntryController'
                     }
                 }
+            })
+            .state('app.users', {
+                url: '/users',
+                views: {
+                    menuContent: {
+                        templateUrl: 'app/users/users.template.html',
+                        controller: 'UsersController'
+                    }
+                }
+            })
+            .state('app.reasons', {
+                url: '/reasons',
+                views: {
+                    menuContent: {
+                        templateUrl: 'app/reasons/reasons.template.html',
+                        controller: 'ReasonsController'
+                    }
+                }
+            })
+            .state('app.apparatuses', {
+                url: '/apparatuses',
+                views: {
+                    menuContent: {
+                        templateUrl: 'app/apparatuses/apparatuses.template.html',
+                        controller: 'ApparatusesController'
+                    }
+                }
             });
         $urlRouterProvider.otherwise('/login');
     }

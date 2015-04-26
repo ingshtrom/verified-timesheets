@@ -1,3 +1,4 @@
+/* globals StatusBar */
 (function () {
     'use strict';
 

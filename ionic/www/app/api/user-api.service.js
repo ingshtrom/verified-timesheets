@@ -1,37 +1,51 @@
 (function () {
-  'use strict';
-  angular.module('vt.api')
-  .factory('UserApiService', UserApiService);
+    'use strict';
+    angular.module('vt.api')
+        .factory('UserApiService', UserApiService);
 
-  function UserApiService ($http, $q, ApiErrorHandlingService, BASE_API_URL) {
-    return {
-      login: function login (email, password) {
-        var deferred = $q.defer();
+    function UserApiService ($http, $q, ApiErrorHandlingService, BASE_API_URL) {
+        return {
+            login: function login(email, password) {
+                var deferred = $q.defer();
 
-        $http.post(BASE_API_URL + '/login', { email: email, password: password})
-          .success(function (data, status) {
-            deferred.resolve({ data: data, status: status });
-          })
-          .error(function (data, status) {
-            deferred.reject({ data: data, status: status });
-          });
+                $http.post(BASE_API_URL + '/login', {email: email, password: password})
+                    .success(function (data, status) {
+                        deferred.resolve({data: data, status: status});
+                    })
+                    .error(function (data, status) {
+                        deferred.reject({data: data, status: status});
+                    });
 
-        return deferred.promise;
-      },
-      logout: function logout () {
-        var deferred = $q.defer();
+                return deferred.promise;
+            },
+            logout: function logout() {
+                var deferred = $q.defer();
 
-        $http.delete(BASE_API_URL + '/logout')
-          .success(function (data, status) {
-            deferred.resolve({ data: data, status: status });
-          })
-          .error(function (data, status) {
-            ApiErrorHandlingService.handleResponseError(data, status);
-            deferred.reject({ data: data, status: status });
-          });
+                $http.delete(BASE_API_URL + '/logout')
+                    .success(function (data, status) {
+                        deferred.resolve({data: data, status: status});
+                    })
+                    .error(function (data, status) {
+                        ApiErrorHandlingService.handleResponseError(data, status);
+                        deferred.reject({data: data, status: status});
+                    });
 
-        return deferred.promise;
-      }
-    };
-  }
+                return deferred.promise;
+            },
+            getAllUsers: function getAllUsers () {
+                var deferred = $q.defer();
+
+                $http.get(BASE_API_URL + '/users')
+                    .success(function (data, status) {
+                        deferred.resolve({data: data, status: status});
+                    })
+                    .error(function (data, status) {
+                        ApiErrorHandlingService.handleResponseError(data, status);
+                        deferred.reject({data: data, status: status});
+                    });
+
+                return deferred.promise;
+            }
+        };
+    }
 })();

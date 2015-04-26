@@ -6,28 +6,28 @@
         .controller('TimeEntryController', TimeEntryController);
 
     function TimeEntryController($scope, $state, $cordovaDatePicker, TimeEntryApiService) {
-        var dateOptions = {
-                date: new Date(),
-                mode: 'date',
-                allowOldDates: true,
-                allowFutureDates: true,
-                doneButtonLabel: 'DONE',
-                doneButtonColor: '#F2F3F4',
-                cancelButtonLabel: 'CANCEL',
-                cancelButtonColor: '#000000'
-            }, timeOptions = {
-                date: new Date(),
-                mode: 'time',
-                allowOldDates: true,
-                allowFutureDates: true,
-                doneButtonLabel: 'DONE',
-                doneButtonColor: '#F2F3F4',
-                cancelButtonLabel: 'CANCEL',
-                cancelButtonColor: '#000000',
-                minuteInterval: 15
-            };
+        //var dateOptions = {
+        //        date: new Date(),
+        //        mode: 'date',
+        //        allowOldDates: true,
+        //        allowFutureDates: true,
+        //        doneButtonLabel: 'DONE',
+        //        doneButtonColor: '#F2F3F4',
+        //        cancelButtonLabel: 'CANCEL',
+        //        cancelButtonColor: '#000000'
+        //    }, timeOptions = {
+        //        date: new Date(),
+        //        mode: 'time',
+        //        allowOldDates: true,
+        //        allowFutureDates: true,
+        //        doneButtonLabel: 'DONE',
+        //        doneButtonColor: '#F2F3F4',
+        //        cancelButtonLabel: 'CANCEL',
+        //        cancelButtonColor: '#000000',
+        //        minuteInterval: 15
+        //    };
 
-        $scope.id;
+        $scope.id = null;
         $scope.timeEntry = {};
 
         init();
