@@ -7,8 +7,10 @@
         <ion-list show-delete="data.shouldShowDelete">
             <ion-item ng-repeat="reason in data.reasons" class="item item-text-wrap">
                 <ion-delete-button class="ion-minus-circled" ng-click="func.deleteReason(reason)"></ion-delete-button>
-                <h2>{{reason.name}}</h2>
-                <p>{{reason.description}}</p>
+                <div ui-sref="app.reason-detail({ id: reason.id })">
+                    <h2>{{reason.name}}</h2>
+                    <p>{{reason.description}}</p>
+                </div>
             </ion-item>
         </ion-list>
     </ion-content>

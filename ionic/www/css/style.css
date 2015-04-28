@@ -1,4 +1,8 @@
 .popup-body,
 .row .col.centered-text {
-  text-align: center;
+    text-align: center;
+}
+
+textarea {
+    height: 100px;
 }
