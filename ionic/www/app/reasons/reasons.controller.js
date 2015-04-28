@@ -8,6 +8,7 @@
     function ReasonsController ($scope, $ionicPopup, ReasonApiService) {
         var data = $scope.data = {},
             func = $scope.func = {};
+
         data.reasons = [];
         data.shouldShowDelete = false;
 
@@ -31,7 +32,7 @@
                     $ionicPopup
                         .alert({
                             title: 'Get Error',
-                            reason: 'An error occurred. Please try again.'
+                            template: 'An error occurred. Please try again.'
                         });
                 });
         }
@@ -43,7 +44,7 @@
         function deleteReason (reason) {
             $ionicPopup
                 .confirm({
-                    title: 'Sure?',
+                    title: 'Delete?',
                     template: 'Are you sure you want to delete ' + reason.name + '?'
                 })
                 .then(handleResponse);
@@ -60,7 +61,7 @@
                             $ionicPopup
                                 .alert({
                                     title: 'Delete Error',
-                                    reason: 'An error occurred. Please try again.'
+                                    template: 'An error occurred. Please try again.'
                                 });
                         });
                 } else {

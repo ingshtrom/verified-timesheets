@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('vt.reasons')
-        .controller('ReasonDetailController', ReasonDetailController);
+        .module('vt.apparatuses')
+        .controller('ApparatusDetailController', ApparatusDetailController);
 
-    function ReasonDetailController($scope, $state, $ionicHistory, $ionicPopup, ReasonApiService) {
+    function ApparatusDetailController($scope, $state, $ionicHistory, $ionicPopup, ApparatusApiService) {
         var data = $scope.data = {},
             func = $scope.func = {};
 
@@ -21,10 +21,10 @@
         function init () {
             data.id = $state.params.id;
             if (data.id) {
-                console.log('reason-detail => edit mode');
+                console.log('apparatus-detail => edit mode');
                 data.editMode = true;
-                ReasonApiService
-                    .getReason(data.id)
+                ApparatusApiService
+                    .getApparatus(data.id)
                     .then(function (res) {
                         data.name = res.data.name;
                         data.description = res.data.description;
@@ -32,18 +32,18 @@
                     .catch(function (err) {
                         // display an error and go back to the previous page
                         // since we had trouble loading the reason
-                        console.error('An error occurred while trying to load the reason: ' + err);
+                        console.error('An error occurred while trying to load the apparatus: ' + err);
                         $ionicPopup
                             .alert({
                                 title: 'Get Error',
-                                template: 'An error occurred while trying to load the reason. Please try again'
+                                template: 'An error occurred while trying to load the aparatus. Please try again'
                             })
                             .then(function () {
                                 $ionicHistory.goBack();
                             });
                     });
             } else {
-                console.log('reason-detail => create mode');
+                console.log('apparatus-detail => create mode');
             }
         }
 
@@ -59,13 +59,13 @@
             }
 
             if (data.editMode) {
-                action = ReasonApiService.updateReason({
+                action = ApparatusApiService.updateApparatus({
                     id: data.id,
                     name: data.name,
                     description: data.description
                 });
             } else {
-                action = ReasonApiService.createReason(data.name, data.description);
+                action = ApparatusApiService.createApparatus(data.name, data.description);
             }
 
             action
@@ -73,7 +73,7 @@
                     $ionicHistory.goBack();
                 })
                 .catch(function (err) {
-                    console.error('An error occurred while trying to save a reason: ' + err);
+                    console.error('An error occurred while trying to save an apparatus: ' + err);
                     $ionicPopup
                         .alert({
                             title: 'General Error',

@@ -1,10 +1,18 @@
 <ion-view view-title="Apparatuses">
+    <ion-nav-buttons side="secondary">
+        <a class="button button-icon icon ion-ios-minus-outline" ng-click="func.toggleShouldShowDelete()"></a>
+        <a class="button button-icon icon ion-ios-plus-outline" ui-sref="app.new-apparatus"></a>
+    </ion-nav-buttons>
     <ion-content>
-        <div class="list">
-            <div ng-repeat="apparatus in data.apparatuses" class="item item-text-wrap">
-                <h2>{{apparatus.name}}</h2>
-                <p>{{apparatus.description}}</p>
-            </div>
-        </div>
+        <ion-list show-delete="data.shouldShowDelete">
+            <ion-item ng-repeat="apparatus in data.apparatuses" class="item item-text-wrap">
+                <ion-delete-button class="ion-minus-circled" ng-click="func.deleteApparatus(apparatus)"></ion-delete-button>
+                <div ui-sref="app.apparatus-detail({ id: apparatus.id })">
+                    <h2>{{apparatus.name}}</h2>
+
+                    <p>{{apparatus.description}}</p>
+                </div>
+            </ion-item>
+        </ion-list>
     </ion-content>
 </ion-view>

@@ -71,7 +71,7 @@
             },
             deleteReason: function deleteReason (id) {
                 var deferred = $q.defer();
-                
+
                 $http.delete(BASE_API_URL + '/reasons/' + id)
                     .success(function (data, status) {
                         deferred.resolve({data: data, status: status});

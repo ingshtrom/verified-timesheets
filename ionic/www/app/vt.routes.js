@@ -83,6 +83,24 @@
                         controller: 'ApparatusesController'
                     }
                 }
+            })
+            .state('app.new-apparatus', {
+                url: '/apparatus',
+                views: {
+                    menuContent: {
+                        templateUrl: 'app/apparatuses/apparatus-detail.template.html',
+                        controller: 'ApparatusDetailController'
+                    }
+                }
+            })
+            .state('app.apparatus-detail', {
+                url: '/apparatus/:id',
+                views: {
+                    menuContent: {
+                        templateUrl: 'app/apparatuses/apparatus-detail.template.html',
+                        controller: 'ApparatusDetailController'
+                    }
+                }
             });
         $urlRouterProvider.otherwise('/login');
     }
