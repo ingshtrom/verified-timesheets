@@ -5,7 +5,7 @@
     .module('vt.login')
     .controller('LoginController', LoginController);
 
-    function LoginController ($scope, $state, $ionicHistory, LoginService, AlertingService) {
+    function LoginController ($scope, $state, $ionicHistory, $ionicPopup, LoginService) {
         $scope.creds = {
             email: 'foo.bar@gmail.com',
             password: 'testing'
@@ -35,8 +35,8 @@
                         content = err.data.errorMessage;
                     }
 
-                    AlertingService
-                        .showAlert({
+                    $ionicPopup
+                        .alert({
                             title: title,
                             content: content
                         });

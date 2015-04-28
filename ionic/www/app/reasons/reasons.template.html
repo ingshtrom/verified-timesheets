@@ -1,10 +1,15 @@
 <ion-view view-title="Reasons">
+    <ion-nav-buttons side="secondary">
+        <a class="button button-icon icon ion-ios-minus-outline" ng-click="func.toggleShouldShowDelete()"></a>
+        <a class="button button-icon icon ion-ios-plus-outline" ui-sref="app.new-reason"></a>
+    </ion-nav-buttons>
     <ion-content>
-        <div class="list">
-            <div ng-repeat="reason in data.reasons" class="item item-text-wrap">
+        <ion-list show-delete="data.shouldShowDelete">
+            <ion-item ng-repeat="reason in data.reasons" class="item item-text-wrap">
+                <ion-delete-button class="ion-minus-circled" ng-click="func.deleteReason(reason)"></ion-delete-button>
                 <h2>{{reason.name}}</h2>
                 <p>{{reason.description}}</p>
-            </div>
-        </div>
+            </ion-item>
+        </ion-list>
     </ion-content>
 </ion-view>
