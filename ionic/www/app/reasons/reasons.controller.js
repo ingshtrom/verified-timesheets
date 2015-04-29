@@ -23,7 +23,7 @@
 
         function loadReasons () {
             ReasonApiService
-                .getAllReasons()
+                .getReasons()
                 .then(function (result) {
                     data.reasons = result.data;
                 })

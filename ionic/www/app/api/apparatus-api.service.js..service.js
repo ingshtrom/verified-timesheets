@@ -7,7 +7,7 @@
 
     function ApparatusApiService($http, $q, ApiErrorHandlingService, BASE_API_URL) {
         return {
-            getAllApparatuses: function getAllApparatuses () {
+            getApparatuses: function getApparatuses () {
                 var deferred = $q.defer();
 
                 $http.get(BASE_API_URL + '/apparatuses')

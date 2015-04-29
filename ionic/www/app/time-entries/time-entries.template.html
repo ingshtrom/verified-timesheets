@@ -1,10 +1,23 @@
 <ion-view view-title="My Overtime">
-  <ion-content>
-    <div class="list">
-      <a ng-repeat="entry in entries" class="item time-entry-list-item item-icon-right" href ng-click="editTimeEntry(entry)">
-        {{entry.startDateTime | date : 'short'}} - {{(entry.endDateTime - entry.startDateTime) | milToHourFilter | number: 1 }} hrs
-        <i ng-if="entry.isApproved" class="balanced icon ion-checkmark-round"></i>
-      </a>
-    </div>
-  </ion-content>
+
+    <ion-nav-buttons side="secondary">
+        <a class="button button-icon icon ion-ios-minus-outline" ng-click="func.toggleShouldShowDelete()"></a>
+        <a class="button button-icon icon ion-ios-plus-outline" ui-sref="app.new-time-entry"></a>
+    </ion-nav-buttons>
+
+    <ion-content>
+        <ion-list show-delete="data.shouldShowDelete">
+            <ion-item ng-repeat="entry in data.entries" class="item time-entry-list-item item-icon-right">
+
+                <ion-delete-button class="ion-minus-circled" ng-click="func.deleteTimeEntry(entry)"></ion-delete-button>
+
+                <div ui-sref="app.time-entry-detail({id: entry.id})">
+                    {{entry.startDateTime | date : 'short'}} - {{(entry.endDateTime - entry.startDateTime) | milToHourFilter
+                    | number: 1 }} hrs
+                    <i ng-if="entry.isApproved" class="balanced icon ion-checkmark-round"></i>
+                </div>
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
 </ion-view>

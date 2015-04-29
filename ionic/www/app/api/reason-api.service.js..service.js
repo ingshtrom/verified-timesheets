@@ -7,7 +7,7 @@
 
     function ReasonApiService ($http, $q, ApiErrorHandlingService, BASE_API_URL) {
         return {
-            getAllReasons: function getAllReasons () {
+            getReasons: function getReasons () {
                 var deferred = $q.defer();
 
                 $http.get(BASE_API_URL + '/reasons')

@@ -27,11 +27,20 @@
                     }
                 }
             })
-            .state('app.time-entry', {
+            .state('app.new-time-entry', {
+                url: '/time-entry',
+                views: {
+                    menuContent: {
+                        templateUrl: 'app/time-entries/time-entry-detail.template.html',
+                        controller: 'TimeEntryController'
+                    }
+                }
+            })
+            .state('app.time-entry-detail', {
                 url: '/time-entry/:id',
                 views: {
                     'menuContent': {
-                        templateUrl: 'app/time-entries/time-entry.template.html',
+                        templateUrl: 'app/time-entries/time-entry-detail.template.html',
                         controller: 'TimeEntryController'
                     }
                 }

@@ -1,0 +1,87 @@
+<ion-view view-title="Time Entry">
+    <ion-nav-buttons side="secondary">
+        <button class="button" ng-click="func.save()">
+            Save
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="list">
+            <span ng-if="data.timeEntry.isApproved">
+                <div class="item item-text-wrap assertive-bg">
+                    <div class="row">
+                        <div class="col centered-text">
+                            <h1>APPROVED</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        Changing data in this time entry will require it to be re-approved by an officer. The exception is the notes field, which will not affect the approved status.
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col centered-text">
+                            Approved by: {{data.timeEntry.approvedBy.name}}
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-divider">Attributes</div>
+            </span>
+
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Covered For
+                </div>
+                <select ng-options="user.name for user in data.users track by user.id" ng-model="data.timeEntry.userCoveredFor">
+                    <option value=""></option>
+                </select>
+            </label>
+
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Reason
+                </div>
+                <select ng-options="reason.name for reason in data.reasons track by reason.id"
+                        ng-model="data.timeEntry.reason">
+                    <option value=""></option>
+                </select>
+            </label>
+
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Apparatus
+                </div>
+                <select ng-options="apparatus.name for apparatus in data.apparatuses track by apparatus.id"
+                        ng-model="data.timeEntry.apparatus">
+                    <option value=""></option>
+                </select>
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">Start Date</span>
+                <div>
+                    {{data.timeEntry.startDateTime | date:'longDate' }}
+                </div>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Start Time</span>
+
+                <div>
+                    {{data.timeEntry.startDateTime | date:'shortTime' }}
+                </div>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">End Date</span>
+
+                <div>
+                    {{data.timeEntry.endDateTime | date:'longDate' }}
+                </div>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">End Time</span>
+
+                <div>
+                    {{data.timeEntry.endDateTime | date:'shortTime' }}
+                </div>
+            </label>
+        </div>
+    </ion-content>
+</ion-view>

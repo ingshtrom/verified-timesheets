@@ -32,7 +32,7 @@
 
                 return deferred.promise;
             },
-            getAllUsers: function getAllUsers () {
+            getUsers: function getUsers () {
                 var deferred = $q.defer();
 
                 $http.get(BASE_API_URL + '/users')

@@ -23,7 +23,7 @@
 
         function loadApparatuses () {
             ApparatusApiService
-                .getAllApparatuses()
+                .getApparatuses()
                 .then(function (result) {
                     data.apparatuses = result.data;
                 })

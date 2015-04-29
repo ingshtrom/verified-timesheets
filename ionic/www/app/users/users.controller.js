@@ -13,7 +13,7 @@
 
         function init () {
             UserApiService
-                .getAllUsers()
+                .getUsers()
                 .then(function (result) {
                    data.users = result.data;
                 })

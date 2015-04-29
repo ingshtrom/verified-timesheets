@@ -5,31 +5,64 @@
         .module('vt.time-entries')
         .controller('TimeEntriesController', TimeEntriesController);
 
-    function TimeEntriesController($scope, $state, TimeEntryApiService, LoginService) {
-        // API
-        $scope.entries = [];
-        $scope.editTimeEntry = editTimeEntry;
+    function TimeEntriesController($scope, $ionicPopup, TimeEntryApiService, LoginService) {
+        var data = $scope.data = {},
+            func = $scope.func = {};
 
-        activate();
+        data.entries = [];
+        data.shouldShowDelete = false
 
-        // IMPL
+        func.toggleShouldShowDelete = toggleShouldShowDelete;
+        func.deleteTimeEntry = deleteTimeEntry;
 
-        // initialize stuff
-        function activate() {
+        init();
+
+        function init() {
+            loadTimeEntries();
+        }
+
+        function loadTimeEntries () {
             var currentUser = LoginService.getCurrentSession();
 
             TimeEntryApiService.getEntriesForUser(currentUser.id)
-                .then(function (data) {
-                    $scope.entries = data;
+                .then(function (result) {
+                    data.entries = result.data;
                 })
                 .catch(function () {
-                    // TODO: display an alert
-                    console.error('Error while getting the time entries for the current user.');
+                    $ionicPopup
+                        .alert({
+                            title: 'Get Error',
+                            template: 'And error occurred. Please try again.'
+                        });
                 });
         }
 
-        function editTimeEntry(item) {
-            $state.go('app.time-entry', {id: item.id});
+        function toggleShouldShowDelete() {
+            data.shouldShowDelete = !data.shouldShowDelete;
+        }
+
+        function deleteTimeEntry (entry) {
+            $ionicPopup
+                .confirm({
+                    title: 'Delete?',
+                    template: 'Are you sure you want to delete this time entry?'
+                })
+                .then(function (result) {
+                    if (result) {
+                        TimeEntryApiService
+                            .deleteTimeEntry(entry.id)
+                            .then(function () {
+                                loadTimeEntries();
+                            })
+                            .catch(function () {
+                                $ionicPopup
+                                    .alert({
+                                        title: 'Delete Error',
+                                        template: 'An error occurred. Please try again.'
+                                    });
+                            });
+                    }
+                });
         }
     }
 })();
