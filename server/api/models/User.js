@@ -69,10 +69,12 @@ module.exports = {
 
   /* STATIC FUNCTIONS */
   beforeCreate: function(user, cb) {
-    // An example encrypt function defined somewhere
+    // lowercase the email
+    user.email = user.email.toLowerCase();
+    
+    // hash the password
     bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(user.password, salt, function(err, hash) {
-          // Store hash in your password DB.
           user.password = hash;
           cb();
       });

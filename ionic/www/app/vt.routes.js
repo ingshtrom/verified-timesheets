@@ -13,9 +13,14 @@
                 controller: 'SideMenuController'
             })
             .state('login', {
-                url: "/login",
-                templateUrl: "app/login/login.template.html",
+                url: '/login',
+                templateUrl: 'app/login/login.template.html',
                 controller: 'LoginController'
+            })
+            .state('signup', {
+                url: '/signup',
+                templateUrl: 'app/login/signup.template.html',
+                controller: 'SignupController'
             })
             .state('app.time-entries', {
                 url: '/time-entries',

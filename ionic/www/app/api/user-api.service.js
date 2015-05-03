@@ -1,3 +1,4 @@
+/// <reference path="../../../../typings/angularjs/angular.d.ts"/>
 (function () {
     'use strict';
     angular.module('vt.api')
@@ -50,6 +51,25 @@
                 var deferred = $q.defer();
                 
                 $http.put(BASE_API_URL + '/users/' + user.id, user)
+                .success(function (data, status) {
+                    deferred.resolve({data: data, status: status});
+                })
+                .error(function (data, status) {
+                    ApiErrorHandlingService.handleResponseError(data, status);
+                    deferred.reject({data: data, status: status});
+                });
+                
+                return deferred.promise;
+            },
+            createUser: function createUser (name, email, password) {
+                var deferred = $q.defer(),
+                    data = {
+                        name: name,
+                        email: email,
+                        password: password
+                    };
+                
+                $http.post(BASE_API_URL + '/users', data)
                 .success(function (data, status) {
                     deferred.resolve({data: data, status: status});
                 })
