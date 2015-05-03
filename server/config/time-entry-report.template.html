@@ -1,0 +1,90 @@
+<html>
+	<head>
+		<style>
+body {
+    padding: 50px;
+}
+h1 {
+    text-align: center;
+}
+.subtitle {
+    text-align: center;
+}
+.tab-1 {
+    padding-left: 15px;
+}
+.important-info {
+    font-weight: bold;
+    text-decoration: underline;
+}
+#main-content {
+    margin-top: 20px;
+    line-height: 1.3em;
+}
+table, th, td {
+   border: 1px solid black;
+   padding: 5px;
+   text-align: center;
+}
+table {
+    border-collapse: collapse;
+    margin-top: 35px;
+    width: 100%;
+}
+table img {
+    width: 50px;
+    height: 50px;
+}
+		</style>
+	</head>
+	<body>
+		<h1>Clay Fire Territory</h1>
+		<div class="subtitle">Time Sheet</div>
+		<div id="main-content">
+		    <div>
+		        <span>Name: </span>
+		        <span class="important-info">__USER_NAME__</span>
+		    </div>
+		    <div>
+		        <span>Type of Work: </span>
+		        <span class="important-info">Extra Pay</span>
+		    </div>
+		    <div>
+		        <span>Pay Period: </span>
+		    </div>
+		    <div>
+		        <span class="tab-1">From: </span>
+		        <span class="important-info">__PAY_PERIOD_START__</span>
+		    </div>
+		    <div>
+		        <span class="tab-1">To: </span>
+		        <span class="important-info">__PAY_PERIOD_END__</span>
+		    </div>
+		</div>
+		<table>
+		    <tr>
+		        <th>Created</th>
+		        <th>Covered For</th>
+		        <th>Reason</th>
+		        <th>Apparatus</th>
+		        <th>Notes</th>
+		        <th>IN</th>
+		        <th>OUT</th>
+		        <th>Hours</th>
+		        <th>Signature</th>
+			</tr>
+			__ROW_CONTENT__
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>Total:</td>
+				<td>__TOTAL_HOURS__</td>
+				<td></td>
+			</tr>
+		</table>
+	</body>
+</html>
