@@ -8,7 +8,7 @@
   function MilToHourFilter () {
     return function (input) {
       input = input || 0;
-      return (input / 60 / 60);
+      return (input / 1000 / 60 / 60);
     };
   }
 })();

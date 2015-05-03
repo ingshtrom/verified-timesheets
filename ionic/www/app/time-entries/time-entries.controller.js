@@ -10,7 +10,7 @@
             func = $scope.func = {};
 
         data.entries = [];
-        data.shouldShowDelete = false
+        data.shouldShowDelete = false;
 
         func.toggleShouldShowDelete = toggleShouldShowDelete;
         func.deleteTimeEntry = deleteTimeEntry;
@@ -27,6 +27,10 @@
             TimeEntryApiService.getEntriesForUser(currentUser.id)
                 .then(function (result) {
                     data.entries = result.data;
+                    _.each(data.entries, function (entry) {
+                        entry.startDateTime = new Date(entry.startDateTime);
+                        entry.endDateTime = new Date(entry.endDateTime);
+                    });
                 })
                 .catch(function () {
                     $ionicPopup

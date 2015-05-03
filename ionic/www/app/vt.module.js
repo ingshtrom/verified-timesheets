@@ -10,6 +10,7 @@
             'vt.time-entries',
             'vt.users',
             'vt.reasons',
-            'vt.apparatuses'
+            'vt.apparatuses',
+            'vt.settings'
         ]);
 })();

@@ -45,6 +45,20 @@
                     });
 
                 return deferred.promise;
+            },
+            updateUser: function updateUser (user) {
+                var deferred = $q.defer();
+                
+                $http.put(BASE_API_URL + '/users/' + user.id, user)
+                .success(function (data, status) {
+                    deferred.resolve({data: data, status: status});
+                })
+                .error(function (data, status) {
+                    ApiErrorHandlingService.handleResponseError(data, status);
+                    deferred.reject({data: data, status: status});
+                });
+                
+                return deferred.promise;
             }
         };
     }

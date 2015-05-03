@@ -5,29 +5,9 @@
         .module('vt.time-entries')
         .controller('TimeEntryController', TimeEntryController);
 
-    function TimeEntryController($scope, $state, $ionicPopup, TimeEntryApiService, UserApiService, ReasonApiService, ApparatusApiService) {
+    function TimeEntryController($scope, $state, $ionicPopup, $ionicHistory, TimeEntryApiService, UserApiService, ReasonApiService, ApparatusApiService) {
         var data = $scope.data = {},
             func = $scope.func = {};
-        //var dateOptions = {
-        //        date: new Date(),
-        //        mode: 'date',
-        //        allowOldDates: true,
-        //        allowFutureDates: true,
-        //        doneButtonLabel: 'DONE',
-        //        doneButtonColor: '#F2F3F4',
-        //        cancelButtonLabel: 'CANCEL',
-        //        cancelButtonColor: '#000000'
-        //    }, timeOptions = {
-        //        date: new Date(),
-        //        mode: 'time',
-        //        allowOldDates: true,
-        //        allowFutureDates: true,
-        //        doneButtonLabel: 'DONE',
-        //        doneButtonColor: '#F2F3F4',
-        //        cancelButtonLabel: 'CANCEL',
-        //        cancelButtonColor: '#000000',
-        //        minuteInterval: 15
-        //    };
 
         data.timeEntry = {};
         data.users = [];
@@ -47,11 +27,18 @@
 
         function getTimeEntry () {
             data.timeEntry.id = $state.params.id;
-            TimeEntryApiService
+            if (data.timeEntry.id) {
+                TimeEntryApiService
                 .getEntryById(data.timeEntry.id)
                 .then(function (result) {
                     data.timeEntry = result.data;
+                    data.timeEntry.startDateTime = new Date(data.timeEntry.startDateTime);
+                    data.timeEntry.endDateTime = new Date(data.timeEntry.endDateTime);
                 });
+            } else {
+                data.timeEntry.startDateTime = new Date();
+                data.timeEntry.endDateTime = new Date();
+            }
         }
 
         function getUsers () {
@@ -145,14 +132,10 @@
                     });
             }
 
-            if (data.editMode) {
-                action = ReasonApiService.updateReason({
-                    id: data.id,
-                    name: data.name,
-                    description: data.description
-                });
+            if (data.timeEntry.id) {
+                action = TimeEntryApiService.updateTimeEntry(data.timeEntry);
             } else {
-                action = ReasonApiService.createReason(data.name, data.description);
+                action = TimeEntryApiService.createTimeEntry(data.timeEntry);
             }
 
             action

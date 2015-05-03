@@ -57,30 +57,17 @@
 
             <label class="item item-input">
                 <span class="input-label">Start Date</span>
-                <div>
-                    {{data.timeEntry.startDateTime | date:'longDate' }}
-                </div>
+                <input type="datetime-local" ng-model="data.timeEntry.startDateTime" />
             </label>
-            <label class="item item-input">
-                <span class="input-label">Start Time</span>
 
-                <div>
-                    {{data.timeEntry.startDateTime | date:'shortTime' }}
-                </div>
-            </label>
             <label class="item item-input">
                 <span class="input-label">End Date</span>
-
-                <div>
-                    {{data.timeEntry.endDateTime | date:'longDate' }}
-                </div>
+                <input type="datetime-local" ng-model="data.timeEntry.endDateTime" />
             </label>
-            <label class="item item-input">
-                <span class="input-label">End Time</span>
 
-                <div>
-                    {{data.timeEntry.endDateTime | date:'shortTime' }}
-                </div>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Notes</span>
+                <textarea placeholder="Time Entry Notes" ng-model="data.timeEntry.notes"></textarea>
             </label>
         </div>
     </ion-content>

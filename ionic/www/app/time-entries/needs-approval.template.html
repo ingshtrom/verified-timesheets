@@ -1,0 +1,18 @@
+<ion-view view-title="Needs Approval">
+
+    <ion-nav-buttons side="secondary">
+        <a class="button button-icon icon ion-checkmark-round" ng-click="func.batchApproveTimeEntries()"></a>
+    </ion-nav-buttons>
+
+    <ion-content>
+        <div class="list">
+
+            <ion-toggle ng-repeat="entry in data.entries"
+                        ng-model="entry.isApproved"
+                        ng-checked="entry.isApproved">
+                [{{::entry.id}}]  {{::entry.user.name}} - {{::(entry.endDateTime - entry.startDateTime) | milToHourFilter | number: 1 }} hrs
+            </ion-toggle>
+
+        </div>
+    </ion-content>
+</ion-view>

@@ -27,6 +27,16 @@
                     }
                 }
             })
+            .state('app.time-entries-needs-approval', {
+                url: '/time-entries/needs-approval',
+                cache: false,
+                views: {
+                    'menuContent': {
+                        templateUrl: 'app/time-entries/needs-approval.template.html',
+                        controller: 'NeedsApprovalController'
+                    }
+                }
+            })
             .state('app.new-time-entry', {
                 url: '/time-entry',
                 views: {
@@ -108,6 +118,24 @@
                     menuContent: {
                         templateUrl: 'app/apparatuses/apparatus-detail.template.html',
                         controller: 'ApparatusDetailController'
+                    }
+                }
+            })
+            .state('app.settings', {
+                url: '/settings',
+                views: {
+                    menuContent: {
+                        templateUrl: 'app/settings/main-settings.template.html',
+                        controller: 'MainSettingsController'
+                    }
+                }
+            })
+            .state('app.settings-signature', {
+                url: '/settings-signature',
+                views: {
+                    menuContent: {
+                        templateUrl: 'app/settings/signature.template.html',
+                        controller: 'SignatureController'
                     }
                 }
             });

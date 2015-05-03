@@ -18,8 +18,8 @@ module.exports = {
     'use strict';
     var newTimeEntry = req.body;
     newTimeEntry.user = req.session.user.id;
-    newTimeEntry.startDateTime = new Date(parseInt(newTimeEntry.startDateTime));
-    newTimeEntry.endDateTime = new Date(parseInt(newTimeEntry.endDateTime));
+    newTimeEntry.startDateTime = new Date(newTimeEntry.startDateTime);
+    newTimeEntry.endDateTime = new Date(newTimeEntry.endDateTime);
 
     sails.log.debug('TimeEntryController.create', {
       newTimeEntry: newTimeEntry
@@ -114,10 +114,14 @@ module.exports = {
         });
       }
 
-      // strip any changes to isApproved.
-      // That should only be done through
-      // the approve action.
+      // strip any changes to isApproved, unless it is
+      // being set to false from true
       delete req.body.isApproved;
+      delete req.body.approvedBy;
+      if (entry.isApproved) {
+        entry.isApproved = false;
+        entry.approvedBy = null;
+      }
       entry = _.extend(entry, req.body);
       entry.save(function (err, savedEntry) {
         if (err) {

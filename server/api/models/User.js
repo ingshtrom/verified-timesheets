@@ -1,3 +1,4 @@
+/* global sails */
 'use strict';
 var bcrypt = require('bcrypt'),
     Promise = require('bluebird');  // jshint ignore:line
@@ -31,7 +32,7 @@ module.exports = {
       defaultsTo: false
     },
     signature: {
-      type: 'binary'
+      type: 'string'
     },
     timeEntries: {
       collection: 'timeentry',

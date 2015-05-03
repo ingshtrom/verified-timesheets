@@ -1,3 +1,5 @@
+/// <reference path="../../../typings/lodash/lodash.d.ts"/>
+/* global sails */
 /* global User */
 /**
  * UserController
@@ -7,7 +9,12 @@
  */
 
 module.exports = {
-  login: function login (req, res) {
+  login: login,
+  logout: logout,
+  update: update
+};
+
+function login (req, res) {
     'use strict';
     var email = req.body.email,
         password = req.body.password;
@@ -44,8 +51,9 @@ module.exports = {
         return res.status(500).json({ errorMessage: err.message });
       });
     });
-  },
-  logout: function logout (req, res) {
+  }
+  
+  function logout (req, res) {
     'use strict';
     sails.log.debug('UserController.logout');
     delete req.session.user;
@@ -55,4 +63,44 @@ module.exports = {
       message: 'Logged out successfully.'
     });
   }
-};
+  
+  function update (req, res) {
+    'use strict';
+    var id = req.params.id;
+    // only the current user can change their own signature
+    if (req.session.user.id !== req.body.id) {
+      delete req.body.signature;
+    }
+    
+    User.findOne(id)
+    .exec(function (err, user) {
+      sails.log.debug('UserController.update\n', {
+        id: id,
+        user: user
+      });
+      
+      if (err || !user) {
+        sails.log.debug('problem finding the user', {
+          err: err + ''
+        });
+        return res.status(401).json({ errorMessage: 'Invalid id.'});
+      }
+      
+      user = _.extend(user, req.body);
+      user.save(function (err, savedEntry) {
+        var jsonResponse;
+        if (err) {
+          if (err.toJSON) { jsonResponse = err.toJSON(); }
+          else { jsonResponse.error = err.name + ' => ' + err.message; }
+
+          sails.log.error('UserController.update', {
+            status: 'error',
+            errorResponse: jsonResponse,
+          });
+
+          return res.status(500).json(jsonResponse);
+        }
+        return res.status(201).json(savedEntry);
+      });
+    });
+  }

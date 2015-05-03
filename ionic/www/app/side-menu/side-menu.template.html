@@ -21,7 +21,10 @@
                 <ion-item nav-clear menu-close href="#/time-entries">
                     My Overtime
                 </ion-item>
-                <span ng-if="isOfficer()">
+                <span ng-if="::isOfficer()">
+                    <ion-item nav-clear menu-close href="#/time-entries/needs-approval">
+                        Needs Approval
+                    </ion-item>
                     <ion-item nav-clear menu-close href="#/users">
                         Users
                     </ion-item>
@@ -32,6 +35,9 @@
                         Apparatuses
                     </ion-item>
                 </span>
+                <ion-item nav-clear menu-close href="#/settings">
+                    Settings
+                </ion-item>
                 <ion-item nav-clear menu-close href ng-click="logout()" class="item-icon-right">
                     Logout
                     <i class="icon ion-log-out"></i>

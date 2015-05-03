@@ -12,9 +12,11 @@
                 <ion-delete-button class="ion-minus-circled" ng-click="func.deleteTimeEntry(entry)"></ion-delete-button>
 
                 <div ui-sref="app.time-entry-detail({id: entry.id})">
-                    {{entry.startDateTime | date : 'short'}} - {{(entry.endDateTime - entry.startDateTime) | milToHourFilter
-                    | number: 1 }} hrs
-                    <i ng-if="entry.isApproved" class="balanced icon ion-checkmark-round"></i>
+                    [{{::entry.id}}]  {{::entry.startDateTime | date : 'short'}} - {{::(entry.endDateTime - entry.startDateTime)
+                        | milToHourFilter
+                        | number: 1 }} hrs
+                    <i ng-if="::entry.isApproved" class="balanced icon ion-checkmark-round"></i>
+                    <i ng-if="::!entry.isApproved" class="icon ion-ios-arrow-right"></i>
                 </div>
 
             </ion-item>
