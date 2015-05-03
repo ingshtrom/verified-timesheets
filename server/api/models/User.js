@@ -69,6 +69,16 @@ module.exports = {
 
   /* STATIC FUNCTIONS */
   beforeCreate: function(user, cb) {
+    // cannot create an officer. You must create a user 
+    // and then assign them officer rights
+    user.isOfficer = false;
+    
+    // cannot set signature during creation
+    delete user.signature;
+    
+    // cannot set time entries during creation
+    user.timeEntries = []; 
+    
     // lowercase the email
     user.email = user.email.toLowerCase();
     
