@@ -1,7 +1,5 @@
-/* global TimeEntry */
-/// <reference path="../../typings/lodash/lodash.d.ts"/>
-/* global sails */
-/* global User */
+/* global TimeEntry, sails, User, Reason, Apparatus, Mailer */
+'use strict';
 var phantom = require('phantom'),
     path = require('path'),
     fs = require('fs'),
@@ -25,7 +23,7 @@ module.exports.bootstrap = function(cb) {
 
 
 //function setupLaterJobs (cb) {
-//  
+//
 //}
 
 function generateReports () {
@@ -34,19 +32,19 @@ function generateReports () {
       if (err) {
         return reject(err);
       }
-      
+
       _.each(users, function (user) {
         return loadTemplate()
         .then(function (htmlTemplate) {
-          var username, payPeriodStart, payPeriodEnd, rowContent, totalHours,  
+          var username, payPeriodStart, payPeriodEnd, rowContent, totalHours,
             html = _.clone(htmlTemplate);
-            
+
           username = user.name;
           payPeriodEnd = new Date();
           payPeriodStart = new Date(payPeriodEnd - 12096e5); // this is 2 weeks in milliseconds
           totalHours = 0;
           rowContent = '';
-          
+
           TimeEntry
           .find()
           .where({ user: user.id })
@@ -76,7 +74,7 @@ function generateReports () {
                 });
                 promises.push(promise);
               });
-                
+
               Promise
               .all(promises)
               .then(function (contents) {
@@ -86,8 +84,22 @@ function generateReports () {
                 .replace('__PAY_PERIOD_END__',              payPeriodEnd.toLocaleDateString())
                 .replace('__ROW_CONTENT__',                 contents.join(''))
                 .replace('__TOTAL_HOURS__',                 totalHours);
-                
+
                 sails.log.debug(html);
+                phantom.create(function (ph) {
+                  ph.createPage(function (page) {
+                    var filename = '/tmp/test-' + username.replace(' ', '_') + '-' + new Date().getTime() + '.pdf';
+                    page.paperSize = {
+                      format: 'A4',
+                      orientation: 'portrait',
+                      margin: '1cm'
+                    };
+                    page.setContent(html);
+                    page.render(filename);
+                    sails.services.mailer.send('htfd36@gmail.com', 'Almost there!!!', 'This is a test of what you would get from my app... Alex', filename);
+                    ph.exit();
+                  });
+                });
               });
             } else {
               sails.log.debug('No time entries found', {
@@ -129,7 +141,7 @@ function getMoarEntryData (entry) {
     getApparatusName(entry.apparatus),
     getApprovedBySignature(entry.approvedBy)
   ]);
-  
+
   function getUserCoveredForName (id) {
     return User
     .findOne()
@@ -138,7 +150,7 @@ function getMoarEntryData (entry) {
       return user.name;
     });
   }
-  
+
   function getReasonName (id) {
     return Reason
     .findOne()
@@ -147,7 +159,7 @@ function getMoarEntryData (entry) {
       return reason.name;
     });
   }
-  
+
   function getApparatusName (id) {
     return Apparatus
     .findOne()
@@ -156,7 +168,7 @@ function getMoarEntryData (entry) {
       return apparatus.name;
     });
   }
-  
+
   function getApprovedBySignature (id) {
     return User
     .findOne()
