@@ -26,6 +26,7 @@ module.exports.policies = {
   UserController: {
     login: true,
     create: true,
+    update: 'sessionAuth',
     '*': 'officerAuth'
   },
 

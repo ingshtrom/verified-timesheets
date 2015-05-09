@@ -19,6 +19,7 @@ sudo apt-get install postgresql postgresql-contrib
 sudo -u postgres psql postgres
 # literally type '\password postgres' in the postgres cli
 # then type in a strong password
+sudo -u postgres createdb verified_timesheets # or whatever you have in your config/connection.js for a db name
 ```
 I found this information here: https://help.ubuntu.com/community/PostgreSQL. There may be more you need, but I think Waterline ORM will do the rest for us.
 
