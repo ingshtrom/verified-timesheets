@@ -42,6 +42,7 @@ npm -g install sails
 Follow this guide to lock down ports and get emails on suspicious behavior: http://www.mysticgear.com/guide/digital-ocean/ubuntu/vps/server-setup/security/mail/postfix/iptables/tripwire/2014/05/04/do-server-setup.html
 
 ## Verified Timesheets
+### General
 ``` bash
 # get it
 cd ~
@@ -56,3 +57,6 @@ npm install
 
 Run `npm install` in the server directory. This should work since we have g++ and build-essentials already installed.
 
+
+### SSL
+See http://chrisrogers.me.uk/blog/sails-js-https-ssl/ and follow the directions there.

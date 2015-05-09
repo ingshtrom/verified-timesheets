@@ -24,7 +24,9 @@
     "org.apache.cordova.console",
     "com.ionic.keyboard"
   ],
-  "cordovaPlatforms": [],
+  "cordovaPlatforms": [
+    "android"
+  ],
   "scripts": {
     "postinstall": "bower -f install"
   }
