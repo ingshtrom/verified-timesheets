@@ -21,6 +21,7 @@
 
         function loadTimeEntries () {
             var currentUserId = LoginService.getCurrentSession().id;
+            data.entries = [];
             TimeEntryApiService
             .getEntriesForApproval()
             .then(function (result) {
@@ -51,7 +52,6 @@
             $q.all(approvalPromises)
             .then(function (result) {
                 console.log(result);
-                loadTimeEntries();
             })
             .catch(function () {
                 return $ionicPopup

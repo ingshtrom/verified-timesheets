@@ -22,5 +22,6 @@
 
 module.exports.routes = {
   'POST /login': 'UserController.login',
-  'DELETE /logout': 'UserController.logout'
+  'DELETE /logout': 'UserController.logout',
+  'POST /timeentries/approve/:id': 'TimeEntryController.approve'
 };

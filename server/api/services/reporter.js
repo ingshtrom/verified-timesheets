@@ -1,4 +1,4 @@
-/* global TimeEntry, sails, User, Reason, Apparatus */
+/* global TimeEntry, sails, User, Reason, Apparatus, process */
 'use strict';
 var phantom = require('phantom'),
     path = require('path'),
@@ -23,14 +23,10 @@ function registerLater () {
 function generateAndSend () {
   return new Promise(function (resolve, reject) {
     return User.find().exec(function (err, users) {
-      var dateRangeStart, dateRangeEnd, promises = [];
+      var promises = [];
       if (err) {
         return reject(err);
       }
-
-      // get 00:00 from today
-      dateRangeEnd = new Date();
-      dateRangeEnd = 
 
       _.each(users, function (user) {
           promises.push(generateAndSendForUser(user));
@@ -45,27 +41,31 @@ function generateAndSendForUser (user, isSingle) {
     return loadTemplate()
     .then(function (htmlTemplate) {
       var username, payPeriodStart, payPeriodEnd, rowContent, totalHours,
+        email = isSingle ? user.email : process.env.VT_HR_EMAIL,
         html = _.clone(htmlTemplate);
+
+      sails.log.debug('process', process.env);
 
       username = user.name;
       totalHours = 0;
       rowContent = '';
-      payPeriodStart = 'n/a';
-      payPeriodEnd = 'n/a';
-      
-      if (!isSingle) {
-        payPeriodEnd = new Date(new Date().setHours(0, 0, 0, 0));
-        payPeriodStart = new Date(payPeriodEnd - 12096e5); // this is 2 weeks in milliseconds
-      }
+      payPeriodEnd = new Date(new Date().setHours(0, 0, 0, 0));
+      payPeriodStart = new Date(payPeriodEnd - 12096e5); // this is 2 weeks in milliseconds
 
       TimeEntry
       .find()
       .where({ user: user.id })
       .where({ isApproved: true })
+      .where({ endDateTime: { '>': payPeriodStart, '<': payPeriodEnd }})
       .then(function (entries) {
         var promises = [];
         if (entries && entries.length > 0) {
           _.each(entries, function (entry) {
+            sails.log.debug('entry', entry);
+            sails.log.debug('entry compare', {
+              isAfterStart: entry.endDateTime > payPeriodStart,
+              isBeforeEnd: entry.endDateTiem < payPeriodEnd
+            });
             var promise = getMoarEntryData(entry)
             .spread(function (userCoveredForName, reasonName, apparatusName, approvedBySignature) {
               var hoursWorked = +(((entry.endDateTime - entry.startDateTime) / 1000 / 60 / 60).toFixed(1));
@@ -111,7 +111,22 @@ function generateAndSendForUser (user, isSingle) {
                 // right side of the page. I couldn't figure
                 // it out to save my lift!
                 page.render(filename, { format: 'pdf' });
-                sendEmail('avidgamer123@gmail.com', 'Almost there!!!', 'This is a test of what you would get..', filename);
+                
+                sendEmail(
+                  email,
+                  'Time Entries Report for ' + username,
+                  'Attached is a report of the time entries for <strong>' + username + '</strong> for pay period <strong>' + payPeriodStart.toLocaleString() + '</strong> to <strong>' + payPeriodEnd.toLocaleString() + '</strong>',
+                  filename
+                );
+          
+                sails.log.debug('email sent!', {
+                  username: user.name,
+                  userEmail: user.email,
+                  payPeriodStart: payPeriodStart.toString(),
+                  payPeriodEnd: payPeriodEnd.toString(),
+                  file: filename
+                });
+                
                 ph.exit();
               });
             });
@@ -155,23 +170,23 @@ function getMoarEntryData (entry) {
 }
 
 
-function sendEmail (to, subject, html, filePath) {
+function sendEmail (to, subject, body, filePath) {
     var transporter, mailOptions;
 
     transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 'verified.timesheets@gmail.com',
-            pass: 'Gv5JM5kPU38LTr3ruzb7'
+            user: process.env.VT_GMAIL_USERNAME,
+            pass: process.env.VT_GMAIL_PASSWORD
         }
     });
 
     mailOptions = {
-        from: 'Verified Timesheets <noreply.verified.timesheets@gmail.com>',
+        from: 'Verified Timesheets <verified.timesheets@gmail.com>',
         to: to,
         subject: subject,
-        text: 'There is no text version, yet.',
-        html: html,
+        text: body,
+        html: body,
         attachments: [
             { path: filePath }
         ]
@@ -180,9 +195,9 @@ function sendEmail (to, subject, html, filePath) {
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
-            console.log(error);
+            sails.log.error(error);
         } else {
-            console.log('Message sent: ' + info.response);
+            sails.log.debug('Message sent: ' + info.response);
         }
     });
 }
