@@ -70,6 +70,15 @@
                     }
                 }
             })
+            .state('app.user-detail', {
+                url: '/user/:id',
+                views: {
+                    menuContent: {
+                        templateUrl: 'app/users/user-detail.template.html',
+                        controller: 'UserDetailController'
+                    }
+                }
+            })
             .state('app.reasons', {
                 url: '/reasons',
                 cache: false,

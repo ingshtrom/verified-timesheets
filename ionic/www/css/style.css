@@ -11,10 +11,6 @@ textarea {
     min-height: 50px;
 }
 
-input {
-    text-align: right;
-}
-
 input[disabled], select[disabled], textarea[disabled], input[readonly]:not(.cloned-text-input), textarea[readonly]:not(.cloned-text-input), select[readonly] {
     background-color: inherit;
 }

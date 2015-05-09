@@ -12,6 +12,7 @@
 		data.email = '';
 		data.password = '';
 		data.password2 = '';
+        data.secretKey = '';
 
         $scope.createAccount = createAccount;
 
@@ -48,17 +49,30 @@
 					template: 'Your passwords must match.'
 				});
 			}
+            if (!data.secretKey) {
+                return $ionicPopup
+				.alert({
+					title: 'Error',
+					template: 'Your must enter a secret key.'
+				});
+            }
 			
 			UserApiService
-			.createUser(data.name, data.email, data.password)
+			.createUser(data.name, data.email, data.password, data.secretKey)
 			.then(function () {
 				$ionicHistory.goBack();
 			})
-			.catch(function () {
+			.catch(function (err) {
+                var errorMessage = 'Could not create account. Please try again.';
+                
+                if (err && err.data && err.data.errorMessage) {
+                    errorMessage = err.data.errorMessage;
+                }
+                
 				$ionicPopup
 				.alert({
 					title: 'Error',
-					template: 'Could not create account. Please try again.'
+					template: errorMessage
 				});
 			})
         }

@@ -10,7 +10,7 @@
             getReasons: function getReasons () {
                 var deferred = $q.defer();
 
-                $http.get(BASE_API_URL + '/reasons')
+                $http.get(BASE_API_URL + '/reasons?sort=name%20ASC')
                     .success(function (data, status) {
                         deferred.resolve({data: data, status: status});
                     })

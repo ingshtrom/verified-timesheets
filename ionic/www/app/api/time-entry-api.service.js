@@ -10,7 +10,7 @@
             getEntriesForUser: function getTimeForUser (id) {
                 var deferred = $q.defer();
 
-                $http.get(BASE_API_URL + '/timeentries?user=' + id)
+                $http.get(BASE_API_URL + '/timeentries?user=' + id + '&sort=endDateTime%20ASC')
                     .success(function (data, status) {
                         deferred.resolve({ data: data, status: status });
                     })
@@ -25,7 +25,7 @@
             getEntriesForApproval: function getEntriesForApproval () {
                 var deferred = $q.defer();
 
-                $http.get(BASE_API_URL + '/timeentries?isApproved=false')
+                $http.get(BASE_API_URL + '/timeentries?isApproved=false&sort=endDateTime%20ASC')
                     .success(function (data, status) {
                         deferred.resolve({data: data, status: status});
                     })

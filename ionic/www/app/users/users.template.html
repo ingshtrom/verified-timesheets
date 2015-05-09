@@ -1,7 +1,7 @@
 <ion-view view-title="Users">
     <ion-content>
         <div class="list">
-            <div ng-repeat="user in data.users" class="item">
+            <div ng-repeat="user in data.users" class="item" ui-sref="app.user-detail({ id: user.id })">
                 <h2>{{user.name}}</h2>
                 <h3>{{user.email}}</h3>
             </div>

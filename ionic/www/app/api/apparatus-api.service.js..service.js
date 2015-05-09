@@ -10,7 +10,7 @@
             getApparatuses: function getApparatuses () {
                 var deferred = $q.defer();
 
-                $http.get(BASE_API_URL + '/apparatuses')
+                $http.get(BASE_API_URL + '/apparatuses?sort=name%20ASC')
                     .success(function (data, status) {
                         deferred.resolve({data: data, status: status});
                     })

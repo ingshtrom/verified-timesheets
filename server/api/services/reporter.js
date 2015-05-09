@@ -52,13 +52,15 @@ function generateAndSend () {
 function generateAndSendForUser (user, isSingle) {
     return loadTemplate()
     .then(function (htmlTemplate) {
-      var username, payPeriodStart, payPeriodEnd, rowContent, totalHours,
+      var username, userSignature, userTitle, payPeriodStart, payPeriodEnd, rowContent, totalHours,
         email = isSingle ? user.email : process.env.VT_HR_EMAIL,
         html = _.clone(htmlTemplate);
 
       sails.log.debug('process', process.env);
 
       username = user.name;
+      userSignature = user.signature;
+      userTitle = user.title;
       totalHours = 0;
       rowContent = '';
       payPeriodEnd = new Date(new Date().setHours(0, 0, 0, 0));
@@ -108,7 +110,9 @@ function generateAndSendForUser (user, isSingle) {
             .replace('__PAY_PERIOD_START__',            payPeriodStart.toLocaleDateString())
             .replace('__PAY_PERIOD_END__',              payPeriodEnd.toLocaleDateString())
             .replace('__ROW_CONTENT__',                 contents.join(''))
-            .replace('__TOTAL_HOURS__',                 totalHours);
+            .replace('__TOTAL_HOURS__',                 totalHours)
+            .replace('__USER_SIGNATURE__',              userSignature)
+            .replacE('__USER_TITLE__',                  userTitle);
 
             sails.log.debug(html);
             phantom.create(function (ph) {

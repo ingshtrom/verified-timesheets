@@ -1,0 +1,26 @@
+<ion-view view-title="User Detail">
+    <ion-nav-buttons side="secondary">
+        <button class="button" ng-click="func.save()">
+            Save
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="list">
+            <div class="item item-input">
+                <span class="input-label">Name</span>
+                <input type="text" placeholder="User Name" ng-model="data.name" />
+            </div>
+            <div class="item item-input">
+                <span class="input-label">Email</span>
+                <input type="text" placeholder="email@domain.com" ng-model="data.email" />
+            </div>
+            <div class="item item-input">
+                <span class="input-label">Title</span>
+                <input type="text" placeholder="Senior Toilet Scrubber" ng-model="data.title" />
+            </div>
+            <ion-toggle ng-model="date.isOfficer" ng-checked="data.isOfficer">
+                Is Officer?
+            </ion-toggle>
+        </div>
+    </ion-content>
+</ion-view>

@@ -36,7 +36,7 @@
             getUsers: function getUsers () {
                 var deferred = $q.defer();
 
-                $http.get(BASE_API_URL + '/users')
+                $http.get(BASE_API_URL + '/users?sort=name%20ASC')
                     .success(function (data, status) {
                         deferred.resolve({data: data, status: status});
                     })
@@ -61,15 +61,30 @@
                 
                 return deferred.promise;
             },
-            createUser: function createUser (name, email, password) {
+            createUser: function createUser (name, email, password, secretKey) {
                 var deferred = $q.defer(),
                     data = {
                         name: name,
                         email: email,
-                        password: password
+                        password: password,
+                        secretKey: secretKey
                     };
                 
                 $http.post(BASE_API_URL + '/users', data)
+                .success(function (data, status) {
+                    deferred.resolve({data: data, status: status});
+                })
+                .error(function (data, status) {
+                    ApiErrorHandlingService.handleResponseError(data, status);
+                    deferred.reject({data: data, status: status});
+                });
+                
+                return deferred.promise;
+            },
+            getUser: function getUser (id) {
+                var deferred = $q.defer();
+                
+                $http.get(BASE_API_URL + '/users/' + id)
                 .success(function (data, status) {
                     deferred.resolve({data: data, status: status});
                 })
