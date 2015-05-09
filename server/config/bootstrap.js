@@ -13,5 +13,5 @@
 
 module.exports.bootstrap = function(cb) {
   cb();
-  sails.services.reporter.generateAndSend();
+  sails.services.reporter.registerLater();
 };

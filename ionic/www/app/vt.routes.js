@@ -52,7 +52,7 @@
                 }
             })
             .state('app.time-entry-detail', {
-                url: '/time-entry/:id',
+                url: '/time-entry/:id?isReadOnly',
                 views: {
                     'menuContent': {
                         templateUrl: 'app/time-entries/time-entry-detail.template.html',

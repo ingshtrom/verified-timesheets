@@ -5,6 +5,7 @@ var phantom = require('phantom'),
     fs = require('fs'),
     Promise = require('bluebird'),
     nodemailer = require('nodemailer'),
+    later = require('later'),
     htmlTemplate = '';
 
 module.exports = {
@@ -13,7 +14,18 @@ module.exports = {
 };
 
 function registerLater () {
+  var sched, occurrences;
   
+  later.date.localTime();
+  sched = later.parse.recur().every(2).weekOfYear();
+  occurrences = later.schedule(sched).next(10);
+  later.setInterval(generateAndSend, sched);
+  
+  sails.log.debug('registered later schedule for generating time entry reports');
+  
+  for(var i = 0; i < 10; i++) {
+    sails.log.debug(occurrences[i]);
+  }
 }
 
 /**

@@ -5,13 +5,14 @@
         .module('vt.time-entries')
         .controller('NeedsApprovalController', NeedsApprovalController);
 
-    function NeedsApprovalController($scope, $q, $ionicPopup, LoginService, TimeEntryApiService) {
+    function NeedsApprovalController($scope, $q, $ionicPopup, $state, LoginService, TimeEntryApiService) {
         var data = $scope.data = {},
             func = $scope.func = {};
 
         data.entries = [];
 
         func.batchApproveTimeEntries = batchApproveTimeEntries;
+        func.openDetails = openDetails;
 
         init();
 
@@ -61,6 +62,10 @@
                 });
             })
             .finally(function () { loadTimeEntries(); });
+        }
+        
+        function openDetails (entry) {
+            $state.go('app.time-entry-detail', { id: entry.id, isReadOnly: true });
         }
     }
 })();

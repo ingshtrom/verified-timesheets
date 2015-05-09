@@ -6,12 +6,15 @@
 
     <ion-content>
         <div class="list">
-
-            <ion-toggle ng-repeat="entry in data.entries"
-                        ng-model="entry.isApproved"
-                        ng-checked="entry.isApproved">
-                [{{::entry.id}}]  {{::entry.user.name}} - {{::(entry.endDateTime - entry.startDateTime) | milToHourFilter | number: 1 }} hrs
-            </ion-toggle>
+            
+            <div ng-repeat="entry in data.entries" 
+                 on-swipe-left="func.openDetails(entry)" 
+                 on-hold="func.openDetails(entry)">
+                <ion-toggle ng-model="entry.isApproved"
+                            ng-checked="entry.isApproved">
+                    [{{::entry.id}}]  {{::entry.user.name}} - {{::(entry.endDateTime - entry.startDateTime) | milToHourFilter | number: 1 }} hrs
+                </ion-toggle>
+            </div>
 
         </div>
     </ion-content>

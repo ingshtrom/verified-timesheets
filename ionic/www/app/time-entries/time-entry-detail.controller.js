@@ -13,12 +13,14 @@
         data.users = [];
         data.reasons = [];
         data.apparatuses = [];
+        data.isReadOnly = false;
 
         func.save = save;
 
         init();
 
         function init() {
+            data.isReadOnly = $state.params.isReadOnly;
             getTimeEntry();
             getUsers();
             getReasons();

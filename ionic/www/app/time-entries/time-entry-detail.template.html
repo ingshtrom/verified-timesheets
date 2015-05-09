@@ -1,12 +1,12 @@
 <ion-view view-title="Time Entry">
     <ion-nav-buttons side="secondary">
-        <button class="button" ng-click="func.save()">
+        <button ng-if="!data.isReadOnly" class="button" ng-click="func.save()">
             Save
         </button>
     </ion-nav-buttons>
     <ion-content>
         <div class="list">
-            <span ng-if="data.timeEntry.isApproved">
+            <span ng-if="data.timeEntry.isApproved && !data.isReadOnly">
                 <div class="item item-text-wrap assertive-bg">
                     <div class="row">
                         <div class="col centered-text">
@@ -23,14 +23,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="item item-divider">Attributes</div>
             </span>
+            <span ng-if="data.isReadOnly">
+                <label class="item item-input">
+                    <span class="input-label">Name</span>
+                    <input type="text" value="{{::data.timeEntry.user.name}}" ng-readonly="::data.isReadOnly" />
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Id</span>
+                    <input type="text" value="{{::data.timeEntry.id}}" ng-readonly="::data.isReadOnly" />
+                </label>
+            </span>
+            
+            <div class="item item-divider" ng-if="data.isReadOnly || data.timeEntry.isApproved">Attributes</div>
 
             <label class="item item-input item-select">
                 <div class="input-label">
                     Covered For
                 </div>
-                <select ng-options="user.name for user in data.users track by user.id" ng-model="data.timeEntry.userCoveredFor">
+                <select ng-options="user.name for user in data.users track by user.id"  
+                        ng-model="data.timeEntry.userCoveredFor"
+                        ng-disabled="::data.isReadOnly">
                     <option value=""></option>
                 </select>
             </label>
@@ -40,7 +53,8 @@
                     Reason
                 </div>
                 <select ng-options="reason.name for reason in data.reasons track by reason.id"
-                        ng-model="data.timeEntry.reason">
+                        ng-model="data.timeEntry.reason"
+                        ng-disabled="::data.isReadOnly">
                     <option value=""></option>
                 </select>
             </label>
@@ -50,24 +64,33 @@
                     Apparatus
                 </div>
                 <select ng-options="apparatus.name for apparatus in data.apparatuses track by apparatus.id"
-                        ng-model="data.timeEntry.apparatus">
+                        ng-model="data.timeEntry.apparatus"
+                        ng-disabled="::data.isReadOnly">
                     <option value=""></option>
                 </select>
             </label>
 
             <label class="item item-input">
                 <span class="input-label">Start Date</span>
-                <input type="datetime-local" ng-model="data.timeEntry.startDateTime" />
+                <input type="datetime-local" ng-model="data.timeEntry.startDateTime" ng-readonly="::data.isReadOnly" />
             </label>
 
             <label class="item item-input">
                 <span class="input-label">End Date</span>
-                <input type="datetime-local" ng-model="data.timeEntry.endDateTime" />
+                <input type="datetime-local" ng-model="data.timeEntry.endDateTime" ng-readonly="::data.isReadOnly" />
+            </label>
+            
+            <label class="item item-input">
+                <span class="input-label">Total Hours</span>
+                <input type="text" value="{{((data.timeEntry.endDateTime - data.timeEntry.startDateTime) | milToHourFilter | number: 1) + 'hrs'}}" ng-readonly="::data.isReadOnly" />
             </label>
 
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Notes</span>
-                <textarea placeholder="Time Entry Notes" ng-model="data.timeEntry.notes"></textarea>
+                <textarea placeholder="Time Entry Notes"
+                          ng-model="data.timeEntry.notes"
+                          ng-readonly="::data.isReadOnly">
+                </textarea>
             </label>
         </div>
     </ion-content>
