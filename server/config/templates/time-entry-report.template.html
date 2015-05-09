@@ -1,0 +1,186 @@
+<html>
+	<head>
+		<style>
+body {
+    padding: 50px;
+}
+h1 {
+    text-align: center;
+}
+.subtitle {
+    text-align: center;
+}
+.tab-1 {
+    padding-left: 15px;
+}
+.important-info {
+    font-weight: bold;
+    text-decoration: underline;
+}
+#main-content {
+    margin-top: 20px;
+    line-height: 1.3em;
+}
+table {
+		border: 0;
+    border-collapse: collapse;
+    width: 100%;
+		font-size: 12px;
+}
+table img {
+    width: 50px;
+    height: 50px;
+}
+.table-container {
+	margin-top: 35px;
+}
+th, td {
+   border: 1px solid black;
+   padding: 5px;
+   text-align: center;
+}
+td.label {
+	text-align: left;
+}
+.empty, .label {
+	border: 0;
+}
+
+footer {
+	font-size: 10px;
+	font-style: italic;
+}
+.col-hours {
+	min-width: 75px;
+}
+.col-signature {
+	min-width: 60px;
+}
+		</style>
+	</head>
+	<body>
+		<h1>Clay Fire Territory</h1>
+		<div class="subtitle">Time Sheet</div>
+		<div id="main-content">
+		    <div>
+		        <span>Name: </span>
+		        <span class="important-info">__USER_NAME__</span>
+		    </div>
+		    <div>
+		        <span>Type of Work: </span>
+		        <span class="important-info">Extra Pay</span>
+		    </div>
+		    <div>
+		        <span>Pay Period: </span>
+		    </div>
+		    <div>
+		        <span class="tab-1">From: </span>
+		        <span class="important-info">__PAY_PERIOD_START__</span>
+		    </div>
+		    <div>
+		        <span class="tab-1">To: </span>
+		        <span class="important-info">__PAY_PERIOD_END__</span>*
+		    </div>
+		</div>
+		<div class="table-container">
+			<table>
+			    <tr>
+			        <th>Created</th>
+			        <th>Covered For</th>
+			        <th>Reason</th>
+			        <th>Apparatus</th>
+			        <th>Notes</th>
+			        <th>IN</th>
+			        <th>OUT</th>
+			        <th class="col-hours">Hours</th>
+			        <th class="col-signature">Signature</th>
+				</tr>
+				__ROW_CONTENT__
+				<tr>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="label">Vacation</td>
+					<td class="empty"></td>
+					<td></td>
+					<td class="empty"></td>
+				</tr>
+				<tr>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="label">Sick</td>
+					<td class="empty"></td>
+					<td></td>
+					<td class="empty"></td>
+				</tr>
+				<tr>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="label">Extra</td>
+					<td class="empty"></td>
+					<td></td>
+					<td class="empty"></td>
+				</tr>
+				<tr>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="label">Eng @ 1.0</td>
+					<td class="empty"></td>
+					<td></td>
+					<td class="empty"></td>
+				</tr>
+				<tr>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="label">Eng @ 1.5</td>
+					<td class="empty"></td>
+					<td></td>
+					<td class="empty"></td>
+				</tr>
+				<tr>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="empty"></td>
+					<td class="label">Total</td>
+					<td class="empty"></td>
+					<td>__TOTAL_HOURS__</td>
+					<td class="empty"></td>
+				</tr>
+			</table>
+		</div>
+		<br>
+		<br>
+		<br>
+		<div>
+			<span>Signature:_______________________________________&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			<span>Title:_______________</span>
+		</div>
+		<br>
+		<br>
+		<div>
+			<span>Signature:_______________________________________&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			<span>Title: &nbsp;&nbsp;&nbsp;Fire Chief</span>
+		</div>
+		<br>
+		<br>
+		<br>
+		<footer>*All time entries must end within the payment period at midnight to be included.</foooter>
+		<hr>
+	</body>
+</html>
