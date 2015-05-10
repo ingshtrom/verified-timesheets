@@ -27,7 +27,7 @@ module.exports.policies = {
     login: true,
     create: true,
     update: 'sessionAuth',
-    get: 'sessionAuth',
+    find: 'sessionAuth',
     '*': 'officerAuth'
   },
 
@@ -35,11 +35,11 @@ module.exports.policies = {
     approve: 'officerAuth'
   },
   ReasonController: {
-    get: 'sessionAuth',
+    find: 'sessionAuth',
     '*': 'officerAuth'
   },
   ApparatusController: {
-    get: 'sessionAuth',
+    find: 'sessionAuth',
     '*': 'officerAuth'
   }
 };
