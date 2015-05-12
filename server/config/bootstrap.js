@@ -13,5 +13,5 @@
 
 module.exports.bootstrap = function(cb) {
   cb();
-  sails.services.reporter.registerLater();
+  sails.services.scheduler.register(sails.services.reporter.generateAndSend);
 };

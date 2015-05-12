@@ -5,28 +5,12 @@ var phantom = require('phantom'),
     fs = require('fs'),
     Promise = require('bluebird'),
     nodemailer = require('nodemailer'),
-    later = require('later'),
-    htmlTemplate = '';
+    htmlTemplate = '',
+    twoWeeksMs = 12096e5; // 2 weeks in milliseconds
 
-module.exports = {
-    registerLater: registerLater,
-    generateAndSend: generateAndSend
-};
-
-function registerLater () {
-  var sched, occurrences;
-  
-  later.date.localTime();
-  sched = later.parse.recur().every(2).weekOfYear();
-  occurrences = later.schedule(sched).next(10);
-  later.setInterval(generateAndSend, sched);
-  
-  sails.log.debug('registered later schedule for generating time entry reports');
-  
-  for(var i = 0; i < 10; i++) {
-    sails.log.debug(occurrences[i]);
-  }
-}
+// API
+module.exports.generateAndSend = generateAndSend;
+module.exports.generateAndSendForUser = generateAndSendForUser;
 
 /**
  * generate an extra pay timesheet for each user in the system
@@ -49,28 +33,40 @@ function generateAndSend () {
   });
 }
 
-function generateAndSendForUser (user, isSingle) {
+function generateAndSendForUser (user, payPeriodStart) {
     return loadTemplate()
     .then(function (htmlTemplate) {
-      var username, userSignature, userTitle, payPeriodStart, payPeriodEnd, rowContent, totalHours,
-        email = isSingle ? user.email : process.env.VT_HR_EMAIL,
-        html = _.clone(htmlTemplate);
+      var username, userSignature, userTitle, payPeriodEnd, rowContent, totalHours, email, html;
 
       sails.log.debug('process', process.env);
 
+      html = _.clone(htmlTemplate);
       username = user.name;
       userSignature = user.signature;
       userTitle = user.title;
       totalHours = 0;
       rowContent = '';
-      payPeriodEnd = new Date(new Date().setHours(0, 0, 0, 0));
-      payPeriodStart = new Date(payPeriodEnd - 12096e5); // this is 2 weeks in milliseconds
+
+      // set the pay period and email to send the report to 
+      // based on how the report was generated
+      if (payPeriodStart) {
+        // use initiated report
+        email = user.email;
+        payPeriodStart = new Date(payPeriodStart.setHours(7, 0, 0, 0)); // 7:00:00:000
+        payPeriodEnd = new Date(payPeriodStart + twoWeeksMs);
+      } else {
+        // later.js initiated report
+        email = process.env.VT_HR_EMAIL;
+        payPeriodEnd = new Date(new Date().setHours(7, 0, 0, 0)); // 7:00:00:000
+        payPeriodStart = new Date(payPeriodEnd - twoWeeksMs);
+      }
 
       TimeEntry
       .find()
       .where({ user: user.id })
       .where({ isApproved: true })
-      .where({ endDateTime: { '>': payPeriodStart, '<': payPeriodEnd }})
+      .where({ startDateTime: { '>=': payPeriodStart }})
+      .where({ endDateTime:   { '<=': payPeriodEnd   }})
       .then(function (entries) {
         var promises = [];
         if (entries && entries.length > 0) {
