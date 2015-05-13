@@ -14,6 +14,7 @@
 
         func.toggleShouldShowDelete = toggleShouldShowDelete;
         func.deleteTimeEntry = deleteTimeEntry;
+        func.generateReport = generateReport;
 
         init();
 
@@ -63,6 +64,27 @@
                                     .alert({
                                         title: 'Delete Error',
                                         template: 'An error occurred. Please try again.'
+                                    });
+                            });
+                    }
+                });
+        }
+        
+        function generateReport() {
+            $ionicPopup
+                .confirm({
+                    title: 'Generate Report?',
+                    template: 'Make sure your email is correct. The report will be sent to it.'
+                })
+                .then(function (result) {
+                    if (result) {
+                        TimeEntryApiService
+                            .generateReport()
+                            .catch(function (err) {
+                                $ionicPopup
+                                    .alert({
+                                        title: 'Generate Report Error',
+                                        template: err + ''
                                     });
                             });
                     }

@@ -124,6 +124,20 @@
                     });
 
                 return deferred.promise;
+            },
+            generateReport: function generateReport () {
+                var deferred = $q.defer();
+
+                $http.post(BASE_API_URL + '/timeentries/report/generate', {})
+                    .success(function (data, status) {
+                        deferred.resolve({data: data, status: status});
+                    })
+                    .error(function (data, status) {
+                        ApiErrorHandlingService.handleResponseError(data, status);
+                        deferred.reject({data: data, status: status});
+                    });
+
+                return deferred.promise;
             }
         };
     }

@@ -1,4 +1,5 @@
 /* global sails, User, process */
+'use strict';
 /**
  * UserController
  *
@@ -6,15 +7,12 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-module.exports = {
-  login: login,
-  logout: logout,
-  update: update,
-  create: create
-};
+module.exports.login = login;
+module.exports.logout = logout;
+module.exports.update = update;
+module.exports.create = create;
 
 function create(req, res) {
-  'use strict';
   var newUser = req.body,
     secretKey = req.body.secretKey;
 
@@ -46,7 +44,6 @@ function create(req, res) {
 }
 
 function login(req, res) {
-  'use strict';
   var email = req.body.email,
     password = req.body.password;
   User.findOne({
@@ -93,7 +90,6 @@ function login(req, res) {
 }
 
 function logout(req, res) {
-  'use strict';
   sails.log.debug('UserController.logout');
   delete req.session.user;
   delete req.session.authenticated;
@@ -104,7 +100,6 @@ function logout(req, res) {
 }
 
 function update(req, res) {
-  'use strict';
   var id = req.params.id;
   // only the current user can change their own signature
   if (req.session.user.id !== req.body.id) {

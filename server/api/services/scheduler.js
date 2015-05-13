@@ -22,18 +22,18 @@ function register (func) {
   
   later.setInterval(func, _schedule);
   
-  sails.log.debug('registered later schedule for generating time entry reports. Below are the occurrences for [-10, 10]');
+  sails.log.debug('registered later schedule for generating time entry reports. Below are the occurrences for [-5, 5]');
   
   // past
-  occurrences = getPreviousOccurrences(10)
-  for(i = 10; i >= 0; i--) {
+  occurrences = getPreviousOccurrences(5)
+  for(i = 5; i >= 0; i--) {
     sails.log.debug(occurrences[i]);
   }
   
   sails.log.debug('NOW!');
   // future
-  occurrences = getNextOccurrences(10);
-  for(i = 0; i < 10; i++) {
+  occurrences = getNextOccurrences(5);
+  for(i = 0; i < 5; i++) {
     sails.log.debug(occurrences[i]);
   }
 }

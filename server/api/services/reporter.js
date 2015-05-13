@@ -33,10 +33,10 @@ function generateAndSend () {
   });
 }
 
-function generateAndSendForUser (user, payPeriodStart) {
+function generateAndSendForUser (user, payPeriodEnd) {
     return loadTemplate()
     .then(function (htmlTemplate) {
-      var username, userSignature, userTitle, payPeriodEnd, rowContent, totalHours, email, html;
+      var username, userSignature, userTitle, payPeriodStart, totalHours, email, html;
 
       sails.log.debug('process', process.env);
 
@@ -45,21 +45,9 @@ function generateAndSendForUser (user, payPeriodStart) {
       userSignature = user.signature;
       userTitle = user.title;
       totalHours = 0;
-      rowContent = '';
-
-      // set the pay period and email to send the report to 
-      // based on how the report was generated
-      if (payPeriodStart) {
-        // use initiated report
-        email = user.email;
-        payPeriodStart = new Date(payPeriodStart.setHours(7, 0, 0, 0)); // 7:00:00:000
-        payPeriodEnd = new Date(payPeriodStart + twoWeeksMs);
-      } else {
-        // later.js initiated report
-        email = process.env.VT_HR_EMAIL;
-        payPeriodEnd = new Date(new Date().setHours(7, 0, 0, 0)); // 7:00:00:000
-        payPeriodStart = new Date(payPeriodEnd - twoWeeksMs);
-      }
+      email = payPeriodEnd ? user.email : process.env.VT_HR_EMAIL;
+      payPeriodEnd = new Date(new Date(payPeriodEnd || undefined).setHours(7, 0, 0, 0)); // 7:00:00:000
+      payPeriodStart = new Date(payPeriodEnd - twoWeeksMs);
 
       TimeEntry
       .find()
@@ -74,12 +62,13 @@ function generateAndSendForUser (user, payPeriodStart) {
             sails.log.debug('entry', entry);
             sails.log.debug('entry compare', {
               isAfterStart: entry.endDateTime > payPeriodStart,
-              isBeforeEnd: entry.endDateTiem < payPeriodEnd
+              isBeforeEnd: entry.endDateTime < payPeriodEnd
             });
             var promise = getMoarEntryData(entry)
             .spread(function (userCoveredForName, reasonName, apparatusName, approvedBySignature) {
-              var hoursWorked = +(((entry.endDateTime - entry.startDateTime) / 1000 / 60 / 60).toFixed(1));
-              rowContent += [
+              var rowContent, 
+                  hoursWorked = +(((entry.endDateTime - entry.startDateTime) / 1000 / 60 / 60).toFixed(1));
+              rowContent = [
                 '<tr>',
                   '<td>' + entry.createdAt.toLocaleDateString() + '</td>',
                   '<td>' + userCoveredForName + '</td>',
@@ -101,6 +90,7 @@ function generateAndSendForUser (user, payPeriodStart) {
           Promise
           .all(promises)
           .then(function (contents) {
+            sails.log.debug('contents length', contents.length);
             html = html
             .replace('__USER_NAME__',                   username)
             .replace('__PAY_PERIOD_START__',            payPeriodStart.toLocaleDateString())
@@ -108,7 +98,7 @@ function generateAndSendForUser (user, payPeriodStart) {
             .replace('__ROW_CONTENT__',                 contents.join(''))
             .replace('__TOTAL_HOURS__',                 totalHours)
             .replace('__USER_SIGNATURE__',              userSignature)
-            .replacE('__USER_TITLE__',                  userTitle);
+            .replace('__USER_TITLE__',                  userTitle);
 
             sails.log.debug(html);
             phantom.create(function (ph) {
