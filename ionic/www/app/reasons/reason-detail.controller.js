@@ -5,7 +5,9 @@
         .module('vt.reasons')
         .controller('ReasonDetailController', ReasonDetailController);
 
-    function ReasonDetailController($scope, $state, $ionicHistory, $ionicPopup, ReasonApiService) {
+    ReasonDetailController.$inject = ['$scope', '$state', '$ionicHistory', '$ionicPopup', '$log', 'ReasonApiService'];
+
+    function ReasonDetailController($scope, $state, $ionicHistory, $ionicPopup, $log, ReasonApiService) {
         var data = $scope.data = {},
             func = $scope.func = {};
 
@@ -21,7 +23,7 @@
         function init () {
             data.id = $state.params.id;
             if (data.id) {
-                console.log('reason-detail => edit mode');
+                $log.debug('reason-detail => edit mode');
                 data.editMode = true;
                 ReasonApiService
                     .getReason(data.id)
@@ -43,7 +45,7 @@
                             });
                     });
             } else {
-                console.log('reason-detail => create mode');
+                $log.debug('reason-detail => create mode');
             }
         }
 

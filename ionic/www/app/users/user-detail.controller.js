@@ -5,7 +5,9 @@
         .module('vt.users')
         .controller('UserDetailController', UserDetailController);
 
-    function UserDetailController($scope, $state, $ionicHistory, $ionicPopup, UserApiService) {
+    UserDetailController.$inject = ['$scope', '$state', '$ionicHistory', '$ionicPopup', '$log', 'UserApiService'];
+
+    function UserDetailController($scope, $state, $ionicHistory, $ionicPopup, $log, UserApiService) {
         var data = $scope.data = {},
             func = $scope.func = {};
 
@@ -23,7 +25,7 @@
         function init () {
             data.id = $state.params.id;
             if (data.id) {
-                console.log('user-detail => edit mode');
+                $log.debug('user-detail => edit mode');
                 data.editMode = true;
                 
                 UserApiService
@@ -48,7 +50,7 @@
                     });
                 });
             } else {
-                console.log('user-detail => create mode');
+                $log.debug('user-detail => create mode');
             }
         }
 

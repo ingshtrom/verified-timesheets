@@ -5,7 +5,9 @@
         .module('vt.apparatuses')
         .controller('ApparatusDetailController', ApparatusDetailController);
 
-    function ApparatusDetailController($scope, $state, $ionicHistory, $ionicPopup, ApparatusApiService) {
+    ApparatusDetailController.$inject = ['$scope', '$state', '$ionicHistory', '$ionicPopup', '$log', 'ApparatusApiService'];
+
+    function ApparatusDetailController($scope, $state, $ionicHistory, $ionicPopup, $log, ApparatusApiService) {
         var data = $scope.data = {},
             func = $scope.func = {};
 
@@ -21,7 +23,7 @@
         function init () {
             data.id = $state.params.id;
             if (data.id) {
-                console.log('apparatus-detail => edit mode');
+                $log.debug('apparatus-detail => edit mode');
                 data.editMode = true;
                 ApparatusApiService
                     .getApparatus(data.id)
@@ -43,7 +45,7 @@
                             });
                     });
             } else {
-                console.log('apparatus-detail => create mode');
+                $log.debug('apparatus-detail => create mode');
             }
         }
 

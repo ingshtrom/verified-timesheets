@@ -5,7 +5,9 @@
         .module('vt.users')
         .controller('ReasonsController', ReasonsController);
 
-    function ReasonsController ($scope, $ionicPopup, ReasonApiService) {
+    ReasonsController.$inject = ['$scope', '$ionicPopup', '$log', 'ReasonApiService'];
+
+    function ReasonsController ($scope, $ionicPopup, $log, ReasonApiService) {
         var data = $scope.data = {},
             func = $scope.func = {};
 
@@ -65,7 +67,7 @@
                                 });
                         });
                 } else {
-                    console.log('the user declined to delete reason.');
+                    $log.debug('the user declined to delete reason.');
                 }
             }
         }

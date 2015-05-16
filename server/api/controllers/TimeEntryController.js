@@ -77,8 +77,20 @@ function approve (req, res) {
       return res.status(500).json(jsonResponse);
     }
 
-    if (entry.user === req.session.user.id) {
-      return res.status(403).json({ error: 'You cannot approve your own time entry.' });
+    if (!req.session.user.signature) {
+      sails.log.debug('TimeEntryController.approve', {
+        message: 'cannot approve a time entry without a signature.'
+      });
+      return res.status(403).json({ error: 'You cannot approve a time entry without a signature.' });
+    }
+
+    if (entry.user === req.session.user.id || entry.coveredFor === req.session.user.id) {
+      sails.log.debug('TimeEntryController.approve', {
+        entryUser: entry.user,
+        entryCoveredFor: entry.coveredFor,
+        currentUser: req.session.user.id
+      });
+      return res.status(403).json({ error: 'You cannot approve a time entry that you are involved in.' });
     }
 
     entry.isApproved = true;

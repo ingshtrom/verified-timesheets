@@ -1,7 +1,14 @@
 <ion-view view-title="Needs Approval">
 
     <ion-nav-buttons side="secondary">
-        <a class="button button-icon icon ion-checkmark-round" ng-click="func.batchApproveTimeEntries()"></a>
+        <a ng-if="func.canApprove()" 
+           class="button button-icon icon ion-checkmark-round" 
+           ng-click="func.batchApproveTimeEntries()">
+        </a>
+        <a ng-if="!func.canApprove()" 
+           class="button button-icon icon ion-info-round" 
+           ng-click="func.displayNoApprovalInfo()">
+        </a>
     </ion-nav-buttons>
 
     <ion-content>

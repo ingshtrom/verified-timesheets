@@ -5,7 +5,9 @@
         .module('vt.users')
         .controller('ApparatusesController', ApparatusesController);
 
-    function ApparatusesController($scope, $ionicPopup, ApparatusApiService) {
+    ApparatusesController.$inject = ['$scope', '$ionicPopup', '$log', 'ApparatusApiService'];
+
+    function ApparatusesController($scope, $ionicPopup, $log, ApparatusApiService) {
         var data = $scope.data = {},
             func = $scope.func = {};
 
@@ -65,7 +67,7 @@
                                 });
                         });
                 } else {
-                    console.log('the user declined to delete apparatus.');
+                    $log.debug('the user declined to delete apparatus.');
                 }
             }
         }

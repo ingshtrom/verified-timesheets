@@ -5,15 +5,18 @@
         .module('vt.login')
         .factory('LoginService', LoginService);
 
-    function LoginService($q, UserApiService) {
+    LoginService.$inject = ['$q', '$log', 'UserApiService'];
+
+    function LoginService($q, $log, UserApiService) {
         var currentUser = null;
+        
         return {
             login: function login(email, password) {
                 return UserApiService
                     .login(email, password)
                     .then(function (result) {
                         currentUser = result.data;
-                        console.log('logged in!');
+                        $log.debug('logged in!');
                         return currentUser;
                     })
                     .catch(function (err) {
@@ -45,12 +48,18 @@
                 return currentUser || {};
             },
             isOfficer: function isAdmin() {
-                console.log(currentUser.isOfficer);
                 return currentUser ? currentUser.isOfficer : false;
             },
             isLoggedIn: function isLoggedIn() {
-                console.log('is logged in?', currentUser !== null);
                 return currentUser !== null;
+            },
+            refreshUser: function () {
+                return UserApiService
+                .getUser(currentUser.id)
+                .then(function (result) {
+                    currentUser = result.data;
+                    return currentUser;
+                })
             }
         };
     }

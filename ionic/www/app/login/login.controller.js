@@ -7,8 +7,8 @@
 
     function LoginController ($scope, $state, $ionicHistory, $ionicPopup, LoginService) {
         $scope.creds = {
-            email: '',
-            password: ''
+            email: 'avidgamer123@gmail.com',
+            password: 'testing'
         };
 
         $scope.login = login;

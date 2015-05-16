@@ -5,13 +5,16 @@
         .module('vt.time-entries')
         .controller('NeedsApprovalController', NeedsApprovalController);
 
-    function NeedsApprovalController($scope, $q, $ionicPopup, $state, LoginService, TimeEntryApiService) {
+    NeedsApprovalController.$inject = ['$scope', '$q', '$ionicPopup', '$state', '$log', 'LoginService', 'TimeEntryApiService'];
+
+    function NeedsApprovalController($scope, $q, $ionicPopup, $state, $log, LoginService, TimeEntryApiService) {
         var data = $scope.data = {},
             func = $scope.func = {};
 
         data.entries = [];
 
         func.batchApproveTimeEntries = batchApproveTimeEntries;
+        func.canApprove = canApprove;
         func.openDetails = openDetails;
 
         init();
@@ -52,7 +55,7 @@
             });
             $q.all(approvalPromises)
             .then(function (result) {
-                console.log(result);
+                $log.debug(result);
             })
             .catch(function () {
                 return $ionicPopup
@@ -66,6 +69,22 @@
         
         function openDetails (entry) {
             $state.go('app.time-entry-detail', { id: entry.id, isReadOnly: true });
+        }
+        
+        /**
+         * check if the user has the correct properties 
+         * set so that they can approve time entries
+         */
+        function canApprove () {
+            var currentUser = LoginService.getCurrentSession();
+            // no need to check if the user is an officer 
+            // since they can't get to this route if that
+            // were the case
+            return currentUser.signature && currentUser.title;
+        }
+        
+        function displayNoApprovalInfo () {
+            // display popover
         }
     }
 })();
