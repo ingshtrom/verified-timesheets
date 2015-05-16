@@ -24,5 +24,6 @@ module.exports.routes = {
   'POST /login': 'UserController.login',
   'DELETE /logout': 'UserController.logout',
   'POST /timeentries/approve/:id': 'TimeEntryController.approve',
-  'POST /timeentries/report/generate': 'TimeEntryController.generateReportForUser'
+  'POST /timeentries/report/generate': 'TimeEntryController.generateReportForUser',
+  'GET /timeentries/is-valid-timespan': 'TimeEntryController.isTimeSpanValid'
 };

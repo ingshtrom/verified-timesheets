@@ -11,6 +11,7 @@ module.exports.create = create;
 module.exports.approve = approve;
 module.exports.update = update;
 module.exports.generateReportForUser = generateReportForUser;
+module.exports.isTimeSpanValid = isTimeSpanValid;
 
 /**
  * Create a new TimeEntry with the current user. The startDateTime
@@ -172,4 +173,20 @@ function generateReportForUser(req, res) {
   }
 }
 
+/**
+ * check if the timespan is valid.
+ * @param {object} req 
+ * @param {object} res 
+ */
+function isTimeSpanValid (req, res) {
+    var startDateTime = new Date(parseInt(req.query.startDateTime, 10)),
+        endDateTime = new Date(parseInt(req.query.endDateTime, 10)),
+        isValid = sails.services.scheduler.isValidTimeEntryPeriod(startDateTime, endDateTime);
+  
+    sails.log.debug('isTimeSpanValid', {
+        reqQuery: req.query
+    });
+  
+    return res.status(200).json({ isValid: isValid });
+}
 

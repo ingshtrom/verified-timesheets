@@ -5,7 +5,9 @@
         .module('vt.time-entries')
         .controller('TimeEntryController', TimeEntryController);
 
-    function TimeEntryController($scope, $state, $ionicPopup, $ionicHistory, TimeEntryApiService, UserApiService, ReasonApiService, ApparatusApiService) {
+    TimeEntryController.$inject = ['$scope', '$state', '$ionicPopup', '$ionicHistory', '$q', 'TimeEntryApiService', 'UserApiService', 'ReasonApiService', 'ApparatusApiService'];
+
+    function TimeEntryController($scope, $state, $ionicPopup, $ionicHistory, $q, TimeEntryApiService, UserApiService, ReasonApiService, ApparatusApiService) {
         var data = $scope.data = {},
             func = $scope.func = {};
 
@@ -16,6 +18,7 @@
         data.isReadOnly = false;
 
         func.save = save;
+        func.isValidTimespan = isValidTimespan;
 
         init();
 
@@ -28,6 +31,8 @@
         }
 
         function getTimeEntry () {
+            var deferred = $q.defer();
+            
             data.timeEntry.id = $state.params.id;
             if (data.timeEntry.id) {
                 TimeEntryApiService
@@ -36,15 +41,19 @@
                     data.timeEntry = result.data;
                     data.timeEntry.startDateTime = new Date(data.timeEntry.startDateTime);
                     data.timeEntry.endDateTime = new Date(data.timeEntry.endDateTime);
+                    deferred.resolve();
                 });
             } else {
                 data.timeEntry.startDateTime = new Date();
                 data.timeEntry.endDateTime = new Date();
+                deferred.resolve();
             }
+            
+            return deferred.promise;
         }
 
         function getUsers () {
-            UserApiService
+            return UserApiService
                 .getUsers()
                 .then(function (result) {
                     data.users = result.data;
@@ -60,7 +69,7 @@
         }
 
         function getReasons () {
-            ReasonApiService
+            return ReasonApiService
                 .getReasons()
                 .then(function (result) {
                     data.reasons = result.data;
@@ -76,7 +85,7 @@
         }
 
         function getApparatuses () {
-            ApparatusApiService
+            return ApparatusApiService
                 .getApparatuses()
                 .then(function (result) {
                     data.apparatuses = result.data;
@@ -134,24 +143,50 @@
                     });
             }
 
-            if (data.timeEntry.id) {
-                action = TimeEntryApiService.updateTimeEntry(data.timeEntry);
-            } else {
-                action = TimeEntryApiService.createTimeEntry(data.timeEntry);
-            }
-
-            action
-                .then(function () {
-                    $ionicHistory.goBack();
-                })
-                .catch(function (err) {
-                    console.error('An error occurred while trying to save a reason: ' + err);
-                    $ionicPopup
-                        .alert({
-                            title: 'General Error',
-                            template: 'An error occurred. Please contact your administrator if this continues to happen.'
-                        });
-                });
+            isValidTimespan()
+            .then(function (isValid) {
+                if (!isValid) {
+                    return $ionicPopup
+                    .alert({
+                        title: 'Invalid Date',
+                        template: 'A time entry cannot span over the end of the pay period.'
+                    })
+                    .then(function () {
+                        return false;
+                    });
+                }
+                return $q.when(true);
+            })
+            .then(function (shouldSave) {
+                if (shouldSave) {
+                    if (data.timeEntry.id) {
+                        action = TimeEntryApiService.updateTimeEntry(data.timeEntry);
+                    } else {
+                        action = TimeEntryApiService.createTimeEntry(data.timeEntry);
+                    }
+                    
+                    action
+                    .then(function () {
+                        $ionicHistory.goBack();
+                    })
+                    .catch(function (err) {
+                        console.error('An error occurred while trying to save a reason: ' + err);
+                        $ionicPopup
+                            .alert({
+                                title: 'General Error',
+                                template: 'An error occurred. Please contact your administrator if this continues to happen.'
+                            });
+                    });
+                }
+            });
+        }
+        
+        function isValidTimespan () {
+            return TimeEntryApiService
+            .isValidTimespan(data.timeEntry.startDateTime, data.timeEntry.endDateTime)
+            .then(function (result) {
+                return result.data.isValid;
+            });
         }
     }
 })();

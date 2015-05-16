@@ -1,4 +1,4 @@
-/* globals require */
+/* globals require, process */
 'use strict';
 
 var gulp = require('gulp');
@@ -44,7 +44,7 @@ gulp.task('install', ['git-check'], function () {
 
 gulp.task('git-check', function (done) {
     if (!sh.which('git')) {
-        $log.debug(
+        console.log(
             '  ' + gutil.colors.red('Git is not installed.'),
             '\n  Git, the version control system, is required to download Ionic.',
             '\n  Download git here:', gutil.colors.cyan('http://git-scm.com/downloads') + '.',
