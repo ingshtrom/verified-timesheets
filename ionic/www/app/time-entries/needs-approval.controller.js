@@ -48,6 +48,16 @@
 
         function batchApproveTimeEntries () {
             var approvalPromises = [];
+            
+            // make sure the current user has a signature set
+            if (!LoginService.getCurrentSession().signature) {
+                return $ionicPopup
+                .alert({
+                    title: 'Error',
+                    template: 'You must have a signature set before approving time entries.'
+                });
+            }
+            
             angular.forEach(data.entries, function (entry) {
                 if (entry.isApproved) {
                     approvalPromises.push(TimeEntryApiService.approveTimeEntry(entry.id));

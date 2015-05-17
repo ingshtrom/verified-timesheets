@@ -35,7 +35,7 @@ sudo apt-get install python-software-properties python build-essential g++
 
 ## Sails.js
 ``` bash
-npm -g install sails
+sudo npm -g install sails
 ```
 
 ## Security
@@ -49,10 +49,13 @@ cd ~
 git clone https://github.com/ingshtrom/verified-timesheets.git
 # update the config/connection.js with our postgres info
 cd verified-timesheets/server/config
-nano connection.js
+nano connections.js
 # update your postgres config with the information from our postgres setup
 cd ~/verified-timesheets/server/node_modules/sails/node_modules/express/node_modules/connect
 npm install
+
+sudo npm install -g phantomjs
+sudo apt-get install libfontconfig
 ```
 
 Run `npm install` in the server directory. This should work since we have g++ and build-essentials already installed.

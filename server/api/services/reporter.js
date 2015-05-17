@@ -17,20 +17,20 @@ module.exports.generateAndSendForUser = generateAndSendForUser;
  * that has gotten their time entries approved
  */
 function generateAndSend () {
-  return new Promise(function (resolve, reject) {
-    return User.find().exec(function (err, users) {
-      var promises = [];
-      if (err) {
-        return reject(err);
-      }
+    return new Promise(function (resolve, reject) {
+        return User.find().exec(function (err, users) {
+            var promises = [];
+            if (err) {
+                return reject(err);
+            }
 
-      _.each(users, function (user) {
-          promises.push(generateAndSendForUser(user));
-      });
+            _.each(users, function (user) {
+                promises.push(generateAndSendForUser(user));
+            });
 
-      Promise.all(promises).then(resolve);
+            Promise.all(promises).then(resolve);
+        });
     });
-  });
 }
 
 function generateAndSendForUser (user, payPeriodEnd) {
@@ -104,10 +104,8 @@ function generateAndSendForUser (user, payPeriodEnd) {
             phantom.create(function (ph) {
               ph.createPage(function (page) {
                 var filename = '/tmp/test-' + username.replace(' ', '_') + '-' + new Date().getTime() + '.pdf';
-                page.setContent(html);
-                page.paperSize = {
-                  format: 'A5'
-                };
+                page.set('content', html);
+                page.set('paperSize', { format: 'A5' });
                 // yes, I know this comes out weird because 
                 // the table doesn't get any margin on the 
                 // right side of the page. I couldn't figure
